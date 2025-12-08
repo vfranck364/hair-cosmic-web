@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="HAIR - Optimise chaque orbite, automatise chaque rotation. Solutions d'automatisation et IA pour libérer votre potentiel gravitationnel.">
+  <meta name="keywords" content="automatisation, IA, chatbot, monitoring, intégration, intelligence artificielle">
+  <meta name="author" content="HAIR">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="HAIR - Automatisation & IA">
+  <meta property="og:description" content="Exploration spatiale × Technologie de pointe">
+  <meta property="og:type" content="website">
+
+  <title>HAIR — Automatisation & IA</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="chatbot.css">
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+
+<body>
+  <!-- Spatial Background Canvas -->
+  <canvas id="space-canvas"></canvas>
+
+  <!-- Content Wrapper -->
+  <div class="content-wrapper">
+
+    <!-- Header & Navigation -->
+    <header>
+      <nav>
+        <a href="#hero" class="logo" title="Home of Artificial Intelligence Revolution">
+          <img src="assets/logo.jpg" alt="HAIR Logo" class="logo-image">
+        </a>
+        <ul class="nav-menu">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#process">Processus</a></li>
+          <li><a href="#cases">Études de Cas</a></li>
+          <li><a href="#about">À Propos</a></li>
+          <li><a href="#testimonials">Témoignages</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+      <div class="section-container">
+        <!-- Large Logo Display -->
+        <div class="hero-logo-display">
+          <img src="assets/logo.jpg" alt="HAIR Logo" class="hero-logo-large">
+          <p class="hero-logo-meaning">Home of Artificial Intelligence Revolution</p>
+        </div>
+
+        <h1 class="hero-title">HAIR — Optimise chaque orbite, automatise chaque rotation, libère ton potentiel
+          gravitationnel</h1>
+        <p class="code-text" style="margin-top: 1rem; font-size: 1.1rem;">Exploration spatiale × Technologie de pointe
+        </p>
+
+        <div class="hero-cta">
+          <a href="#services" class="btn btn-primary">Démarrer l'exploration</a>
+          <a href="#cases" class="btn btn-secondary">Voir nos missions</a>
+        </div>
+
+        <div class="scroll-indicator">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L12 20M12 20L5 13M12 20L19 13" stroke="currentColor" stroke-width="2" fill="none"
+              stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+      <div class="section-container">
+        <h2 class="text-center">Services — Cartes Planétaires</h2>
+        <p class="text-center" style="max-width: 700px; margin: 0 auto var(--spacing-lg);">
+          Explorez notre constellation de services conçus pour propulser votre entreprise vers de nouveaux horizons
+          technologiques.
+        </p>
+
+        <div class="services-grid">
+          <!-- Automatisation -->
+          <a href="automatisation.html" class="service-card-link">
+            <div class="service-card automation">
+              <svg class="service-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+                <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+              <h3>Automatisation</h3>
+              <p>Systèmes intelligents qui optimisent vos processus métier. De l'analyse à l'exécution, HAIR automatise
+                vos tâches répétitives pour libérer votre créativité.</p>
+              <span class="service-link">En savoir plus →</span>
+            </div>
+          </a>
+
+          <!-- Chatbot IA -->
+          <a href="chatbot.html" class="service-card-link">
+            <div class="service-card chatbot">
+              <svg class="service-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="9" cy="10" r="1" fill="currentColor" />
+                <circle cx="15" cy="10" r="1" fill="currentColor" />
+              </svg>
+              <h3>Chatbot IA</h3>
+              <p>Assistants conversationnels sur mesure. Nos chatbots comprennent, apprennent et s'adaptent pour offrir
+                une expérience client exceptionnelle 24/7.</p>
+              <span class="service-link">En savoir plus →</span>
+            </div>
+          </a>
+
+          <!-- Monitoring -->
+          <a href="monitoring.html" class="service-card-link">
+            <div class="service-card monitoring">
+              <svg class="service-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 3V21H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <path d="M7 16L12 11L16 15L21 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <h3>Monitoring</h3>
+              <p>Surveillance en temps réel de vos systèmes. Détectez les anomalies, anticipez les problèmes, optimisez
+                les performances avec notre IA prédictive.</p>
+              <span class="service-link">En savoir plus →</span>
+            </div>
+          </a>
+
+          <!-- Intégration -->
+          <a href="integration.html" class="service-card-link">
+            <div class="service-card integration">
+              <svg class="service-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" />
+                <circle cx="5" cy="5" r="2" stroke="currentColor" stroke-width="2" />
+                <circle cx="19" cy="5" r="2" stroke="currentColor" stroke-width="2" />
+                <circle cx="5" cy="19" r="2" stroke="currentColor" stroke-width="2" />
+                <circle cx="19" cy="19" r="2" stroke="currentColor" stroke-width="2" />
+                <path d="M7 6L10 9M14 9L17 6M7 18L10 15M14 15L17 18" stroke="currentColor" stroke-width="2" />
+              </svg>
+              <h3>Intégration</h3>
+              <p>Connectez tous vos outils dans un écosystème unifié. HAIR orchestre vos applications pour une synergie
+                parfaite et des flux de travail fluides.</p>
+              <span class="service-link">En savoir plus →</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process Timeline -->
+    <section id="process">
+      <div class="section-container">
+        <h2 class="text-center">Processus — Timeline Orbitale</h2>
+        <p class="text-center" style="max-width: 700px; margin: 0 auto var(--spacing-lg);">
+          Notre méthodologie éprouvée vous guide de la conception au déploiement, avec transparence et excellence à
+          chaque étape.
+        </p>
+
+        <div class="timeline-container">
+          <!-- Analyse -->
+          <div class="timeline-planet incomplete">
+            <h3>Analyse</h3>
+            <p>Étude approfondie de vos besoins et contraintes</p>
+          </div>
+
+          <!-- Conception -->
+          <div class="timeline-planet in-progress">
+            <h3>Conception</h3>
+            <p>Design de solutions sur mesure avec prototypes interactifs</p>
+          </div>
+
+          <!-- Développement -->
+          <div class="timeline-planet completed">
+            <h3>Développement</h3>
+            <p>Implémentation agile avec tests continus</p>
+          </div>
+
+          <!-- Déploiement -->
+          <div class="timeline-planet incomplete">
+            <h3>Déploiement</h3>
+            <p>Mise en production et formation de vos équipes</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section id="cases">
+      <div class="section-container">
+        <h2 class="text-center">Études de Cas — Mission Logs</h2>
+        <p class="text-center" style="max-width: 700px; margin: 0 auto var(--spacing-lg);">
+          Découvrez comment nous avons transformé les défis de nos clients en succès mesurables.
+        </p>
+
+        <div class="case-studies-grid">
+          <!-- Mission Alpha -->
+          <div class="case-card">
+            <div class="case-header">MISSION #001 — AUTOMATION E-COMMERCE</div>
+            <h3>Automatisation E-commerce</h3>
+
+            <div class="case-details">
+              <div class="case-detail">
+                <strong>🏢 Client :</strong> Boutique en ligne mode (20M€ CA)
+              </div>
+              <div class="case-detail">
+                <strong>📅 Durée :</strong> 8 semaines
+              </div>
+              <div class="case-detail">
+                <strong>🎯 Secteur :</strong> E-commerce B2C
+              </div>
+            </div>
+
+            <div class="case-detail" style="margin-top: 1rem;">
+              <strong>OBJECTIFS MISSION :</strong>
+              <ul style="margin: 0.5rem 0; padding-left: 1.5rem; color: var(--color-text-gray);">
+                <li>Éliminer saisie manuelle commandes (20h/semaine)</li>
+                <li>Synchroniser Shopify + HubSpot + QuickBooks</li>
+                <li>Automatiser reporting hebdomadaire</li>
+                <li>Alertes stock bas automatiques</li>
+              </ul>
+            </div>
+
+            <div class="case-results">
+              <span class="result-badge">✓ 18h/semaine économisées</span>
+              <span class="result-badge">✓ 0 erreurs de saisie</span>
+              <span class="result-badge">✓ ROI 380% en 5 mois</span>
+            </div>
+
+            <p style="margin-top: 1rem; font-style: italic; color: var(--color-pure-white); font-size: 0.95rem;">
+              "HAIR a transformé nos ops. On scale sans embaucher." — Directeur Opérations
+            </p>
+          </div>
+
+          <!-- Mission Beta -->
+          <div class="case-card">
+            <div class="case-header">MISSION #002 — CHATBOT IA SUPPORT</div>
+            <h3>Support Client IA</h3>
+
+            <div class="case-details">
+              <div class="case-detail">
+                <strong>Client :</strong> Fintech startup
+              </div>
+              <div class="case-detail">
+                <strong>Défi :</strong> Support client 24/7 avec équipe limitée
+              </div>
+              <div class="case-detail">
+                <strong>Solution :</strong> Chatbot multilingue avec NLP avancé
+              </div>
+            </div>
+
+            <div class="case-results">
+              <span class="result-badge">✓ 62% tickets résolus auto</span>
+              <span class="result-badge">✓ Temps réponse : 8h → 2min</span>
+              <span class="result-badge">✓ +34% démos bookées</span>
+            </div>
+
+            <p style="margin-top: 1rem; font-style: italic; color: var(--color-pure-white); font-size: 0.95rem;">
+              "Leur bot répond mieux que notre ancien support humain." — Head of Customer Success
+            </p>
+          </div>
+
+          <!-- Mission Gamma -->
+          <div class="case-card">
+            <div class="case-header">MISSION #003 — AUTOMATISATION COMPTABLE</div>
+            <h3>Reporting Financier</h3>
+
+            <div class="case-details">
+              <div class="case-detail">
+                <strong>🏢 Client :</strong> Cabinet comptable (80 clients PME)
+              </div>
+              <div class="case-detail">
+                <strong>📅 Durée :</strong> 10 semaines
+              </div>
+              <div class="case-detail">
+                <strong>🎯 Secteur :</strong> Services comptables
+              </div>
+            </div>
+
+            <div class="case-detail" style="margin-top: 1rem;">
+              <strong>OBJECTIFS MISSION :</strong>
+              <ul style="margin: 0.5rem 0; padding-left: 1.5rem; color: var(--color-text-gray);">
+                <li>Automatiser import relevés bancaires</li>
+                <li>Catégorisation intelligente transactions</li>
+                <li>Rapprochement bancaire automatique</li>
+                <li>Reporting mensuel clients</li>
+              </ul>
+            </div>
+
+            <div class="case-results">
+              <span class="result-badge">✓ 30h/semaine économisées</span>
+              <span class="result-badge">✓ Clôtures 3× plus rapides</span>
+              <span class="result-badge">✓ ROI 420% sur 6 mois</span>
+            </div>
+
+            <p style="margin-top: 1rem; font-style: italic; color: var(--color-pure-white); font-size: 0.95rem;">
+              "On a multiplié notre capacité sans recruter. Game changer." — Expert-comptable associé
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About / Portrait -->
+    <section id="about">
+      <div class="section-container">
+        <h2 class="text-center">Portrait Planétaire</h2>
+        <p class="text-center" style="max-width: 700px; margin: 0 auto var(--spacing-lg);">
+          Franck GUEKEU — Fondateur de HAIR, étudiant en physique et passionné d'astronomie
+        </p>
+
+        <div class="portrait-container">
+          <div class="portrait-wrapper">
+            <img src="assets/portrait.jpg" alt="Franck GUEKEU - Fondateur HAIR" class="portrait-image">
+            <div class="orbital-ring"></div>
+          </div>
+
+          <div class="portrait-info">
+            <h3>Franck GUEKEU</h3>
+            <p class="code-text">Fondateur HAIR & Étudiant en Physique</p>
+
+            <p>
+              <strong style="color: var(--color-galactic-blue);">👤 À propos de moi</strong><br>
+              Je suis Franck GUEKEU, étudiant en physique à l'Université de Yaoundé 1 au Cameroun et passionné par
+              l'astronomie, les sciences et les technologies avancées. Depuis plusieurs années, je m'intéresse
+              particulièrement à l'intelligence artificielle et à son application dans la résolution de problèmes réels.
+            </p>
+
+            <p>
+              <strong style="color: var(--color-nebula-violet);">🧠 Ce que je fais</strong><br>
+              Je développe HAIR (Home of AI Revolutions), une solution qui combine automatisation, optimisation des
+              processus et agents intelligents. Mon objectif est d'aider les entreprises à gagner en efficacité,
+              réduire les tâches répétitives et améliorer leur performance opérationnelle grâce à des outils modernes
+              et accessibles.
+            </p>
+
+            <p>
+              <strong style="color: var(--color-energy-lime);">🛠️ Expertise</strong><br>
+              Mon travail repose sur l'intégration de l'IA dans des environnements réels, notamment :
+            </p>
+            <ul style="margin: 0.5rem 0 1rem 1.5rem; color: var(--color-text-gray);">
+              <li>Création d'agents conversationnels intelligents</li>
+              <li>Automatisation des workflows et processus internes</li>
+              <li>Intégration d'API et outils no-code/low-code</li>
+              <li>Déploiement d'agents sur des plateformes comme Telegram</li>
+              <li>Développement et test de solutions IA locales sur Ubuntu, Windows et MacOS</li>
+            </ul>
+
+            <p>
+              <strong style="color: var(--color-spatial-gold);">🎯 Ma vision</strong><br>
+              Je crois profondément que l'intelligence artificielle est un levier majeur pour transformer la manière
+              dont les entreprises travaillent. Avec HAIR, je veux rendre ces technologies plus accessibles afin
+              d'aider chaque organisation à gagner du temps, fluidifier ses opérations et se concentrer sur les
+              tâches à forte valeur ajoutée.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials">
+      <div class="section-container">
+        <h2 class="text-center">Témoignages — Galaxie Sociale</h2>
+        <p class="text-center" style="max-width: 700px; margin: 0 auto var(--spacing-lg);">
+          Ce que nos clients disent de leur voyage avec HAIR
+        </p>
+
+        <div class="testimonials-container">
+          <!-- Testimonial 1 -->
+          <div class="testimonial-orbit">
+            <div>
+              <div class="testimonial-name">Sophie M.</div>
+              <div class="testimonial-role">CTO, TechCorp</div>
+            </div>
+            <div class="testimonial-content">
+              <p class="testimonial-text">
+                "HAIR a transformé notre infrastructure. Leur approche innovante et leur expertise
+                en IA nous ont fait gagner 2 ans de développement."
+              </p>
+            </div>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div class="testimonial-orbit">
+            <div>
+              <div class="testimonial-name">Marc D.</div>
+              <div class="testimonial-role">CEO, InnovateLab</div>
+            </div>
+            <div class="testimonial-content">
+              <p class="testimonial-text">
+                "L'automatisation mise en place a révolutionné nos processus.
+                ROI exceptionnel et équipe ultra-réactive."
+              </p>
+            </div>
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div class="testimonial-orbit">
+            <div>
+              <div class="testimonial-name">Julie C.</div>
+              <div class="testimonial-role">PM, DataFlow</div>
+            </div>
+            <div class="testimonial-content">
+              <p class="testimonial-text">
+                "Le chatbot développé par HAIR comprend mieux nos clients que certains humains.
+                Impressionnant niveau de personnalisation."
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="section-container">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <img src="assets/logo.jpg" alt="HAIR Logo" class="footer-logo">
+            <p class="code-text" style="margin-top: 0.5rem;">Automatisation & IA</p>
+          </div>
+
+          <div class="footer-links">
+            <div class="footer-column">
+              <h4>Services</h4>
+              <a href="#services">Automatisation</a>
+              <a href="#services">Chatbot IA</a>
+              <a href="#services">Monitoring</a>
+              <a href="#services">Intégrations</a>
+            </div>
+
+            <div class="footer-column">
+              <h4>Entreprise</h4>
+              <a href="#process">Processus</a>
+              <a href="#cases">Études de Cas</a>
+              <a href="#about">À Propos</a>
+              <a href="#testimonials">Témoignages</a>
+            </div>
+
+            <div class="footer-column">
+              <h4>Contact</h4>
+              <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Discutons de votre projet</p>
+              <a href="mailto:vfranck364@gmail.com"
+                style="color: var(--color-galactic-blue); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                  style="width: 20px; height: 20px;">
+                  <path
+                    d="M3 8L10.89 13.26C11.2187 13.4793 11.6049 13.5963 12 13.5963C12.3951 13.5963 12.7813 13.4793 13.11 13.26L21 8M5 19H19C19.5304 19 20.0391 18.7893 20.4142 18.4142C20.7893 18.0391 21 17.5304 21 17V7C21 6.46957 20.7893 5.96086 20.4142 5.58579C20.0391 5.21071 19.5304 5 19 5H5C4.46957 5 3.96086 5.21071 3.58579 5.58579C3.21071 5.96086 3 6.46957 3 7V17C3 17.5304 3.21071 18.0391 3.58579 18.4142C3.96086 18.7893 4.46957 19 5 19Z"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                vfranck364@gmail.com
+              </a>
+            </div>
+
+            <div class="footer-column">
+              <h4>Newsletter</h4>
+              <p style="font-size: 0.9rem; margin-bottom: 1rem;">Reçois les secrets d'automatisation</p>
+              <div class="newsletter-form">
+                <input type="email" placeholder="ton@email.com" id="newsletter-email">
+                <button class="btn-newsletter">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+              </div>
+              <p style="font-size: 0.75rem; color: var(--color-text-gray); margin-top: 0.5rem;">1 email/mois. 0 spam.
+                Désinscription en 1 clic.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2025 HAIR — Automatisation & IA. Tous droits réservés.</p>
+          <p class="code-text">Optimise chaque orbite, automatise chaque rotation.</p>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="space-background.js"></script>
+  <script src="animations.js"></script>
+  <script src="chatbot.js"></script>
+  <script src="bigbang-effect.js"></script>
+</body>
+
+</html>

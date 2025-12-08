@@ -1,0 +1,369 @@
+/* ============================================
+   CHATBOT ASTRO STYLES
+   ============================================ */
+
+/* Chat Button */
+.astro-chat-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--color-nebula-violet), var(--color-galactic-blue));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--glow-lg) rgba(139, 92, 246, 0.6);
+    transition: all var(--transition-normal);
+    z-index: 999;
+}
+
+.astro-chat-button:hover {
+    transform: scale(1.1);
+    box-shadow: var(--glow-lg) rgba(139, 92, 246, 0.8);
+}
+
+.astro-chat-button.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0);
+}
+
+.astro-avatar {
+    width: 35px;
+    height: 35px;
+    color: white;
+}
+
+.astro-pulse {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(139, 92, 246, 0.4);
+    animation: pulse-ring 2s ease-out infinite;
+}
+
+@keyframes pulse-ring {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Chat Widget */
+.astro-chat-widget {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 380px;
+    height: 600px;
+    background: rgba(8, 16, 41, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 20px;
+    box-shadow: var(--glow-lg) rgba(139, 92, 246, 0.4);
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+    pointer-events: none;
+    transition: all var(--transition-normal);
+    z-index: 1000;
+}
+
+.astro-chat-widget.open {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    pointer-events: all;
+}
+
+/* Header */
+.astro-chat-header {
+    padding: var(--spacing-sm);
+    border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.astro-header-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.astro-avatar-small {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--color-nebula-violet), var(--color-galactic-blue));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.astro-avatar-small svg {
+    width: 24px;
+    height: 24px;
+}
+
+.astro-name {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-pure-white);
+}
+
+.astro-status {
+    font-size: 0.85rem;
+    color: var(--color-energy-lime);
+}
+
+.astro-close {
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    color: var(--color-text-gray);
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.astro-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-pure-white);
+}
+
+.astro-close svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Messages Container */
+.astro-chat-messages {
+    flex: 1;
+    padding: var(--spacing-sm);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.astro-chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.astro-chat-messages::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+}
+
+.astro-chat-messages::-webkit-scrollbar-thumb {
+    background: rgba(139, 92, 246, 0.5);
+    border-radius: 3px;
+}
+
+.astro-chat-messages::-webkit-scrollbar-thumb:hover {
+    background: rgba(139, 92, 246, 0.7);
+}
+
+/* Messages */
+.astro-message {
+    display: flex;
+    animation: messageSlideIn 0.3s ease-out;
+}
+
+@keyframes messageSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.user-message {
+    justify-content: flex-end;
+}
+
+.bot-message {
+    justify-content: flex-start;
+}
+
+.message-bubble {
+    max-width: 75%;
+    padding: 0.75rem 1rem;
+    border-radius: 16px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.user-message .message-bubble {
+    background: linear-gradient(135deg, var(--color-galactic-blue), var(--color-nebula-violet));
+    color: var(--color-pure-white);
+    border-bottom-right-radius: 4px;
+}
+
+.bot-message .message-bubble {
+    background: rgba(139, 92, 246, 0.15);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    color: var(--color-pure-white);
+    border-bottom-left-radius: 4px;
+    box-shadow: var(--glow-sm) rgba(139, 92, 246, 0.2);
+}
+
+/* Typing Indicator */
+.typing-indicator .message-bubble {
+    padding: 1rem;
+}
+
+.typing-dots {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.typing-dots span {
+    width: 8px;
+    height: 8px;
+    background: var(--color-nebula-violet);
+    border-radius: 50%;
+    animation: typingDot 1.4s infinite;
+}
+
+.typing-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes typingDot {
+
+    0%,
+    60%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.7;
+    }
+
+    30% {
+        transform: translateY(-10px);
+        opacity: 1;
+    }
+}
+
+/* Quick Replies */
+.astro-quick-replies {
+    padding: 0 var(--spacing-sm);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    min-height: 40px;
+}
+
+.quick-reply-btn {
+    padding: 0.5rem 1rem;
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.4);
+    border-radius: 20px;
+    color: var(--color-nebula-violet);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    font-family: var(--font-body);
+}
+
+.quick-reply-btn:hover {
+    background: rgba(139, 92, 246, 0.2);
+    border-color: var(--color-nebula-violet);
+    transform: translateY(-2px);
+    box-shadow: var(--glow-sm) rgba(139, 92, 246, 0.3);
+}
+
+/* Input */
+.astro-chat-input {
+    padding: var(--spacing-sm);
+    border-top: 1px solid rgba(139, 92, 246, 0.2);
+    display: flex;
+    gap: 0.5rem;
+}
+
+.astro-chat-input input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 12px;
+    color: var(--color-pure-white);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    transition: all var(--transition-fast);
+}
+
+.astro-chat-input input:focus {
+    outline: none;
+    border-color: var(--color-nebula-violet);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: var(--glow-sm) rgba(139, 92, 246, 0.3);
+}
+
+.astro-chat-input input::placeholder {
+    color: var(--color-text-gray);
+}
+
+.astro-chat-input button {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, var(--color-nebula-violet), var(--color-galactic-blue));
+    border: none;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.astro-chat-input button:hover {
+    transform: scale(1.05);
+    box-shadow: var(--glow-md) rgba(139, 92, 246, 0.5);
+}
+
+.astro-chat-input button svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .astro-chat-widget {
+        width: calc(100vw - 40px);
+        height: calc(100vh - 100px);
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .astro-chat-button {
+        bottom: 20px;
+        right: 20px;
+    }
+}
