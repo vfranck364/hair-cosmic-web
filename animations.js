@@ -20,6 +20,7 @@ class HairAnimations {
         this.initHeroAnimations();
         this.initMicroInteractions();
         this.initHeaderScroll();
+        this.initMobileMenu();
     }
 
     initBasicAnimations() {
@@ -272,6 +273,54 @@ class HairAnimations {
             }
 
             lastScroll = currentScroll;
+        });
+    }
+
+    initMobileMenu() {
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('.nav-menu');
+        const backBtn = document.querySelector('.btn-back');
+        const navLinks = document.querySelectorAll('.nav-menu a');
+
+        if (!menuBtn || !navMenu) return;
+
+        const closeMenu = () => {
+            navMenu.classList.remove('active');
+            menuBtn.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navMenu.classList.toggle('active');
+            menuBtn.classList.toggle('active');
+
+            if (navMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+
+        if (backBtn) {
+            backBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                closeMenu();
+            });
+        }
+
+        // Close when clicking outside
+        document.addEventListener('click', (e) => {
+            if (navMenu.classList.contains('active') &&
+                !navMenu.contains(e.target) &&
+                !menuBtn.contains(e.target)) {
+                closeMenu();
+            }
+        });
+
+        // Close menu when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
         });
     }
 }

@@ -38,16 +38,26 @@
     <!-- Header & Navigation -->
     <header>
       <nav>
-        <a href="#hero" class="logo" title="Home of Artificial Intelligence Revolution">
+        <a href="#hero" class="logo" title="Home of AI Solutions">
           <img src="assets/logo.jpg" alt="HAIR Logo" class="logo-image">
         </a>
         <ul class="nav-menu">
+          <li class="mobile-only"><button class="btn-back" aria-label="Retour">← Retour</button></li>
           <li><a href="#services">Services</a></li>
           <li><a href="#process">Processus</a></li>
           <li><a href="#cases">Études de Cas</a></li>
           <li><a href="#about">À Propos</a></li>
+          <li><a href="#contact">Contact</a></li>
           <li><a href="#testimonials">Témoignages</a></li>
         </ul>
+        <button class="mobile-menu-btn" aria-label="Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
       </nav>
     </header>
 
@@ -57,7 +67,7 @@
         <!-- Large Logo Display -->
         <div class="hero-logo-display">
           <img src="assets/logo.jpg" alt="HAIR Logo" class="hero-logo-large">
-          <p class="hero-logo-meaning">Home of Artificial Intelligence Revolution</p>
+          <p class="hero-subtitle">Optimisez vos processus et gagnez en efficacité.</p>
         </div>
 
         <h1 class="hero-title">HAIR — Optimise chaque orbite, automatise chaque rotation, libère ton potentiel
@@ -66,8 +76,8 @@
         </p>
 
         <div class="hero-cta">
-          <a href="#services" class="btn btn-primary">Démarrer l'exploration</a>
-          <a href="#cases" class="btn btn-secondary">Voir nos missions</a>
+          <a href="#services" class="btn btn-primary">Nos Solutions</a>
+          <a href="#contact" class="btn btn-secondary">Parler à un expert</a>
         </div>
 
         <div class="scroll-indicator">
@@ -82,10 +92,9 @@
     <!-- Services Section -->
     <section id="services">
       <div class="section-container">
-        <h2 class="text-center">Services — Cartes Planétaires</h2>
-        <p class="text-center" style="max-width: 700px; margin: 0 auto var(--spacing-lg);">
-          Explorez notre constellation de services conçus pour propulser votre entreprise vers de nouveaux horizons
-          technologiques.
+        <h2 class="text-center">Notre Méthode — Étapes de Réussite</h2>
+        <p class="text-center" style="max-width: 700px; margin: 0 auto;">
+          Un accompagnement structuré pour garantir le succès de votre projet d'avenir.
         </p>
 
         <div class="services-grid">
@@ -96,7 +105,7 @@
                 <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
                 <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
               </svg>
-              <h3>Automatisation</h3>
+              <h3>Automatisation des Processus</h3>
               <p>Systèmes intelligents qui optimisent vos processus métier. De l'analyse à l'exécution, HAIR automatise
                 vos tâches répétitives pour libérer votre créativité.</p>
               <span class="service-link">En savoir plus →</span>
@@ -113,7 +122,7 @@
                 <circle cx="9" cy="10" r="1" fill="currentColor" />
                 <circle cx="15" cy="10" r="1" fill="currentColor" />
               </svg>
-              <h3>Chatbot IA</h3>
+              <h3>Développement de Chatbots IA</h3>
               <p>Assistants conversationnels sur mesure. Nos chatbots comprennent, apprennent et s'adaptent pour offrir
                 une expérience client exceptionnelle 24/7.</p>
               <span class="service-link">En savoir plus →</span>
@@ -129,7 +138,7 @@
                 <path d="M7 16L12 11L16 15L21 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                   stroke-linejoin="round" />
               </svg>
-              <h3>Monitoring</h3>
+              <h3>Monitoring et Analyse Prédictive</h3>
               <p>Surveillance en temps réel de vos systèmes. Détectez les anomalies, anticipez les problèmes, optimisez
                 les performances avec notre IA prédictive.</p>
               <span class="service-link">En savoir plus →</span>
@@ -147,9 +156,8 @@
                 <circle cx="19" cy="19" r="2" stroke="currentColor" stroke-width="2" />
                 <path d="M7 6L10 9M14 9L17 6M7 18L10 15M14 15L17 18" stroke="currentColor" stroke-width="2" />
               </svg>
-              <h3>Intégration</h3>
-              <p>Connectez tous vos outils dans un écosystème unifié. HAIR orchestre vos applications pour une synergie
-                parfaite et des flux de travail fluides.</p>
+              <h3>Intégrations</h3>
+              <p>Connectez vos outils préférés pour créer un écosystème de travail fluide et performant.</p>
               <span class="service-link">En savoir plus →</span>
             </div>
           </a>
@@ -170,25 +178,25 @@
           <!-- Analyse -->
           <div class="timeline-planet incomplete">
             <h3>Analyse</h3>
-            <p>Étude approfondie de vos besoins et contraintes</p>
+            <p>Compréhension de vos besoins réels.</p>
           </div>
 
           <!-- Conception -->
           <div class="timeline-planet in-progress">
             <h3>Conception</h3>
-            <p>Design de solutions sur mesure avec prototypes interactifs</p>
+            <p>Conception de votre solution sur mesure.</p>
           </div>
 
           <!-- Développement -->
           <div class="timeline-planet completed">
             <h3>Développement</h3>
-            <p>Implémentation agile avec tests continus</p>
+            <p>Création et tests rigoureux.</p>
           </div>
 
           <!-- Déploiement -->
           <div class="timeline-planet incomplete">
             <h3>Déploiement</h3>
-            <p>Mise en production et formation de vos équipes</p>
+            <p>Mise en œuvre et suivi.</p>
           </div>
         </div>
       </div>
@@ -368,56 +376,39 @@
     </section>
 
     <!-- Testimonials -->
-    <section id="testimonials">
+    <section id="testimonials" class="testimonials-hidden">
       <div class="section-container">
-        <h2 class="text-center">Témoignages — Galaxie Sociale</h2>
+        <h2 class="text-center">Témoignages — Ce que disent nos clients</h2>
         <p class="text-center" style="max-width: 700px; margin: 0 auto var(--spacing-lg);">
-          Ce que nos clients disent de leur voyage avec HAIR
+          Bientôt disponible : Découvrez les retours d'expérience de nos clients.
         </p>
 
-        <div class="testimonials-container">
-          <!-- Testimonial 1 -->
-          <div class="testimonial-orbit">
-            <div>
-              <div class="testimonial-name">Sophie M.</div>
-              <div class="testimonial-role">CTO, TechCorp</div>
-            </div>
-            <div class="testimonial-content">
-              <p class="testimonial-text">
-                "HAIR a transformé notre infrastructure. Leur approche innovante et leur expertise
-                en IA nous ont fait gagner 2 ans de développement."
-              </p>
-            </div>
-          </div>
-
-          <!-- Testimonial 2 -->
-          <div class="testimonial-orbit">
-            <div>
-              <div class="testimonial-name">Marc D.</div>
-              <div class="testimonial-role">CEO, InnovateLab</div>
-            </div>
-            <div class="testimonial-content">
-              <p class="testimonial-text">
-                "L'automatisation mise en place a révolutionné nos processus.
-                ROI exceptionnel et équipe ultra-réactive."
-              </p>
-            </div>
-          </div>
-
-          <!-- Testimonial 3 -->
-          <div class="testimonial-orbit">
-            <div>
-              <div class="testimonial-name">Julie C.</div>
-              <div class="testimonial-role">PM, DataFlow</div>
-            </div>
-            <div class="testimonial-content">
-              <p class="testimonial-text">
-                "Le chatbot développé par HAIR comprend mieux nos clients que certains humains.
-                Impressionnant niveau de personnalisation."
-              </p>
-            </div>
-          </div>
+        <div class="testimonials-placeholder">
+          <!-- Real testimonials will be added here later -->
         </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-container">
+        <p class="hero-subtitle">VOTRE PARTENAIRE EN AUTOMATISATION & IA</p>
+        <h1 class="hero-title">Simplifiez votre quotidien grâce à l'IA</h1>
+        <p class="text-center" style="max-width: 700px; margin: 0 auto var(--spacing-lg);">
+          Prêt à automatiser vos processus et à passer à la vitesse supérieure ? Discutons de votre projet.
+        </p>
+
+        <form id="contact-form" class="contact-form-styled">
+          <div class="form-group">
+            <input type="text" id="name" name="name" placeholder="Votre Nom" required>
+          </div>
+          <div class="form-group">
+            <input type="email" id="email" name="email" placeholder="Votre Email" required>
+          </div>
+          <div class="form-group">
+            <textarea id="message" name="message" placeholder="Votre Projet ou Question" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Envoyer le Message</button>
+        </form>
       </div>
     </section>
 
@@ -482,7 +473,7 @@
 
         <div class="footer-bottom">
           <p>&copy; 2025 HAIR — Automatisation & IA. Tous droits réservés.</p>
-          <p class="code-text">Optimise chaque orbite, automatise chaque rotation.</p>
+          <p class="code-text">Simplifiez vos processus, boostez votre croissance.</p>
         </div>
       </div>
     </footer>
@@ -494,6 +485,7 @@
   <script src="animations.js"></script>
   <script src="chatbot.js"></script>
   <script src="bigbang-effect.js"></script>
+  <script src="forms.js"></script>
 </body>
 
 </html>
