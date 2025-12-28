@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Études de Cas - Découvrez les réalisations de HAIR en automatisation et intelligence artificielle.">
+    <title>Études de Cas — HAIR</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="service-page.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        .case-full-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .case-full-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="space-canvas"></canvas>
+    <div class="content-wrapper">
+        <header>
+            <nav>
+                <a href="index.html" class="logo" title="Home of AI Solutions">
+                    <img src="assets/logo.jpg" alt="HAIR Logo" class="logo-image">
+                </a>
+                <ul class="nav-menu">
+                    <li class="mobile-only"><button class="btn-back" aria-label="Retour">← Retour</button></li>
+                    <li><a href="index.html#services">Services</a></li>
+                    <li><a href="index.html#process">Processus</a></li>
+                    <li><a href="index.html#cases">Études de Cas</a></li>
+                    <li><a href="index.html#about">À Propos</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-btn" aria-label="Menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </nav>
+        </header>
+
+        <section class="service-hero">
+            <div class="section-container">
+                <p class="service-label">NOS RÉALISATIONS</p>
+                <h1 class="service-title">Preuves de Performance</h1>
+                <p class="service-description">Découvrez comment HAIR transforme les processus métiers grâce à l'IA et
+                    l'automatisation.</p>
+            </div>
+        </section>
+
+        <section class="service-section">
+            <div class="section-container">
+                <div class="case-full-grid">
+                    <!-- Case 1: WhatsApp -->
+                    <div class="case-card" id="whatsapp">
+                        <div class="case-header">AGENT IA WHATSAPP</div>
+                        <h3>Gestion client & rendez-vous</h3>
+                        <div class="content-box" style="margin: 1.5rem 0; background: rgba(255,255,255,0.02);">
+                            <p><strong>Problème :</strong> Surcharge de messages manuels, lenteur de réponse, perte de
+                                prospects.</p>
+                            <p><strong>Solution :</strong> Déploiement d'un agent IA connecté à l'API WhatsApp pour
+                                répondre 24/7 et qualifier les besoins.</p>
+                            <p><strong>Résultats :</strong> Réponses instantanées, gain de temps total pour l'équipe,
+                                augmentation du taux de conversion.</p>
+                        </div>
+                        <div class="case-results">
+                            <span class="result-badge">Réponses 24/7</span>
+                            <span class="result-badge">IA Conversationnelle</span>
+                        </div>
+                    </div>
+
+                    <!-- Case 2: Flux Internes -->
+                    <div class="case-card" id="flux">
+                        <div class="case-header">AUTOMATISATION INTERNE</div>
+                        <h3>Synchronisation de Systèmes</h3>
+                        <div class="content-box" style="margin: 1.5rem 0; background: rgba(255,255,255,0.02);">
+                            <p><strong>Problème :</strong> Tâches répétitives entre WhatsApp, Google Sheets et Email.
+                                Risques d'erreurs humaines.</p>
+                            <p><strong>Solution :</strong> Workflows automatisés (n8n/Make) pour centraliser les données
+                                sans intervention manuelle.</p>
+                            <p><strong>Résultats :</strong> Données fluides, erreurs éliminées, processus 5x plus
+                                rapide.</p>
+                        </div>
+                        <div class="case-results">
+                            <span class="result-badge">Flux n8n</span>
+                            <span class="result-badge">Zero Error</span>
+                        </div>
+                    </div>
+
+                    <!-- Case 3: Site HAIR -->
+                    <div class="case-card" id="site">
+                        <div class="case-header">SOCIÉTÉ IA (HAIR)</div>
+                        <h3>Plateforme Digitale Intelligente</h3>
+                        <div class="content-box" style="margin: 1.5rem 0; background: rgba(255,255,255,0.02);">
+                            <p><strong>Problème :</strong> Besoin d'une vitrine professionnelle capable de démontrer les
+                                capacités IA de l'entreprise.</p>
+                            <p><strong>Solution :</strong> Création du site officiel avec architecture modulaire,
+                                intégration de chatbot et formulaires intelligents.</p>
+                            <p><strong>Résultats :</strong> Base crédible et évolutive, outil de conversion performant.
+                            </p>
+                        </div>
+                        <div class="case-results">
+                            <span class="result-badge">SEO Optimisé</span>
+                            <span class="result-badge">UX Premium</span>
+                        </div>
+                    </div>
+
+                    <!-- Case 4: Formation -->
+                    <div class="case-card" id="formation">
+                        <div class="case-header">ACCOMPAGNEMENT PÉDAGOGIQUE</div>
+                        <h3>Coaching IA & Productivité</h3>
+                        <div class="content-box" style="margin: 1.5rem 0; background: rgba(255,255,255,0.02);">
+                            <p><strong>Problème :</strong> Manque de maîtrise des outils d'IA par les entrepreneurs,
+                                freinant leur croissance.</p>
+                            <p><strong>Solution :</strong> Programme de formation pratique "Hands-on" sur les outils
+                                d'IA générative et l'automatisation.</p>
+                            <p><strong>Résultats :</strong> Apprenants autonomes, productivité accrue, adoption
+                                immédiate des solutions.</p>
+                        </div>
+                        <div class="case-results">
+                            <span class="result-badge">Mastery</span>
+                            <span class="result-badge">Productivité</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="service-cta">
+            <div class="section-container">
+                <h2>Vous voulez des résultats similaires ?</h2>
+                <p>Chaque entreprise est unique. Discutons de la solution qui vous convient.</p>
+                <a href="index.html#contact" class="btn btn-primary">Lancer un projet similaire</a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="section-container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <img src="assets/logo.jpg" alt="HAIR Logo" class="footer-logo">
+                        <p class="code-text" style="margin-top: 0.5rem;">Automatisation & IA</p>
+                    </div>
+                    <div class="footer-links" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
+                        <div class="footer-column">
+                            <h4>Services</h4>
+                            <a href="automatisation.html">Automatisation</a>
+                            <a href="chatbot.html">Assistants IA</a>
+                            <a href="sites-web.html">Sites Web</a>
+                            <a href="formations.html">Formations</a>
+                            <a href="conseil.html">Conseil</a>
+                            <a href="contenus-ia.html">Contenus IA</a>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Contact</h4>
+                            <a href="mailto:vfranck364@gmail.com">vfranck364@gmail.com</a>
+                            <a href="index.html#contact">Formulaire</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom"
+                    style="text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;">
+                    <p>&copy; 2025 HAIR — Automatisation & IA. Tous droits réservés.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="space-background.js"></script>
+    <script src="animations.js"></script>
+    <script src="bigbang-effect.js"></script>
+</body>
+
+</html>

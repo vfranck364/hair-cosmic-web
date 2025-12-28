@@ -27,12 +27,21 @@
                     <img src="assets/logo.jpg" alt="HAIR Logo" class="logo-image">
                 </a>
                 <ul class="nav-menu">
+                    <li class="mobile-only"><button class="btn-back" aria-label="Retour">← Retour</button></li>
                     <li><a href="index.html#services">Services</a></li>
                     <li><a href="index.html#process">Processus</a></li>
                     <li><a href="index.html#cases">Études de Cas</a></li>
                     <li><a href="index.html#about">À Propos</a></li>
                     <li><a href="index.html#contact">Contact</a></li>
                 </ul>
+                <button class="mobile-menu-btn" aria-label="Menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
             </nav>
         </header>
 
@@ -49,111 +58,68 @@
         <!-- Présentation -->
         <section class="service-section">
             <div class="section-container">
-                <h2>🎯 Qu'est-ce que l'automatisation ?</h2>
+                <h2>🎯 Libérez votre potentiel humain</h2>
                 <div class="content-box">
                     <p>
-                        L'automatisation consiste à remplacer les tâches répétitives, manuelles ou chronophages par des
-                        workflows intelligents
-                        qui s'exécutent sans intervention humaine.
+                        L'automatisation intelligente ne consiste pas seulement à remplacer des logiciels par d'autres.
+                        C'est l'art de supprimer les barrières répétitives qui freinent votre croissance.
                     </p>
                     <p>
-                        <strong>HAIR construit des systèmes fiables, rapides et connectés</strong> pour optimiser votre
-                        efficacité opérationnelle.
+                        <strong>HAIR s'occupe de toute la complexité technique</strong> pour vous rendre ce que vous
+                        avez de plus précieux : votre temps.
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- Méthodologie -->
+        <!-- Problèmes Résolus -->
         <section class="service-section alt-bg">
             <div class="section-container">
-                <h2>🛠️ Comment se déroule la mise en place</h2>
+                <h2>⚠️ Les difficultés que nous éliminons</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">😰</div>
+                        <h3>Surcharge mentale</h3>
+                        <p>Des heures passées sur des copier-coller sans fin.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🚫</div>
+                        <h3>Erreurs humaines</h3>
+                        <p>Une virgule oubliée qui fausse tout un rapport.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🐢</div>
+                        <h3>Lenteur opérationnelle</h3>
+                        <p>Des processus qui stagnent en attendant une validation manuelle.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
+        <!-- Notre Approche (Solutions) -->
+        <section class="service-section">
+            <div class="section-container">
+                <h2>🛠️ Ce que nous mettons en place pour vous</h2>
                 <div class="methodology-steps">
                     <div class="step-card">
                         <div class="step-number">1</div>
-                        <h3>Audit des processus (gratuit)</h3>
-                        <p>On analyse :</p>
-                        <ul>
-                            <li>Vos tâches répétitives</li>
-                            <li>Ce qui vous prend du temps</li>
-                            <li>Où se situent les frictions</li>
-                            <li>Vos outils actuels (CRM, Excel, compta…)</li>
-                        </ul>
+                        <h3>Audit de fluidité</h3>
+                        <p>Nous identifions les zones de friction dans vos outils actuels (CRM, Excel, Email) sans que
+                            vous n'ayez rien à préparer.</p>
                     </div>
 
                     <div class="step-card">
                         <div class="step-number">2</div>
-                        <h3>Conception du workflow</h3>
-                        <p>On définit :</p>
-                        <ul>
-                            <li>Les déclencheurs</li>
-                            <li>Les actions automatiques</li>
-                            <li>Les outils à connecter</li>
-                            <li>Le schéma d'architecture</li>
-                        </ul>
+                        <h3>Ingénierie de workflows</h3>
+                        <p>Nous créons des ponts intelligents entre vos applications pour que les données circulent
+                            toutes seules.</p>
                     </div>
 
                     <div class="step-card">
                         <div class="step-number">3</div>
-                        <h3>Développement</h3>
-                        <p>Selon votre stack :</p>
-                        <ul>
-                            <li>Zapier / Make</li>
-                            <li>Google Apps Script</li>
-                            <li>API custom</li>
-                            <li>Python (si analyse data ou traitement avancé)</li>
-                        </ul>
-                    </div>
-
-                    <div class="step-card">
-                        <div class="step-number">4</div>
-                        <h3>Test & validation</h3>
-                        <ul>
-                            <li>Tests réels</li>
-                            <li>Edge cases</li>
-                            <li>Optimisation du temps d'exécution</li>
-                        </ul>
-                    </div>
-
-                    <div class="step-card">
-                        <div class="step-number">5</div>
-                        <h3>Formation + documentation</h3>
-                        <p>Vous recevez :</p>
-                        <ul>
-                            <li>Vidéos de formation</li>
-                            <li>Documentation claire</li>
-                            <li>Accès à la maintenance</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Ce que le client doit fournir -->
-        <section class="service-section">
-            <div class="section-container">
-                <h2>📥 Ce que vous devez fournir</h2>
-                <div class="requirements-grid">
-                    <div class="requirement-item">
-                        <span class="req-icon">🔑</span>
-                        <p>Accès aux outils utilisés (CRM, ERP, Sheets, etc.)</p>
-                    </div>
-                    <div class="requirement-item">
-                        <span class="req-icon">📝</span>
-                        <p>Une description des tâches répétitives</p>
-                    </div>
-                    <div class="requirement-item">
-                        <span class="req-icon">📊</span>
-                        <p>Les fichiers Excel ou sources de données</p>
-                    </div>
-                    <div class="requirement-item">
-                        <span class="req-icon">🎯</span>
-                        <p>Les objectifs (temps à économiser / erreurs à réduire)</p>
-                    </div>
-                    <div class="requirement-item">
-                        <span class="req-icon">👤</span>
-                        <p>Un responsable référent (1 personne)</p>
+                        <h3>Déploiement & Tests</h3>
+                        <p>Nous installons et testons rigoureusement chaque automatisation pour garantir une fiabilité
+                            totale.</p>
                     </div>
                 </div>
             </div>
@@ -162,72 +128,41 @@
         <!-- Avantages / ROI -->
         <section class="service-section alt-bg">
             <div class="section-container">
-                <h2>🚀 Avantages & ROI</h2>
+                <h2>🚀 Vos bénéfices immédiats</h2>
                 <div class="benefits-grid">
                     <div class="benefit-card">
                         <div class="benefit-icon">⏱️</div>
-                        <h3>10-20h/semaine économisées</h3>
-                        <p>Libère ton équipe des tâches répétitives</p>
+                        <h3>Gain de temps massif</h3>
+                        <p>Économisez jusqu'à 20h par semaine dès le premier mois.</p>
                     </div>
                     <div class="benefit-card">
-                        <div class="benefit-icon">💸</div>
-                        <h3>ROI 200-400%</h3>
-                        <p>Retour sur investissement en 3-6 mois</p>
-                    </div>
-                    <div class="benefit-card">
-                        <div class="benefit-icon">❌</div>
-                        <h3>Zéro erreur humaine</h3>
-                        <p>Précision et fiabilité garanties</p>
-                    </div>
-                    <div class="benefit-card">
-                        <div class="benefit-icon">⚡</div>
-                        <h3>Workflows 24/7</h3>
-                        <p>Travaille pendant que tu dors</p>
+                        <div class="benefit-icon">🧘</div>
+                        <h3>Tranquillité d'esprit</h3>
+                        <p>Vos systèmes tournent 24h/24, sans faille et sans surveillance.</p>
                     </div>
                     <div class="benefit-card">
                         <div class="benefit-icon">📈</div>
-                        <h3>Scalabilité</h3>
-                        <p>Croissance sans recruter</p>
+                        <h3>Performance boostée</h3>
+                        <p>Réagissez plus vite à vos clients et développez votre business sereinement.</p>
                     </div>
-                    <div class="benefit-card">
-                        <div class="benefit-icon">🤝</div>
-                        <h3>Process fluides</h3>
-                        <p>Meilleure collaboration entre équipes</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Maintenance -->
-        <section class="service-section">
-            <div class="section-container">
-                <h2>🔧 Maintenance & améliorations futures</h2>
-                <div class="content-box">
-                    <ul class="maintenance-list">
-                        <li>✓ Mise à jour workflows tous les 3-6 mois</li>
-                        <li>✓ Ajout d'étapes selon évolution business</li>
-                        <li>✓ Tests automatiques réguliers</li>
-                        <li>✓ Amélioration performance & réduction temps d'exécution</li>
-                        <li>✓ Monitoring des erreurs</li>
-                    </ul>
                 </div>
             </div>
         </section>
 
         <!-- Exemples -->
-        <section class="service-section alt-bg">
+        <section class="service-section">
             <div class="section-container">
                 <h2>📊 Exemples concrets</h2>
                 <div class="examples-grid">
-                    <div class="content-box">
-                        <h2>Gagnez en efficacité dès aujourd'hui</h2>
-                        <p>L'automatisation n'est plus un luxe, c'est une nécessité pour rester compétitif. Nous vous
-                            aidons à identifier les processus chronophages et à les transformer en workflows fluides et
-                            automatisés.</p>
+                    <div class="example-card">
+                        <h3>Gestion de Leads</h3>
+                        <p>Récupération automatique des prospects, qualification par IA et envoi direct dans votre CRM.
+                        </p>
                     </div>
                     <div class="example-card">
-                        <h3>Génération automatique des rapports</h3>
-                        <p>Rapports hebdomadaires envoyés automatiquement chaque lundi matin</p>
+                        <h3>Reporting Automatisé</h3>
+                        <p>Synthèse de vos données et envoi de rapports par email tous les lundis matin, sans action de
+                            votre part.</p>
                     </div>
                 </div>
             </div>
@@ -236,20 +171,41 @@
         <!-- CTA Final -->
         <section class="service-cta">
             <div class="section-container">
-                <h2>Prêt à automatiser ton business ?</h2>
-                <p>Discutons de ton projet et identifions ensemble les automatisations qui vont transformer ton
-                    quotidien.</p>
-                <h2>Besoin d'une solution sur mesure ?</h2>
-                <p>Discutons ensemble de vos besoins d'automatisation pour créer la solution idéale.</p>
-                <a href="index.html#contact" class="btn btn-primary">Parler à un conseiller</a>
+                <h2>Simplifions votre business ensemble</h2>
+                <p>Pas besoin de cahier des charges complexe. Tout commence par une simple discussion.</p>
+                <a href="index.html#contact" class="btn btn-primary">Discuter de votre projet</a>
             </div>
         </section>
 
         <!-- Footer -->
         <footer>
             <div class="section-container">
-                <p>&copy; 2025 HAIR — Automatisation & IA. Tous droits réservés.</p>
-                <p class="code-text">Optimise chaque orbite, automatise chaque rotation.</p>
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <img src="assets/logo.jpg" alt="HAIR Logo" class="footer-logo">
+                        <p class="code-text" style="margin-top: 0.5rem;">Automatisation & IA</p>
+                    </div>
+                    <div class="footer-links" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
+                        <div class="footer-column">
+                            <h4>Services</h4>
+                            <a href="automatisation.html">Automatisation</a>
+                            <a href="chatbot.html">Assistants IA</a>
+                            <a href="sites-web.html">Sites Web</a>
+                            <a href="formations.html">Formations</a>
+                            <a href="conseil.html">Conseil</a>
+                            <a href="contenus-ia.html">Contenus IA</a>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Contact</h4>
+                            <a href="mailto:vfranck364@gmail.com">vfranck364@gmail.com</a>
+                            <a href="index.html#contact">Formulaire</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom"
+                    style="text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;">
+                    <p>&copy; 2025 HAIR — Automatisation & IA. Tous droits réservés.</p>
+                </div>
             </div>
         </footer>
     </div>

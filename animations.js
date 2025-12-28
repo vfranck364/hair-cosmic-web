@@ -133,10 +133,11 @@ class HairAnimations {
         // Hero title letter-by-letter reveal
         const heroTitle = document.querySelector('.hero-title');
         if (heroTitle && typeof gsap !== 'undefined') {
-            const text = heroTitle.textContent;
-            heroTitle.innerHTML = text.split('').map(char =>
-                `<span class="letter" style="display: inline-block; opacity: 0;">${char === ' ' ? '&nbsp;' : char}</span>`
-            ).join('');
+            const text = heroTitle.textContent.trim();
+            heroTitle.innerHTML = text.split(' ').map(word => {
+                return `<span class="word" style="display: inline-block; white-space: nowrap;">${word.split('').map(char => `<span class="letter" style="display: inline-block; opacity: 0;">${char}</span>`).join('')
+                    }</span>`;
+            }).join(' ');
 
             gsap.to('.letter', {
                 opacity: 1,
