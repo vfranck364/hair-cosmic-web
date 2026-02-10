@@ -1,0 +1,12 @@
+# API Keys
+config-api.js
+
+# Environment files
+.env
+.env.local
+
+# Local server logs
+*.log
+
+# OS files
+.DS_Store

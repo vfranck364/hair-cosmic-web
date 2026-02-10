@@ -1,23 +1,50 @@
 // ============================================
-// HAIR - Chatbot Astro
-// Interactive AI Assistant Widget
+// HAIR - Chatbot Astro avec Gemini AI
+// Frontend Widget avec Intelligence Artificielle
 // ============================================
 
 class AstroBot {
-    constructor() {
-        this.isOpen = false;
-        this.conversationHistory = [];
-        this.userEmail = null;
-        this.init();
-    }
+  constructor() {
+    this.isOpen = false;
+    this.chatbot = new HybridChatbot(); // Use hybrid chatbot instead of just Gemini
+    this.autoActivated = false;
+    this.init();
+  }
 
-    init() {
-        this.createWidget();
-        this.attachEventListeners();
-    }
+  init() {
+    this.createWidget();
+    this.attachEventListeners();
+    this.scheduleAutoActivation();
+  }
 
-    createWidget() {
-        const widgetHTML = `
+  /**
+   * Active automatiquement le chatbot après 20 secondes
+   */
+  scheduleAutoActivation() {
+    setTimeout(() => {
+      // Ne pas auto-ouvrir sur mobile (≤768px)
+      if (window.innerWidth <= 768) return;
+
+      if (!this.autoActivated && !this.isOpen) {
+        this.autoActivated = true;
+        this.toggleChat();
+
+        // Message de bienvenue proactif
+        this.addBotMessage(
+          "👋 Salut ! Je suis Astro, l'assistant HAIR.\n\nJe peux t'aider à découvrir comment l'IA peut automatiser tes processus et te faire gagner un temps précieux !\n\n💡 Par quoi veux-tu commencer ?",
+          [
+            "🤖 Créer un chatbot",
+            "⚙️ Automatiser des tâches",
+            "🌐 Refaire mon site",
+            "🎓 Me former à l'IA"
+          ]
+        );
+      }
+    }, 20000); // 20 secondes
+  }
+
+  createWidget() {
+    const widgetHTML = `
       <!-- Chat Button -->
       <div id="astro-chat-button" class="astro-chat-button">
         <div class="astro-avatar">
@@ -45,7 +72,7 @@ class AstroBot {
             </div>
             <div>
               <div class="astro-name">Astro</div>
-              <div class="astro-status">Assistant HAIR</div>
+              <div class="astro-status">🟢 En ligne</div>
             </div>
           </div>
           <button class="astro-close" id="astro-close-btn">
@@ -76,128 +103,179 @@ class AstroBot {
             </svg>
           </button>
         </div>
+
+        <div class="astro-footer">
+          <span style="font-size: 0.75rem; color: var(--color-text-gray);">
+            Propulsé par Llama 3 (Groq)
+          </span>
+        </div>
       </div>
     `;
 
-        document.body.insertAdjacentHTML('beforeend', widgetHTML);
+    document.body.insertAdjacentHTML('beforeend', widgetHTML);
+  }
+
+  attachEventListeners() {
+    const button = document.getElementById('astro-chat-button');
+    const closeBtn = document.getElementById('astro-close-btn');
+    const sendBtn = document.getElementById('astro-send-btn');
+    const input = document.getElementById('astro-input');
+
+    button.addEventListener('click', () => this.toggleChat());
+    closeBtn.addEventListener('click', () => this.toggleChat());
+    sendBtn.addEventListener('click', () => this.sendMessage());
+    input.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') this.sendMessage();
+    });
+  }
+
+  toggleChat() {
+    this.isOpen = !this.isOpen;
+    const widget = document.getElementById('astro-chat-widget');
+    const button = document.getElementById('astro-chat-button');
+
+    if (this.isOpen) {
+      widget.classList.add('open');
+      button.classList.add('hidden');
+
+      // Message de bienvenue manuel si pas auto-activé
+      if (this.chatbot.conversationHistory.length === 0 && !this.autoActivated) {
+        this.addBotMessage(
+          "👋 Salut ! Je suis Astro, ton assistant HAIR.\n\nComment puis-je t'aider aujourd'hui ?",
+          [
+            "🤖 Créer un chatbot",
+            "⚙️ Automatiser des tâches",
+            "🌐 Créer un site web",
+            "  💰 Tarifs et devis"
+          ]
+        );
+      }
+    } else {
+      widget.classList.remove('open');
+      button.classList.remove('hidden');
     }
+  }
 
-    attachEventListeners() {
-        const button = document.getElementById('astro-chat-button');
-        const closeBtn = document.getElementById('astro-close-btn');
-        const sendBtn = document.getElementById('astro-send-btn');
-        const input = document.getElementById('astro-input');
+  async sendMessage() {
+    const input = document.getElementById('astro-input');
+    const message = input.value.trim();
 
-        button.addEventListener('click', () => this.toggleChat());
-        closeBtn.addEventListener('click', () => this.toggleChat());
-        sendBtn.addEventListener('click', () => this.sendMessage());
-        input.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') this.sendMessage();
-        });
-    }
+    if (!message) return;
 
-    toggleChat() {
-        this.isOpen = !this.isOpen;
-        const widget = document.getElementById('astro-chat-widget');
-        const button = document.getElementById('astro-chat-button');
+    this.addUserMessage(message);
+    input.value = '';
 
-        if (this.isOpen) {
-            widget.classList.add('open');
-            button.classList.add('hidden');
+    // Afficher l'indicateur de frappe
+    this.showTypingIndicator();
 
-            // Send welcome message if first time
-            if (this.conversationHistory.length === 0) {
-                this.addBotMessage(
-                    "👋 Salut ! Je suis Astro, l'assistant HAIR.\n\nJe vais t'aider à identifier les automatisations qui libéreront ton équipe.\n\nQuelle est ta plus grosse perte de temps actuellement ?",
-                    [
-                        "Saisie manuelle",
-                        "Emails répétitifs",
-                        "Reporting",
-                        "Coordination équipe"
-                    ]
-                );
-            }
-        } else {
-            widget.classList.remove('open');
-            button.classList.remove('hidden');
+    try {
+      // Appel au chatbot hybride (local rules + Gemini AI)
+      const response = await this.chatbot.sendMessage(message);
+
+      this.hideTypingIndicator();
+
+      if (response.success) {
+        this.addBotMessage(response.message);
+
+        // Sauvegarder le lead si email détecté
+        if (this.chatbot.getUserProfile().email) {
+          this.chatbot.saveLead();
         }
+      } else {
+        this.addBotMessage(response.message);
+      }
+    } catch (error) {
+      this.hideTypingIndicator();
+      this.addBotMessage(
+        "Oups, un petit souci technique 😅\n\nMais tu peux toujours me contacter directement :\n\n📧 vfranck364@gmail.com\n📱 +237 6 83 12 16 54"
+      );
     }
+  }
 
-    sendMessage() {
-        const input = document.getElementById('astro-input');
-        const message = input.value.trim();
-
-        if (!message) return;
-
-        this.addUserMessage(message);
-        input.value = '';
-
-        // Simulate bot response
-        this.showTypingIndicator();
-        setTimeout(() => {
-            this.hideTypingIndicator();
-            this.handleBotResponse(message);
-        }, 1500);
-    }
-
-    addUserMessage(text) {
-        const messagesContainer = document.getElementById('astro-messages');
-        const messageHTML = `
+  addUserMessage(text) {
+    const messagesContainer = document.getElementById('astro-messages');
+    const messageHTML = `
       <div class="astro-message user-message">
         <div class="message-bubble">${this.escapeHtml(text)}</div>
       </div>
     `;
-        messagesContainer.insertAdjacentHTML('beforeend', messageHTML);
-        this.scrollToBottom();
-        this.conversationHistory.push({ role: 'user', content: text });
-    }
+    messagesContainer.insertAdjacentHTML('beforeend', messageHTML);
+    this.scrollToBottom();
+  }
 
-    addBotMessage(text, quickReplies = []) {
-        const messagesContainer = document.getElementById('astro-messages');
-        const messageHTML = `
+  addBotMessage(text, quickReplies = []) {
+    const messagesContainer = document.getElementById('astro-messages');
+    const messageHTML = `
       <div class="astro-message bot-message">
         <div class="message-bubble">${this.formatBotMessage(text)}</div>
       </div>
     `;
-        messagesContainer.insertAdjacentHTML('beforeend', messageHTML);
-        this.scrollToBottom();
-        this.conversationHistory.push({ role: 'bot', content: text });
+    messagesContainer.insertAdjacentHTML('beforeend', messageHTML);
+    this.scrollToBottom();
 
-        // Add quick replies if provided
-        if (quickReplies.length > 0) {
-            this.showQuickReplies(quickReplies);
-        }
+    // Ajouter quick replies si fournis
+    if (quickReplies.length > 0) {
+      this.showQuickReplies(quickReplies);
+    } else {
+      this.hideQuickReplies(); // Cacher les quick replies s'il n'y en a pas
+    }
+  }
+
+  showQuickReplies(replies) {
+    const container = document.getElementById('astro-quick-replies');
+
+    // Si pas de replies, cacher le container
+    if (!replies || replies.length === 0) {
+      container.innerHTML = '';
+      container.style.display = 'none';
+      return;
     }
 
-    showQuickReplies(replies) {
-        const container = document.getElementById('astro-quick-replies');
-        container.innerHTML = '';
+    // Afficher le container et clear previous
+    container.style.display = 'flex';
+    container.innerHTML = '';
 
-        replies.forEach(reply => {
-            const button = document.createElement('button');
-            button.className = 'quick-reply-btn';
-            button.textContent = reply;
-            button.addEventListener('click', () => {
-                this.handleQuickReply(reply);
-            });
-            container.appendChild(button);
-        });
+    replies.forEach(reply => {
+      const button = document.createElement('button');
+      button.className = 'quick-reply-btn';
+      button.textContent = reply;
+      button.addEventListener('click', () => {
+        this.handleQuickReply(reply);
+      });
+      container.appendChild(button);
+    });
+  }
+
+  hideQuickReplies() {
+    const container = document.getElementById('astro-quick-replies');
+    container.innerHTML = '';
+    container.style.display = 'none';
+  }
+
+  async handleQuickReply(reply) {
+    this.addUserMessage(reply);
+    this.hideQuickReplies(); // Cacher les boutons après le clic
+
+    this.showTypingIndicator();
+
+    try {
+      const response = await this.chatbot.sendMessage(reply);
+      this.hideTypingIndicator();
+
+      if (response.success) {
+        this.addBotMessage(response.message);
+      } else {
+        this.addBotMessage(response.message);
+      }
+    } catch (error) {
+      this.hideTypingIndicator();
+      this.addBotMessage("Désolé, petit problème technique. Réessaye ou contacte-nous directement !");
     }
+  }
 
-    handleQuickReply(reply) {
-        this.addUserMessage(reply);
-        document.getElementById('astro-quick-replies').innerHTML = '';
-
-        this.showTypingIndicator();
-        setTimeout(() => {
-            this.hideTypingIndicator();
-            this.handleBotResponse(reply);
-        }, 1500);
-    }
-
-    showTypingIndicator() {
-        const messagesContainer = document.getElementById('astro-messages');
-        const typingHTML = `
+  showTypingIndicator() {
+    const messagesContainer = document.getElementById('astro-messages');
+    const typingHTML = `
       <div class="astro-message bot-message typing-indicator" id="typing-indicator">
         <div class="message-bubble">
           <div class="typing-dots">
@@ -208,91 +286,44 @@ class AstroBot {
         </div>
       </div>
     `;
-        messagesContainer.insertAdjacentHTML('beforeend', typingHTML);
-        this.scrollToBottom();
-    }
+    messagesContainer.insertAdjacentHTML('beforeend', typingHTML);
+    this.scrollToBottom();
+  }
 
-    hideTypingIndicator() {
-        const indicator = document.getElementById('typing-indicator');
-        if (indicator) indicator.remove();
-    }
+  hideTypingIndicator() {
+    const indicator = document.getElementById('typing-indicator');
+    if (indicator) indicator.remove();
+  }
 
-    handleBotResponse(userMessage) {
-        const lowerMessage = userMessage.toLowerCase();
+  formatBotMessage(text) {
+    // Convertir line breaks en <br>
+    return text.replace(/\n/g, '<br>');
+  }
 
-        // Simple intent detection
-        if (lowerMessage.includes('saisie') || lowerMessage.includes('manuel')) {
-            this.addBotMessage(
-                "🎯 Je vois. La saisie manuelle, c'est un classique.\n\nCombien d'heures par semaine ton équipe passe-t-elle sur de la saisie de données ?",
-                ["1-5h", "5-10h", "10-20h", "20h+"]
-            );
-        } else if (lowerMessage.includes('email')) {
-            this.addBotMessage(
-                "📧 Les emails répétitifs... Je comprends.\n\nOn peut automatiser les réponses types, les follow-ups, et même la qualification.\n\nTu utilises quel outil email principal ?",
-                ["Gmail", "Outlook", "Autre"]
-            );
-        } else if (lowerMessage.includes('reporting') || lowerMessage.includes('rapport')) {
-            this.addBotMessage(
-                "📊 Le reporting manuel, ça prend du temps !\n\nOn peut créer des dashboards automatiques qui se mettent à jour en temps réel.\n\nD'où viennent tes données actuellement ?",
-                ["CRM", "Excel/Sheets", "Analytics", "Plusieurs sources"]
-            );
-        } else if (lowerMessage.includes('coordination') || lowerMessage.includes('équipe')) {
-            this.addBotMessage(
-                "👥 La coordination d'équipe peut être optimisée.\n\nOn peut automatiser les notifications, les assignations, et les suivis.\n\nQuel outil utilises-tu pour gérer ton équipe ?",
-                ["Slack", "Teams", "Asana/Trello", "Autre"]
-            );
-        } else if (lowerMessage.match(/\d+h/)) {
-            // User mentioned hours
-            this.addBotMessage(
-                "💡 Ok, donc environ " + lowerMessage + " par semaine.\n\nSi on automatise 80% de ça, tu gagnes un temps considérable.\n\nJe te propose un audit gratuit de 30 min pour cartographier tes workflows et identifier les quick wins.\n\nJ'ai un créneau demain à 14h ou vendredi à 10h. Ça te va ?",
-                ["Demain 14h", "Vendredi 10h", "Autre créneau"]
-            );
-        } else if (lowerMessage.includes('demain') || lowerMessage.includes('vendredi')) {
-            this.addBotMessage(
-                "🚀 Parfait ! Pour confirmer ton audit, j'ai besoin de ton email.\n\nTu recevras :\n✓ Confirmation avec lien visio\n✓ Checklist pré-audit (5 min)\n✓ Mes coordonnées directes\n\n📧 Ton email ?"
-            );
-        } else if (lowerMessage.includes('@')) {
-            // Email detected
-            this.userEmail = userMessage;
-            this.addBotMessage(
-                "🎉 Mission acceptée !\n\nTu vas recevoir un email dans 2 minutes avec toutes les infos.\n\nEn attendant, si tu as des questions, je reste là. Sinon à très bientôt ! 🌟"
-            );
-        } else if (lowerMessage.includes('prix') || lowerMessage.includes('coût') || lowerMessage.includes('combien')) {
-            this.addBotMessage(
-                "💰 Bonne question ! Ça dépend de la complexité.\n\nPour te donner une idée :\n\n• Simple automation (1-2 workflows) : 2000-4000€\n• Pack workflows (3-5 automations) : 5000-8000€\n• Solution complète : 10 000-20 000€\n\nMais chaque projet est différent. On fait toujours un audit gratuit d'abord pour estimer précisément le gain et le coût.\n\nTu veux qu'on regarde ton cas en 30 min ?",
-                ["Oui, je book", "Pas maintenant"]
-            );
-        } else {
-            // Default response
-            this.addBotMessage(
-                "🤔 Je comprends.\n\nPour mieux t'aider, dis-moi :\n\nQuel est ton principal défi d'automatisation ?",
-                ["Gagner du temps", "Réduire les erreurs", "Améliorer le suivi", "Autre"]
-            );
-        }
-    }
+  escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
 
-    formatBotMessage(text) {
-        // Convert line breaks to <br>
-        return text.replace(/\n/g, '<br>');
-    }
-
-    escapeHtml(text) {
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
-    }
-
-    scrollToBottom() {
-        const messagesContainer = document.getElementById('astro-messages');
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    }
+  scrollToBottom() {
+    const messagesContainer = document.getElementById('astro-messages');
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
 }
 
-// Initialize Astro bot when DOM is ready
+// Initialiser le bot quand le DOM est prêt
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        new AstroBot();
-    });
+  document.addEventListener('DOMContentLoaded', () => {
+    // Attendre que les scripts nécessaires soient chargés
+    if (typeof HybridChatbot !== 'undefined') {
+      new AstroBot();
+    } else {
+      console.error('HybridChatbot not loaded. Make sure chatbot-hybrid.js is included first.');
+    }
+  });
 } else {
+  if (typeof HybridChatbot !== 'undefined') {
     new AstroBot();
+  }
 }

@@ -18,6 +18,8 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="improvements.css">
+  <link rel="stylesheet" href="chatbot.css">
 
   <!-- Three.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -47,7 +49,7 @@
           <li><a href="#cases">Études de Cas</a></li>
           <li><a href="#about">À Propos</a></li>
           <li><a href="#contact">Contact</a></li>
-          <li><a href="#testimonials">Témoignages</a></li>
+
         </ul>
         <button class="mobile-menu-btn" aria-label="Menu">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -66,16 +68,18 @@
         <!-- Large Logo Display -->
         <div class="hero-logo-display">
           <img src="assets/logo.jpg" alt="HAIR Logo" class="hero-logo-large">
+          <p class="hero-acronym">Home of Artificial Intelligent Revolution</p>
           <p class="hero-subtitle">OPTIMISEZ VOS PROCESSUS ET GAGNEZ EN EFFICACITÉ.</p>
         </div>
 
-        <h1 class="hero-title">Simplifiez votre quotidien grâce à l'IA</h1>
-        <p class="code-text" style="margin-top: 1rem; font-size: 1.1rem;">Votre partenaire en Automatisation & Solutions
-          Intelligentes</p>
+        <p class="hero-services-subtitle">Services IA sur mesure – Automatisation, chatbots, sites intelligents,
+          formation & conseil</p> <br /><br />
 
         <div class="hero-cta">
           <a href="#services" class="btn btn-primary">Nos Solutions</a>
           <a href="#contact" class="btn btn-secondary">Parler à un expert</a>
+          <a href="https://wa.me/+237683121654" target="_blank" class="btn btn-whatsapp-cta">💬 Contacte-moi
+            maintenant</a>
         </div>
 
         <div class="scroll-indicator">
@@ -90,7 +94,7 @@
     <!-- Services Section -->
     <section id="services">
       <div class="section-container">
-        <h2 class="text-center">Notre Méthode — Étapes de Réussite</h2>
+        <h2 class="text-center">Nos Solutions IA — Services d'Automatisation</h2>
         <p class="text-center" style="max-width: 700px; margin: 0 auto;">
           Un accompagnement structuré pour garantir le succès de votre projet d'avenir.
         </p>
@@ -101,6 +105,8 @@
             <div class="service-card">
               <h3>Automatisation des processus</h3>
               <p>Éliminez les tâches répétitives et gagnez du temps avec des workflows intelligents.</p>
+              <p class="service-price">💰 100 000 FCFA <span>(selon nombre d'étapes, outils et complexité)</span></p>
+              <p class="service-devis">Devis personnalisé gratuit – contacte-moi pour un tarif adapté.</p>
               <span class="service-link">Découvrir l'offre →</span>
             </div>
           </a>
@@ -110,6 +116,9 @@
             <div class="service-card">
               <h3>Agents intelligents & Chatbots</h3>
               <p>Des assistants IA entraînés sur vos données pour répondre à vos clients 24h/24.</p>
+              <p class="service-price">💰 150 000 FCFA <span>(selon nombre de réponses, canaux et intégrations)</span>
+              </p>
+              <p class="service-devis">Devis personnalisé gratuit – contacte-moi pour un tarif adapté.</p>
               <span class="service-link">Découvrir l'offre →</span>
             </div>
           </a>
@@ -119,6 +128,8 @@
             <div class="service-card">
               <h3>Sites web intelligents</h3>
               <p>Création de plateformes modernes intégrant nativement des outils d'automatisation.</p>
+              <p class="service-price">💰 500 000 FCFA <span>(5 pages, plus selon fonctionnalités et IA)</span></p>
+              <p class="service-devis">Devis personnalisé gratuit – contacte-moi pour un tarif adapté.</p>
               <span class="service-link">Découvrir l'offre →</span>
             </div>
           </a>
@@ -128,6 +139,8 @@
             <div class="service-card">
               <h3>Formations en IA</h3>
               <p>Apprenez à maîtriser les outils d'IA pour booster votre productivité personnelle ou d'équipe.</p>
+              <p class="service-price">💰 30 000 FCFA <span>(2 heures, plus pour ateliers ou groupe)</span></p>
+              <p class="service-devis">Devis personnalisé gratuit – contacte-moi pour un tarif adapté.</p>
               <span class="service-link">Découvrir l'offre →</span>
             </div>
           </a>
@@ -137,6 +150,8 @@
             <div class="service-card">
               <h3>Conseil & Accompagnement</h3>
               <p>Audit de vos processus et stratégie de transformation digitale sur mesure.</p>
+              <p class="service-price">💰 50 000 FCFA <span>(1 heure, plus pour projet long)</span></p>
+              <p class="service-devis">Devis personnalisé gratuit – contacte-moi pour un tarif adapté.</p>
               <span class="service-link">Découvrir l'offre →</span>
             </div>
           </a>
@@ -146,6 +161,8 @@
             <div class="service-card">
               <h3>Création de contenus IA</h3>
               <p>Branding sonore et création média assistée par IA pour une identité unique.</p>
+              <p class="service-price">💰 100 000 FCFA <span>(10 articles, plus selon type et volume)</span></p>
+              <p class="service-devis">Devis personnalisé gratuit – contacte-moi pour un tarif adapté.</p>
               <span class="service-link">Découvrir l'offre →</span>
             </div>
           </a>
@@ -208,7 +225,7 @@
               <span class="result-badge">Disponibilité 24/7</span>
               <span class="result-badge">Gain de temps majeur</span>
             </div>
-            <a href="cases.html#whatsapp" class="service-link" style="margin-top: 1rem; display: inline-block;">Voir les
+            <a href="cases-detail.html" class="service-link" style="margin-top: 1rem; display: inline-block;">Voir les
               résultats →</a>
           </div>
 
@@ -221,7 +238,7 @@
               <span class="result-badge">0 Erreur humaine</span>
               <span class="result-badge">Données centralisées</span>
             </div>
-            <a href="cases.html#flux" class="service-link" style="margin-top: 1rem; display: inline-block;">Voir les
+            <a href="cases-detail.html" class="service-link" style="margin-top: 1rem; display: inline-block;">Voir les
               résultats →</a>
           </div>
 
@@ -234,7 +251,7 @@
               <span class="result-badge">Productivité ++</span>
               <span class="result-badge">Autonomie totale</span>
             </div>
-            <a href="cases.html#formation" class="service-link" style="margin-top: 1rem; display: inline-block;">Voir
+            <a href="cases-detail.html" class="service-link" style="margin-top: 1rem; display: inline-block;">Voir
               les résultats →</a>
           </div>
         </div>
@@ -298,17 +315,84 @@
       </div>
     </section>
 
-    <!-- Testimonials -->
-    <section id="testimonials" class="testimonials-hidden">
+    <!-- Stats Section -->
+    <section id="stats" class="stats-section">
       <div class="section-container">
-        <h2 class="text-center">Témoignages — Ce que disent nos clients</h2>
+        <h2 class="text-center">HAIR en Chiffres</h2>
         <p class="text-center" style="max-width: 700px; margin: 0 auto var(--spacing-lg);">
-          Bientôt disponible : Découvrez les retours d'expérience de nos clients.
+          Des résultats concrets pour nos clients
         </p>
 
-        <div class="testimonials-placeholder">
-          <!-- Real testimonials will be added here later -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">🎯</div>
+            <h3 class="stat-number">15+</h3>
+            <p class="stat-label">Clients Accompagnés</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">⚡</div>
+            <h3 class="stat-number">500+</h3>
+            <p class="stat-label">Heures Économisées</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🤖</div>
+            <h3 class="stat-number">10+</h3>
+            <p class="stat-label">Chatbots Déployés</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📈</div>
+            <h3 class="stat-number">95%</h3>
+            <p class="stat-label">Satisfaction Client</p>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Trusted By Section -->
+    <section id="trusted-by" class="trusted-by-section">
+      <div class="section-container">
+        <h2 class="text-center">Ils Nous Font Confiance</h2>
+        <p class="text-center" style="max-width: 700px; margin: 0 auto var(--spacing-lg);">
+          Entreprises et entrepreneurs qui ont choisi HAIR pour leur transformation digitale
+        </p>
+
+        <div class="trusted-logos">
+          <div class="logo-item">
+            <div class="client-logo-placeholder">🏢</div>
+            <p>Entreprise Locale</p>
+          </div>
+          <div class="logo-item">
+            <div class="client-logo-placeholder">💼</div>
+            <p>Startup Tech</p>
+          </div>
+          <div class="logo-item">
+            <div class="client-logo-placeholder">🎓</div>
+            <p>Centre de Formation</p>
+          </div>
+          <div class="logo-item">
+            <div class="client-logo-placeholder">🛍️</div>
+            <p>E-Commerce</p>
+          </div>
+          <div class="logo-item">
+            <div class="client-logo-placeholder">✂️</div>
+            <p>Salon de Coiffure</p>
+          </div>
+          <div class="logo-item">
+            <div class="client-logo-placeholder">🏥</div>
+            <p>Cabinet Médical</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WhatsApp CTA Section -->
+    <section id="cta-whatsapp" class="cta-whatsapp-section">
+      <div class="section-container" style="text-align: center; padding: 3rem 1rem;">
+        <h2 style="color: #fff; margin-bottom: 1rem;">Prêt à transformer votre activité avec l'IA ?</h2>
+        <p style="color: rgba(255,255,255,0.8); max-width: 600px; margin: 0 auto 2rem;">Discutons de votre projet —
+          réponse rapide garantie.</p>
+        <a href="https://wa.me/+237683121654" target="_blank" class="btn btn-whatsapp-cta btn-whatsapp-large">💬
+          Contacte-moi maintenant</a>
       </div>
     </section>
 
@@ -327,9 +411,39 @@
             <input type="email" id="email" name="email" placeholder="Votre Email" required>
           </div>
           <div class="form-group">
+            <input type="tel" id="phone" name="phone" placeholder="Votre Téléphone (optionnel)">
+          </div>
+          <div class="form-group">
+            <select id="service" name="service" required>
+              <option value="" disabled selected>Quel service vous intéresse ?</option>
+              <option value="chatbot">🤖 Chatbot & Agent IA</option>
+              <option value="automatisation">⚙️ Automatisation des processus</option>
+              <option value="site-web">🌐 Site web intelligent</option>
+              <option value="formation">🎓 Formation en IA</option>
+              <option value="conseil">💡 Conseil & Accompagnement</option>
+              <option value="contenus">🎨 Création de contenus IA</option>
+              <option value="autre">🔍 Autre / Je ne sais pas encore</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <select id="budget" name="budget">
+              <option value="" disabled selected>Budget estimé (optionnel)</option>
+              <option value="moins-1000">Moins de 1 000€</option>
+              <option value="1000-3000">1 000 - 3 000€</option>
+              <option value="3000-5000">3 000 - 5 000€</option>
+              <option value="5000-10000">5 000 - 10 000€</option>
+              <option value="plus-10000">Plus de 10 000€</option>
+              <option value="a-discuter">À discuter</option>
+            </select>
+          </div>
+          <div class="form-group">
             <textarea id="message" name="message" placeholder="Votre Projet ou Question" required></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Envoyer le Message</button>
+          <p class="form-privacy"
+            style="font-size: 0.85rem; color: var(--color-text-gray); margin-top: 1rem; text-align: center;">
+            🔒 Vos données sont sécurisées et ne seront jamais partagées
+          </p>
         </form>
       </div>
     </section>
@@ -359,11 +473,11 @@
               <a href="#process">Processus</a>
               <a href="#cases">Études de Cas</a>
               <a href="#about">À Propos</a>
-              <a href="#testimonials">Témoignages</a>
             </div>
 
             <div class="footer-column">
               <h4>Contact</h4>
+              <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">📍 Yaoundé, Cameroun</p>
               <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Discutons de votre projet</p>
 
               <!-- Email -->
@@ -426,9 +540,16 @@
           </div>
         </div>
 
+        <!-- Payment & Terms Info -->
+        <div class="footer-payment-info">
+          <p><strong>30 % d'avance à la commande – Solde à la livraison</strong></p>
+          <p>Paiement : Mobile Money (Orange/MTN), Wise</p>
+          <p>Délai : indiqué dans le devis</p>
+        </div>
+
         <div class="footer-bottom">
-          <p>&copy; 2025 HAIR — Automatisation & IA. Tous droits réservés.</p>
-          <p class="code-text">Simplifiez vos processus, boostez votre croissance.</p>
+          <p><strong>Franck Guekeu – Home of AI Revolutions</strong></p>
+          <p>&copy; 2026 – Basé au Cameroun</p>
         </div>
       </div>
     </footer>
@@ -440,6 +561,16 @@
   <script src="animations.js"></script>
   <script src="bigbang-effect.js"></script>
   <script src="forms.js"></script>
+
+
+
+  <!-- Chatbot Components (in correct order) -->
+  <script src="config-api.js"></script>
+  <script src="site-analyzer.js"></script>
+  <script src="chatbot-gemini.js"></script>
+  <script src="chatbot-gemini-enhanced.js"></script>
+  <script src="chatbot-hybrid.js"></script>
+  <script src="chatbot.js"></script>
 </body>
 
 </html>

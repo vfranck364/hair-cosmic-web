@@ -1,0 +1,5 @@
+// Modèle de configuration API pour HAIR Chatbot
+// Renommez ce fichier en 'config-api.js' et insérez votre clé
+window.CONFIG_API = {
+    GROQ_API_KEY: 'VOTRE_CLE_ICI'
+};

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Chatbot HAIR</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .instructions {
+            background: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .test-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        button {
+            padding: 10px 15px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        #results {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            min-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Test du Chatbot HAIR</h1>
+        
+        <div class="instructions">
+            <p><strong>Instructions:</strong> Cette page permet de tester la fonctionnalité du chatbot HAIR avec l'approche hybride (règles locales + IA Gemini).</p>
+            <p>Le chatbot devrait s'activer automatiquement après 20 secondes, mais vous pouvez aussi l'activer manuellement avec le bouton flottant en bas à droite.</p>
+        </div>
+        
+        <div class="test-buttons">
+            <button onclick="testLocalRules()">Tester Règles Locales</button>
+            <button onclick="testGeminiAPI()">Tester API Gemini</button>
+            <button onclick="testHybridFunctionality()">Tester Fonction Hybride</button>
+            <button onclick="resetChatbot()">Réinitialiser Chatbot</button>
+        </div>
+        
+        <div id="results">
+            <p>Résultats des tests s'afficheront ici...</p>
+        </div>
+    </div>
+
+    <!-- Chatbot Hybrid (Local Rules + Gemini AI) -->
+    <link rel="stylesheet" href="chatbot.css">
+    <script src="chatbot-gemini.js"></script>
+    <script src="chatbot-hybrid.js"></script>
+    <script src="chatbot.js"></script>
+
+    <script>
+        // Wait for all scripts to load
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                if (typeof HybridChatbot !== 'undefined') {
+                    document.getElementById('results').innerHTML += '<div class="status success">✅ Scripts chargés avec succès!</div>';
+                    
+                    // Initialize a test instance
+                    window.testChatbot = new HybridChatbot();
+                    document.getElementById('results').innerHTML += '<div class="status success">✅ Chatbot hybride initialisé!</div>';
+                } else {
+                    document.getElementById('results').innerHTML += '<div class="status error">❌ Scripts non chargés correctement!</div>';
+                }
+            }, 1000);
+        });
+
+        async function testLocalRules() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML += '<div class="status">Testing local rules...</div>';
+            
+            try {
+                // Test a local rule
+                const response = window.testChatbot.localEngine.processMessage("Quels sont vos services ?");
+                
+                if (response) {
+                    resultsDiv.innerHTML += `<div class="status success">✅ Réponse locale: ${response.substring(0, 100)}...</div>`;
+                } else {
+                    resultsDiv.innerHTML += '<div class="status">⚠️ Aucune réponse locale trouvée (ceci est normal pour certaines requêtes)</div>';
+                }
+            } catch (error) {
+                resultsDiv.innerHTML += `<div class="status error">❌ Erreur: ${error.message}</div>`;
+            }
+        }
+
+        async function testGeminiAPI() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML += '<div class="status">Testing Gemini API (this may take a moment)...</div>';
+            
+            try {
+                // Note: This will use the real API, so we'll use a simple test
+                const response = await window.testChatbot.geminiChatbot.sendMessage("Test");
+                
+                if (response) {
+                    resultsDiv.innerHTML += '<div class="status success">✅ Communication avec Gemini API réussie!</div>';
+                } else {
+                    resultsDiv.innerHTML += '<div class="status error">❌ Échec de la communication avec Gemini API</div>';
+                }
+            } catch (error) {
+                resultsDiv.innerHTML += `<div class="status error">⚠️ Erreur API (peut être dû à une clé invalide ou limite de quota): ${error.message}</div>`;
+            }
+        }
+
+        async function testHybridFunctionality() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML += '<div class="status">Testing hybrid functionality...</div>';
+            
+            try {
+                // Test both local and AI responses
+                const localResponse = window.testChatbot.localEngine.processMessage("Bonjour");
+                
+                if (localResponse) {
+                    resultsDiv.innerHTML += `<div class="status success">✅ Réponse locale fonctionnelle: ${localResponse.substring(0, 50)}...</div>`;
+                } else {
+                    resultsDiv.innerHTML += '<div class="status">ℹ️ Aucune réponse locale pour "Bonjour" (ceci est normal)</div>';
+                }
+                
+                // Test with a FAQ question that should trigger local response
+                const faqResponse = window.testChatbot.localEngine.processMessage("Quels sont vos tarifs ?");
+                
+                if (faqResponse) {
+                    resultsDiv.innerHTML += `<div class="status success">✅ Réponse FAQ locale: Trouvée!</div>`;
+                } else {
+                    resultsDiv.innerHTML += `<div class="status error">❌ Réponse FAQ non trouvée</div>`;
+                }
+                
+            } catch (error) {
+                resultsDiv.innerHTML += `<div class="status error">❌ Erreur lors du test hybride: ${error.message}</div>`;
+            }
+        }
+
+        function resetChatbot() {
+            if (window.testChatbot) {
+                window.testChatbot.reset();
+                document.getElementById('results').innerHTML += '<div class="status success">✅ Chatbot réinitialisé!</div>';
+            }
+        }
+    </script>
+</body>
+</html>

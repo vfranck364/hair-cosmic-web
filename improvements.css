@@ -1,0 +1,487 @@
+/* ============================================
+   NOUVELLES SECTIONS - AMÉLIORATIONS
+   Stats et Trusted By
+   ============================================ */
+
+/* === HERO ACRONYM === */
+.hero-acronym {
+  font-family: var(--font-code);
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: var(--color-nebula-violet);
+  margin: 0.5rem auto 1rem;
+  max-width: 600px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  opacity: 0.9;
+  animation: acronymGlow 4s ease-in-out infinite;
+}
+
+@keyframes acronymGlow {
+
+  0%,
+  100% {
+    text-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+  }
+
+  50% {
+    text-shadow: 0 0 20px rgba(139, 92, 246, 0.6), 0 0 30px rgba(139, 92, 246, 0.3);
+  }
+}
+
+
+/* === STATS SECTION === */
+.stats-section {
+  background: rgba(8, 16, 41, 0.5);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.stats-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-galactic-blue), transparent);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(14, 165, 255, 0.2);
+  border-radius: 20px;
+  padding: var(--spacing-lg);
+  text-align: center;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(14, 165, 255, 0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.stat-card:hover::before {
+  opacity: 1;
+}
+
+.stat-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--color-galactic-blue);
+  box-shadow: var(--glow-lg) rgba(14, 165, 255, 0.4);
+}
+
+.stat-icon {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-sm);
+  animation: float 3s ease-in-out infinite;
+}
+
+.stat-card:nth-child(2) .stat-icon {
+  animation-delay: 0.5s;
+}
+
+.stat-card:nth-child(3) .stat-icon {
+  animation-delay: 1s;
+}
+
+.stat-card:nth-child(4) .stat-icon {
+  animation-delay: 1.5s;
+}
+
+.stat-number {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-family: var(--font-heading);
+  background: linear-gradient(135deg, var(--color-galactic-blue), var(--color-nebula-violet));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--spacing-xs);
+  font-weight: 900;
+}
+
+.stat-label {
+  color: var(--color-text-gray);
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* === TRUSTED BY SECTION === */
+.trusted-by-section {
+  background: rgba(8, 16, 41, 0.3);
+}
+
+.trusted-logos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+  align-items: center;
+}
+
+.logo-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md);
+  transition: all var(--transition-normal);
+  border-radius: 15px;
+}
+
+.logo-item:hover {
+  background: rgba(14, 165, 255, 0.05);
+  transform: scale(1.05);
+}
+
+.client-logo-placeholder {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(14, 165, 255, 0.2);
+  border-radius: 50%;
+  margin-bottom: var(--spacing-sm);
+  transition: all var(--transition-normal);
+}
+
+.logo-item:hover .client-logo-placeholder {
+  border-color: var(--color-galactic-blue);
+  box-shadow: var(--glow-md) rgba(14, 165, 255, 0.3);
+  transform: rotate(360deg);
+}
+
+.logo-item p {
+  font-size: 0.9rem;
+  color: var(--color-text-gray);
+  margin: 0;
+  text-align: center;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
+  }
+
+  .trusted-logos {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-sm);
+  }
+
+  .client-logo-placeholder {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* === WHATSAPP FIXED BUTTON === */
+.whatsapp-float {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4), 0 0 20px rgba(37, 211, 102, 0.3);
+  z-index: 1000;
+  transition: all var(--transition-normal);
+  cursor: pointer;
+  text-decoration: none;
+  animation: whatsappPulse 2s ease-in-out infinite;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6), 0 0 40px rgba(37, 211, 102, 0.5);
+}
+
+.whatsapp-float svg {
+  width: 32px;
+  height: 32px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.whatsapp-tooltip {
+  position: absolute;
+  right: 70px;
+  background: rgba(8, 16, 41, 0.95);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast);
+  border: 1px solid rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp-float:hover .whatsapp-tooltip {
+  opacity: 1;
+}
+
+@keyframes whatsappPulse {
+
+  0%,
+  100% {
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4), 0 0 20px rgba(37, 211, 102, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.6), 0 0 30px rgba(37, 211, 102, 0.5);
+  }
+}
+
+/* === IMPROVED FORM ELEMENTS === */
+.form-group select {
+  width: 100%;
+  padding: 1.2rem;
+  background: rgba(8, 16, 41, 0.5);
+  border: 1px solid rgba(14, 165, 255, 0.2);
+  border-radius: 12px;
+  color: var(--color-pure-white);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  transition: all var(--transition-fast);
+  text-align: center;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgb(14, 165, 255)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1.5rem;
+  padding-right: 3rem;
+}
+
+.form-group select:focus {
+  outline: none;
+  border-color: var(--color-galactic-blue);
+  box-shadow: 0 0 15px rgba(14, 165, 255, 0.3);
+  background-color: rgba(8, 16, 41, 0.8);
+}
+
+.form-group select option {
+  background: rgba(8, 16, 41, 0.98);
+  color: var(--color-pure-white);
+  padding: 1rem;
+}
+
+.form-group input[type="tel"] {
+  width: 100%;
+  padding: 1.2rem;
+  background: rgba(8, 16, 41, 0.5);
+  border: 1px solid rgba(14, 165, 255, 0.2);
+  border-radius: 12px;
+  color: var(--color-pure-white);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  transition: all var(--transition-fast);
+  text-align: center;
+}
+
+.form-group input[type="tel"]:focus {
+  outline: none;
+  border-color: var(--color-galactic-blue);
+  box-shadow: 0 0 15px rgba(14, 165, 255, 0.3);
+  background: rgba(8, 16, 41, 0.8);
+}
+
+.form-privacy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* Mobile responsive for WhatsApp button */
+@media (max-width: 768px) {
+  .whatsapp-float {
+    bottom: 20px;
+    right: 20px;
+    width: 55px;
+    height: 55px;
+  }
+
+  .whatsapp-float svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .whatsapp-tooltip {
+    display: none;
+  }
+}
+
+/* ============================================
+   SALES & PRICING ENHANCEMENTS
+   ============================================ */
+
+/* === HERO SERVICES SUBTITLE === */
+.hero-services-subtitle {
+  font-size: clamp(1.1rem, 3vw, 1.6rem);
+  font-weight: 700;
+  text-align: center;
+  color: #1a3a6b;
+  margin: 0.8rem auto 0;
+  max-width: 800px;
+  line-height: 1.4;
+  text-shadow: 0 0 20px rgba(14, 165, 255, 0.3);
+  /* Fallback for dark bg sites */
+  background: linear-gradient(135deg, #60a5fa, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* === SERVICE PRICING === */
+.service-price {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--color-energy-lime, #a3e635);
+  margin: 0.75rem 0 0.25rem;
+  line-height: 1.4;
+}
+
+.service-price span {
+  font-weight: 400;
+  font-size: 0.85rem;
+  color: var(--color-text-gray, #9ca3af);
+}
+
+.service-devis {
+  font-style: italic;
+  font-size: 0.82rem;
+  color: var(--color-text-gray, #9ca3af);
+  margin: 0.2rem 0 0.75rem;
+  opacity: 0.85;
+}
+
+/* === WHATSAPP CTA BUTTON === */
+.btn-whatsapp-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: #fff !important;
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 0.9rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+  -webkit-text-fill-color: #fff;
+}
+
+.btn-whatsapp-cta:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+}
+
+.btn-whatsapp-large {
+  font-size: 1.3rem;
+  padding: 1.2rem 3rem;
+  animation: ctaPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes ctaPulse {
+
+  0%,
+  100% {
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 4px 30px rgba(37, 211, 102, 0.7), 0 0 50px rgba(37, 211, 102, 0.3);
+  }
+}
+
+/* === CTA WHATSAPP SECTION === */
+.cta-whatsapp-section {
+  background: linear-gradient(135deg, rgba(18, 140, 126, 0.15), rgba(37, 211, 102, 0.1));
+  border-top: 1px solid rgba(37, 211, 102, 0.2);
+  border-bottom: 1px solid rgba(37, 211, 102, 0.2);
+}
+
+/* === FOOTER PAYMENT INFO === */
+.footer-payment-info {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  margin-top: 2rem;
+  border-top: 1px solid rgba(14, 165, 255, 0.15);
+  border-bottom: 1px solid rgba(14, 165, 255, 0.15);
+}
+
+.footer-payment-info p {
+  font-size: 0.9rem;
+  color: var(--color-text-gray, #9ca3af);
+  margin: 0.3rem 0;
+  line-height: 1.5;
+}
+
+.footer-payment-info strong {
+  color: var(--color-pure-white, #fff);
+}
+
+/* Mobile adjustments for new elements */
+@media (max-width: 768px) {
+  .hero-services-subtitle {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+
+  .btn-whatsapp-large {
+    font-size: 1rem;
+    padding: 0.9rem 1.5rem;
+    width: 90%;
+    max-width: 350px;
+    justify-content: center;
+    margin: 0 auto;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .service-price {
+    font-size: 0.95rem;
+  }
+}

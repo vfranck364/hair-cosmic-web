@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Découvrez nos réalisations en automatisation IA, chatbots intelligents et transformations digitales. Études de cas détaillées avec résultats mesurables.">
+    <meta name="keywords" content="études de cas, portfolio, réalisations IA, chatbot, automatisation, success stories">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Études de Cas - HAIR">
+    <meta property="og:description" content="Portfolio de nos réalisations en IA et automatisation">
+    <meta property="og:type" content="website">
+
+    <title>Études de Cas — HAIR</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="service-page.css">
+    <link rel="stylesheet" href="improvements.css">
+
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        /* Case Studies Dedicated Page Styles */
+        .cases-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: rgba(8, 16, 41, 0.8);
+            position: relative;
+        }
+
+        .cases-grid-advanced {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-lg);
+        }
+
+        .case-detail-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(14, 165, 255, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all var(--transition-normal);
+        }
+
+        .case-detail-card:hover {
+            border-color: var(--color-galactic-blue);
+            box-shadow: var(--glow-lg) rgba(14, 165, 255, 0.4);
+            transform: scale(1.02);
+        }
+
+        .case-detail-header {
+            background: linear-gradient(135deg, rgba(14, 165, 255, 0.2), rgba(139, 92, 246, 0.2));
+            padding: var(--spacing-lg);
+            border-bottom: 1px solid rgba(14, 165, 255, 0.3);
+        }
+
+        .case-category {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(14, 165, 255, 0.2);
+            border: 1px solid var(--color-galactic-blue);
+            border-radius: 20px;
+            font-family: var(--font-code);
+            font-size: 0.8rem;
+            color: var(--color-galactic-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .case-detail-header h2 {
+            color: var(--color-galactic-blue);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .case-detail-header p {
+            color: var(--color-text-gray);
+            font-size: 1.1rem;
+        }
+
+        .case-detail-body {
+            padding: var(--spacing-lg);
+        }
+
+        .case-section {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .case-section h3 {
+            color: var(--color-nebula-violet);
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .case-section-icon {
+            font-size: 1.5rem;
+        }
+
+        .case-specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .spec-item {
+            background: rgba(14, 165, 255, 0.05);
+            border: 1px solid rgba(14, 165, 255, 0.2);
+            border-radius: 12px;
+            padding: var(--spacing-md);
+        }
+
+        .spec-label {
+            font-size: 0.85rem;
+            color: var(--color-text-gray);
+            margin-bottom: 0.25rem;
+        }
+
+        .spec-value {
+            font-size: 1.1rem;
+            color: var(--color-galactic-blue);
+            font-weight: 600;
+        }
+
+        .case-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .case-features li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .case-features li::before {
+            content: '✓';
+            color: var(--color-energy-lime);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .case-results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .result-metric {
+            text-align: center;
+            padding: var(--spacing-md);
+            background: rgba(127, 254, 130, 0.05);
+            border: 1px solid rgba(127, 254, 130, 0.2);
+            border-radius: 12px;
+        }
+
+        .result-number {
+            font-size: 2rem;
+            font-family: var(--font-heading);
+            color: var(--color-energy-lime);
+            font-weight: 900;
+            margin-bottom: 0.25rem;
+        }
+
+        .result-label {
+            font-size: 0.9rem;
+            color: var(--color-text-gray);
+        }
+
+        .case-visual {
+            margin: var(--spacing-md) 0;
+            text-align: center;
+        }
+
+        .case-screenshot {
+            max-width: 100%;
+            border-radius: 12px;
+            border: 1px solid rgba(14, 165, 255, 0.3);
+            box-shadow: var(--glow-md) rgba(14, 165, 255, 0.2);
+        }
+
+        .case-placeholder-image {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, rgba(14, 165, 255, 0.1), rgba(139, 92, 246, 0.1));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border: 1px solid rgba(14, 165, 255, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .case-specs {
+                grid-template-columns: 1fr;
+            }
+
+            .case-results-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="space-canvas"></canvas>
+    <div class="content-wrapper">
+        <!-- Header & Navigation -->
+        <header>
+            <nav>
+                <a href="index.html" class="logo" title="Home of AI Solutions">
+                    <img src="assets/logo.jpg" alt="HAIR Logo" class="logo-image">
+                </a>
+                <ul class="nav-menu">
+                    <li class="mobile-only"><button class="btn-back" aria-label="Retour">← Retour</button></li>
+                    <li><a href="index.html#services">Services</a></li>
+                    <li><a href="index.html#process">Processus</a></li>
+                    <li><a href="cases-detail.html">Études de Cas</a></li>
+                    <li><a href="index.html#about">À Propos</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-btn" aria-label="Menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="cases-hero">
+            <div class="section-container">
+                <p class="service-label">PORTFOLIO</p>
+                <h1 style="font-size: clamp(2rem, 6vw, 3.5rem);">Études de Cas — Nos Réalisations</h1>
+                <p class="service-description">
+                    Découvrez comment nous avons transformé les opérations de nos clients grâce à l'IA et
+                    l'automatisation.
+                    <br>Des résultats concrets, mesurables et reproductibles.
+                </p>
+            </div>
+        </section>
+
+        <!-- Case Study 1: WhatsApp Chatbot -->
+        <section class="service-section">
+            <div class="section-container">
+                <div class="cases-grid-advanced">
+
+                    <!-- Case 1 -->
+                    <div class="case-detail-card">
+                        <div class="case-detail-header">
+                            <span class="case-category">🤖 Chatbot IA</span>
+                            <h2>Agent IA WhatsApp pour Salon de Coiffure</h2>
+                            <p>Automatisation complète de la prise de rendez-vous et du support client via WhatsApp</p>
+                        </div>
+
+                        <div class="case-detail-body">
+                            <!-- Context -->
+                            <div class="case-section">
+                                <h3><span class="case-section-icon">🎯</span> Contexte & Défi</h3>
+                                <p>Un salon de coiffure à Yaoundé recevait plus de 50 messages par jour pour des prises
+                                    de rendez-vous,
+                                    renseignements sur les tarifs et disponibilités. La gérante passait 3-4 heures
+                                    quotidiennes sur WhatsApp,
+                                    au détriment du service en salon.</p>
+
+                                <div class="case-specs">
+                                    <div class="spec-item">
+                                        <div class="spec-label">Secteur</div>
+                                        <div class="spec-value">Beauté & Bien-être</div>
+                                    </div>
+                                    <div class="spec-item">
+                                        <div class="spec-label">Taille</div>
+                                        <div class="spec-value">1 salon, 3 coiffeuses</div>
+                                    </div>
+                                    <div class="spec-item">
+                                        <div class="spec-label">Durée Projet</div>
+                                        <div class="spec-value">3 semaines</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Solution -->
+                            <div class="case-section">
+                                <h3><span class="case-section-icon">🛠️</span> Solution Implementée</h3>
+                                <ul class="case-features">
+                                    <li>Agent IA conversationnel intégré à WhatsApp Business</li>
+                                    <li>Base de connaissances avec services, tarifs et disponibilités</li>
+                                    <li>Prise de rendez-vous automatique avec confirmation</li>
+                                    <li>Rappels automatiques 24h avant le RDV</li>
+                                    <li>Réponses instantanées aux questions fréquentes</li>
+                                    <li>Escalade vers un humain pour cas complexes</li>
+                                    <li>Intégration avec Google Calendar pour la gestion des créneaux</li>
+                                </ul>
+                            </div>
+
+                            <!-- Visual Placeholder -->
+                            <div class="case-visual">
+                                <div class="case-placeholder-image">
+                                    📱 💬
+                                </div>
+                                <p style="font-size: 0.9rem; color: var(--color-text-gray); margin-top: 0.5rem;">
+                                    Interface du chatbot WhatsApp avec flux conversationnel
+                                </p>
+                            </div>
+
+                            <!-- Results -->
+                            <div class="case-section">
+                                <h3><span class="case-section-icon">📈</span> Résultats Obtenus</h3>
+                                <div class="case-results-grid">
+                                    <div class="result-metric">
+                                        <div class="result-number">85%</div>
+                                        <div class="result-label">Réponses Automatisées</div>
+                                    </div>
+                                    <div class="result-metric">
+                                        <div class="result-number">3h/jour</div>
+                                        <div class="result-label">Temps Économisé</div>
+                                    </div>
+                                    <div class="result-metric">
+                                        <div class="result-number">24/7</div>
+                                        <div class="result-label">Disponibilité</div>
+                                    </div>
+                                    <div class="result-metric">
+                                        <div class="result-number">+40%</div>
+                                        <div class="result-label">Nouveaux Clients</div>
+                                    </div>
+                                </div>
+
+                                <p style="margin-top: var(--spacing-md); color: var(--color-text-gray);">
+                                    <strong style="color: var(--color-energy-lime);">Témoignage client :</strong>
+                                    "Le chatbot a transformé ma façon de travailler. Je peux me concentrer sur mes
+                                    clientes
+                                    pendant que l'IA gère les réservations. Mes clientes adorent la rapidité des
+                                    réponses !"
+                                    <br><em>— Marie, Fondatrice du salon</em>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Case 2 -->
+                    <div class="case-detail-card">
+                        <div class="case-detail-header">
+                            <span class="case-category">⚙️ Automatisation</span>
+                            <h2>Automatisation de Flux CRM pour E-Commerce</h2>
+                            <p>Connexion automatique entre WhatsApp, CRM et base de données pour éliminer la saisie
+                                manuelle</p>
+                        </div>
+
+                        <div class="case-detail-body">
+                            <!-- Context -->
+                            <div class="case-section">
+                                <h3><span class="case-section-icon">🎯</span> Contexte & Défi</h3>
+                                <p>Une boutique en ligne vendant des produits cosmétiques gérait ses commandes
+                                    manuellement :
+                                    messages WhatsApp → saisie Excel → mise à jour CRM → confirmation email. Ce
+                                    processus
+                                    prenait 15 minutes par commande et générait des erreurs fréquentes.</p>
+
+                                <div class="case-specs">
+                                    <div class="spec-item">
+                                        <div class="spec-label">Secteur</div>
+                                        <div class="spec-value">E-Commerce</div>
+                                    </div>
+                                    <div class="spec-item">
+                                        <div class="spec-label">Volume</div>
+                                        <div class="spec-value">~100 commandes/mois</div>
+                                    </div>
+                                    <div class="spec-item">
+                                        <div class="spec-label">Durée Projet</div>
+                                        <div class="spec-value">4 semaines</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Solution -->
+                            <div class="case-section">
+                                <h3><span class="case-section-icon">🛠️</span> Solution Implementée</h3>
+                                <ul class="case-features">
+                                    <li>Automatisation Make (Integromat) pour orchestrer les flux</li>
+                                    <li>Capture automatique des commandes depuis WhatsApp</li>
+                                    <li>Extraction des informations clés (nom, produit, quantité, adresse)</li>
+                                    <li>Création automatique de contacts dans le CRM (HubSpot)</li>
+                                    <li>Mise à jour de la base de données produits</li>
+                                    <li>Envoi automatique de confirmation par email</li>
+                                    <li>Notification Slack pour l'équipe de préparation</li>
+                                    <li>Dashboard temps réel des commandes</li>
+                                </ul>
+                            </div>
+
+                            <!-- Visual Placeholder -->
+                            <div class="case-visual">
+                                <div class="case-placeholder-image">
+                                    🔄 📊
+                                </div>
+                                <p style="font-size: 0.9rem; color: var(--color-text-gray); margin-top: 0.5rem;">
+                                    Diagramme du flux d'automatisation WhatsApp → CRM → Email
+                                </p>
+                            </div>
+
+                            <!-- Results -->
+                            <div class="case-section">
+                                <h3><span class="case-section-icon">📈</span> Résultats Obtenus</h3>
+                                <div class="case-results-grid">
+                                    <div class="result-metric">
+                                        <div class="result-number">0</div>
+                                        <div class="result-label">Erreurs de Saisie</div>
+                                    </div>
+                                    <div class="result-metric">
+                                        <div class="result-number">25h/mois</div>
+                                        <div class="result-label">Temps Économisé</div>
+                                    </div>
+                                    <div class="result-metric">
+                                        <div class="result-number">
+                                            < 2min</div>
+                                                <div class="result-label">Temps de Traitement</div>
+                                        </div>
+                                        <div class="result-metric">
+                                            <div class="result-number">100%</div>
+                                            <div class="result-label">Traçabilité</div>
+                                        </div>
+                                    </div>
+
+                                    <p style="margin-top: var(--spacing-md); color: var(--color-text-gray);">
+                                        <strong style="color: var(--color-energy-lime);">Impact business :</strong>
+                                        L'entreprise a pu accepter 50% de commandes supplémentaires sans recruter, tout
+                                        en
+                                        réduisant drastiquement les erreurs d'expédition. Le ROI a été atteint en moins
+                                        de 2 mois.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Case 3 -->
+                        <div class="case-detail-card">
+                            <div class="case-detail-header">
+                                <span class="case-category">🎓 Formation</span>
+                                <h2>Formation IA pour Entrepreneurs</h2>
+                                <p>Programme d'accompagnement pour maîtriser les outils d'IA et automatisation no-code
+                                </p>
+                            </div>
+
+                            <div class="case-detail-body">
+                                <!-- Context -->
+                                <div class="case-section">
+                                    <h3><span class="case-section-icon">🎯</span> Contexte & Défi</h3>
+                                    <p>Un groupe de 15 entrepreneurs et freelances souhaitaient intégrer l'IA dans leurs
+                                        activités mais manquaient de connaissances techniques. Ils avaient besoin d'une
+                                        formation
+                                        pratique, accessible et orientée résultats.</p>
+
+                                    <div class="case-specs">
+                                        <div class="spec-item">
+                                            <div class="spec-label">Secteur</div>
+                                            <div class="spec-value">Formation</div>
+                                        </div>
+                                        <div class="spec-item">
+                                            <div class="spec-label">Participants</div>
+                                            <div class="spec-value">15 entrepreneurs</div>
+                                        </div>
+                                        <div class="spec-item">
+                                            <div class="spec-label">Durée</div>
+                                            <div class="spec-value">6 semaines</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Solution -->
+                                <div class="case-section">
+                                    <h3><span class="case-section-icon">🛠️</span> Programme Délivré</h3>
+                                    <ul class="case-features">
+                                        <li>Module 1 : Fondamentaux de l'IA (ChatGPT, prompting avancé)</li>
+                                        <li>Module 2 : Automatisation no-code avec Make/Zapier</li>
+                                        <li>Module 3 : Création de chatbots avec Voiceflow</li>
+                                        <li>Module 4 : Génération de contenus (texte, images, vidéos)</li>
+                                        <li>Module 5 : Intégrations pratiques (CRM, Email, Social Media)</li>
+                                        <li>Module 6 : Projet final personnalisé</li>
+                                        <li>Support Slack pour questions en temps réel</li>
+                                        <li>Certificat de formation HAIR délivré</li>
+                                    </ul>
+                                </div>
+
+                                <!-- Visual Placeholder -->
+                                <div class="case-visual">
+                                    <div class="case-placeholder-image">
+                                        🎓 💻
+                                    </div>
+                                    <p style="font-size: 0.9rem; color: var(--color-text-gray); margin-top: 0.5rem;">
+                                        Session de formation avec démonstrations pratiques
+                                    </p>
+                                </div>
+
+                                <!-- Results -->
+                                <div class="case-section">
+                                    <h3><span class="case-section-icon">📈</span> Résultats & Impact</h3>
+                                    <div class="case-results-grid">
+                                        <div class="result-metric">
+                                            <div class="result-number">15/15</div>
+                                            <div class="result-label">Certification Obtenue</div>
+                                        </div>
+                                        <div class="result-metric">
+                                            <div class="result-number">12/15</div>
+                                            <div class="result-label">Projets Déployés</div>
+                                        </div>
+                                        <div class="result-metric">
+                                            <div class="result-number">+60%</div>
+                                            <div class="result-label">Productivité Moyenne</div>
+                                        </div>
+                                        <div class="result-metric">
+                                            <div class="result-number">4.8/5</div>
+                                            <div class="result-label">Note Satisfaction</div>
+                                        </div>
+                                    </div>
+
+                                    <p style="margin-top: var(--spacing-md); color: var(--color-text-gray);">
+                                        <strong style="color: var(--color-energy-lime);">Témoignages :</strong>
+                                        "J'ai automatisé la gestion de mes devis et factures en 2 jours après la
+                                        formation.
+                                        Je gagne maintenant 10h par semaine !" — Participant freelance designer
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="service-cta">
+            <div class="section-container">
+                <h2>Prêt à obtenir des résultats similaires ?</h2>
+                <p>Discutons de votre projet et voyons comment l'IA peut transformer votre activité.</p>
+                <a href="index.html#contact" class="btn btn-primary">Démarrer un Projet</a>
+            </div>
+        </section>
+
+        <!-- Footer (same as index.html) -->
+        <footer>
+            <div class="section-container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <img src="assets/logo.jpg" alt="HAIR Logo" class="footer-logo">
+                        <p class="code-text" style="margin-top: 0.5rem;">Automatisation & IA</p>
+                    </div>
+
+                    <div class="footer-links">
+                        <div class="footer-column">
+                            <h4>Services</h4>
+                            <a href="automatisation.html">Automatisation</a>
+                            <a href="chatbot.html">Assistants IA</a>
+                            <a href="sites-web.html">Sites Web</a>
+                            <a href="formations.html">Formations</a>
+                            <a href="conseil.html">Conseil</a>
+                            <a href="contenus-ia.html">Contenus IA</a>
+                        </div>
+
+                        <div class="footer-column">
+                            <h4>Entreprise</h4>
+                            <a href="index.html#process">Processus</a>
+                            <a href="cases-detail.html">Études de Cas</a>
+                            <a href="index.html#about">À Propos</a>
+                        </div>
+
+                        <div class="footer-column">
+                            <h4>Contact</h4>
+                            <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">📍 Yaoundé, Cameroun</p>
+                            <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Discutons de votre projet</p>
+
+                            <a href="mailto:vfranck364@gmail.com" class="footer-contact-link">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M3 8L10.89 13.26C11.2187 13.4793 11.6049 13.5963 12 13.5963C12.3951 13.5963 12.7813 13.4793 13.11 13.26L21 8M5 19H19C19.5304 19 20.0391 18.7893 20.4142 18.4142C20.7893 18.0391 21 17.5304 21 17V7C21 6.46957 20.7893 5.96086 20.4142 5.58579C20.0391 5.21071 19.5304 5 19 5H5C4.46957 5 3.96086 5.21071 3.58579 5.58579C3.21071 5.96086 3 6.46957 3 7V17C3 17.5304 3.21071 18.0391 3.58579 18.4142C3.96086 18.7893 4.46957 19 5 19Z"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                                vfranck364@gmail.com
+                            </a>
+
+                            <a href="tel:+237683121654" class="footer-contact-link">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M22 16.92V19.92C22.0012 20.1986 21.9441 20.4743 21.8525 20.7303C21.761 20.9863 21.6373 21.2173 21.4891 21.4089C21.3408 21.6006 21.1712 21.7487 20.991 21.8439C20.8108 21.9391 20.6239 21.9794 20.44 21.96C17.4477 21.6441 14.5714 20.6253 11.96 18.96C9.53008 17.4303 7.42967 15.3299 5.89999 12.9C4.22995 10.2748 3.21115 7.38243 2.89999 4.38C2.88057 4.1963 2.92082 4.00958 3.01602 3.82956C3.11122 3.64955 3.25925 3.47986 3.45089 3.33164C3.64253 3.18341 3.87375 3.05972 4.12975 2.96825C4.38575 2.87677 4.66144 2.81944 4.93999 2.82H7.93999C8.42879 2.81504 8.89674 3.00628 9.24434 3.35245C9.59193 3.69862 9.79374 4.16248 9.80999 4.65C9.84074 5.17691 9.97014 5.69421 10.194 6.18C10.334 6.478 10.39 6.81 10.36 7.14C10.32 7.47 10.19 7.79 9.99 8.06L8.71999 9.68C10.1332 12.1643 12.1856 14.2168 14.67 15.63L16.29 14.36C16.56 14.16 16.89 14.04 17.22 14C17.55 13.96 17.88 14.01 18.17 14.15C18.6631 14.3768 19.1867 14.508 19.72 14.54C20.2128 14.5574 20.6811 14.7628 21.0267 15.1127C21.3722 15.4626 21.5644 15.934 21.56 16.43L22 16.92Z"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                                +237 6 83 12 16 54
+                            </a>
+                        </div>
+
+                        <div class="footer-column">
+                            <h4>Réseaux Sociaux</h4>
+                            <div class="footer-socials">
+                                <a href="https://chat.whatsapp.com/Dod2aN0DK5hAcCU2ZXah4y" target="_blank"
+                                    class="footer-social-link">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                    Groupe 🚀
+                                </a>
+                                <a href="https://whatsapp.com/channel/0029Vb7FYN4FHWq9ExyhWu1t" target="_blank"
+                                    class="footer-social-link">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M12 16V12M12 8H12.01" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    Chaîne ✨
+                                </a>
+                                <a href="https://www.facebook.com/profile.php?id=61585635032631" target="_blank"
+                                    class="footer-social-link">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                    Facebook
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p>&copy; 2026 HAIR — Automatisation & IA. Tous droits réservés.</p>
+                    <p class="code-text">Simplifiez vos processus, boostez votre croissance.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="space-background.js"></script>
+    <script src="animations.js"></script>
+    <script src="bigbang-effect.js"></script>
+</body>
+
+</html>
