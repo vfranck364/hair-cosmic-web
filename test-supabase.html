@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Supabase - HAIR Chatbot</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #0EA5FF, #8B5CF6);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #8B5CF6;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .status {
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            font-weight: 600;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #f5c6cb;
+        }
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 2px solid #bee5eb;
+        }
+        .status.warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 2px solid #ffeaa7;
+        }
+        button {
+            background: linear-gradient(135deg, #8B5CF6, #3B82F6);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
+        }
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        .test-section h3 {
+            color: #8B5CF6;
+            margin-top: 0;
+        }
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 13px;
+        }
+        .log {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            padding: 10px;
+            background: #1e1e1e;
+            color: #00ff00;
+            border-radius: 5px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .progress {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #8B5CF6;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🧪 Test Supabase - HAIR Chatbot</h1>
+        <p class="subtitle">Vérification de l'intégration Supabase</p>
+
+        <!-- Status Global -->
+        <div id="global-status"></div>
+
+        <!-- Progress -->
+        <div class="progress" id="progress" style="display: none;">
+            <div class="spinner"></div>
+            <span>Tests en cours...</span>
+        </div>
+
+        <!-- Test 1: Supabase Client -->
+        <div class="test-section">
+            <h3>1️⃣ Supabase Client</h3>
+            <button onclick="testSupabaseClient()">Tester Connexion</button>
+            <div id="test1-result"></div>
+        </div>
+
+        <!-- Test 2: Sauvegarde Lead -->
+        <div class="test-section">
+            <h3>2️⃣ Sauvegarde Lead</h3>
+            <button onclick="testSaveLead()">Tester Sauvegarde Lead</button>
+            <div id="test2-result"></div>
+        </div>
+
+        <!-- Test 3: Sauvegarde Conversation -->
+        <div class="test-section">
+            <h3>3️⃣ Sauvegarde Conversation</h3>
+            <button onclick="testSaveConversation()">Tester Conversation</button>
+            <div id="test3-result"></div>
+        </div>
+
+        <!-- Test 4: Récupération Leads -->
+        <div class="test-section">
+            <h3>4️⃣ Récupération Leads</h3>
+            <button onclick="testGetLeads()">Voir les Leads</button>
+            <div id="test4-result"></div>
+        </div>
+
+        <!-- Logs -->
+        <div class="test-section">
+            <h3>📋 Logs en Temps Réel</h3>
+            <div class="log" id="log-container"></div>
+        </div>
+
+        <!-- Actions -->
+        <div class="test-section" style="text-align: center;">
+            <button onclick="runAllTests()" style="background: linear-gradient(135deg, #22c55e, #16a34a);">
+                🚀 Lancer Tous les Tests
+            </button>
+            <button onclick="clearLogs()" style="background: #666;">
+                🗑️ Effacer Logs
+            </button>
+        </div>
+    </div>
+
+    <!-- Supabase Client -->
+    <script type="module" src="supabase-client.js"></script>
+
+    <script>
+        // Logging
+        function log(message, type = 'info') {
+            const container = document.getElementById('log-container');
+            const timestamp = new Date().toLocaleTimeString('fr-FR');
+            const icon = type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️';
+            container.innerHTML += `<div>[${timestamp}] ${icon} ${message}</div>`;
+            container.scrollTop = container.scrollHeight;
+            console.log(message);
+        }
+
+        function clearLogs() {
+            document.getElementById('log-container').innerHTML = '';
+            log('Logs effacés');
+        }
+
+        function showProgress(show) {
+            document.getElementById('progress').style.display = show ? 'flex' : 'none';
+        }
+
+        function setStatus(elementId, message, type) {
+            const element = document.getElementById(elementId);
+            element.innerHTML = `<div class="status ${type}">${message}</div>`;
+        }
+
+        function setGlobalStatus(message, type) {
+            const element = document.getElementById('global-status');
+            element.innerHTML = `<div class="status ${type}">${message}</div>`;
+        }
+
+        // Test 1: Supabase Client
+        async function testSupabaseClient() {
+            log('Test 1: Vérification Supabase Client...');
+            
+            try {
+                if (typeof window.HAIRSupabase === 'undefined') {
+                    setStatus('test1-result', '❌ Supabase Client non chargé', 'error');
+                    log('Supabase Client non chargé', 'error');
+                    return;
+                }
+
+                // Test ping Supabase
+                const { data, error } = await window.HAIRSupabase.supabase
+                    .from('leads')
+                    .select('id')
+                    .limit(1);
+
+                if (error) throw error;
+
+                setStatus('test1-result', '✅ Supabase Client connecté avec succès !', 'success');
+                log('Supabase Client connecté', 'success');
+                
+            } catch (error) {
+                setStatus('test1-result', `❌ Erreur: ${error.message}`, 'error');
+                log(`Erreur Supabase: ${error.message}`, 'error');
+            }
+        }
+
+        // Test 2: Sauvegarde Lead
+        async function testSaveLead() {
+            log('Test 2: Sauvegarde lead test...');
+            
+            try {
+                const testLead = {
+                    email: 'test_' + Date.now() + '@test.com',
+                    full_name: 'Test Client',
+                    phone: '+237 6 83 12 16 54',
+                    company: 'Test Company',
+                    service_wanted: 'Chatbot IA',
+                    budget: '1500€',
+                    volume: '50 clients/jour',
+                    urgency: 'Immédiatement',
+                    conversation: [
+                        { role: 'user', content: 'Je veux un chatbot' },
+                        { role: 'assistant', content: 'Parfait !' }
+                    ]
+                };
+
+                const result = await window.HAIRSupabase.saveLead(testLead);
+
+                if (result.success) {
+                    setStatus('test2-result', 
+                        `✅ Lead sauvegardé ! ID: ${result.data[0].id}<br>
+                         📊 Score: ${result.data[0].score}/100<br>
+                         🔔 Notifications déclenchées`, 
+                        'success');
+                    log(`Lead sauvegardé: ${result.data[0].id}`, 'success');
+                } else {
+                    setStatus('test2-result', `❌ Échec: ${result.error}`, 'error');
+                    log(`Échec sauvegarde: ${result.error}`, 'error');
+                }
+                
+            } catch (error) {
+                setStatus('test2-result', `❌ Erreur: ${error.message}`, 'error');
+                log(`Erreur sauvegarde: ${error.message}`, 'error');
+            }
+        }
+
+        // Test 3: Sauvegarde Conversation
+        async function testSaveConversation() {
+            log('Test 3: Sauvegarde conversation...');
+            
+            try {
+                // D'abord créer un lead
+                const testLead = {
+                    email: 'conv_test@test.com',
+                    full_name: 'Conversation Test',
+                    service_wanted: 'Test',
+                    conversation: []
+                };
+
+                const leadResult = await window.HAIRSupabase.saveLead(testLead);
+                
+                if (!leadResult.success) {
+                    throw new Error('Failed to create test lead');
+                }
+
+                const leadId = leadResult.data[0].id;
+
+                // Sauvegarder conversation
+                const convResult = await window.HAIRSupabase.saveConversation({
+                    lead_id: leadId,
+                    message_user: 'Bonjour, je veux un chatbot',
+                    message_bot: 'Excellent choix !',
+                    session_id: 'test_session_' + Date.now()
+                });
+
+                if (convResult.success) {
+                    setStatus('test3-result', '✅ Conversation sauvegardée !', 'success');
+                    log('Conversation sauvegardée', 'success');
+                } else {
+                    setStatus('test3-result', `❌ Échec: ${convResult.error}`, 'error');
+                    log(`Échec conversation: ${convResult.error}`, 'error');
+                }
+                
+            } catch (error) {
+                setStatus('test3-result', `❌ Erreur: ${error.message}`, 'error');
+                log(`Erreur conversation: ${error.message}`, 'error');
+            }
+        }
+
+        // Test 4: Récupération Leads
+        async function testGetLeads() {
+            log('Test 4: Récupération des leads...');
+            
+            try {
+                const leads = await window.HAIRSupabase.getLeads();
+                
+                if (leads.length === 0) {
+                    setStatus('test4-result', 'ℹ️ Aucun lead dans la base', 'info');
+                    log('Aucun lead trouvé', 'info');
+                } else {
+                    const leadsHtml = leads.slice(0, 5).map(lead => 
+                        `<strong>${lead.full_name || 'N/A'}</strong> - ${lead.email} <br>
+                         Service: ${lead.service_wanted} | Score: ${lead.score}/100 <br>
+                         <small>${new Date(lead.created_at).toLocaleString('fr-FR')}</small><hr>`
+                    ).join('');
+
+                    setStatus('test4-result', 
+                        `✅ ${leads.length} lead(s) trouvé(s)<br><br>${leadsHtml}`, 
+                        'success');
+                    log(`${leads.length} leads récupérés`, 'success');
+                }
+                
+            } catch (error) {
+                setStatus('test4-result', `❌ Erreur: ${error.message}`, 'error');
+                log(`Erreur récupération: ${error.message}`, 'error');
+            }
+        }
+
+        // Tous les tests
+        async function runAllTests() {
+            showProgress(true);
+            clearLogs();
+            log('=== LANCEMENT DE TOUS LES TESTS ===');
+            
+            try {
+                // Test 1
+                await testSupabaseClient();
+                await sleep(500);
+                
+                // Test 2
+                await testSaveLead();
+                await sleep(500);
+                
+                // Test 3
+                await testSaveConversation();
+                await sleep(500);
+                
+                // Test 4
+                await testGetLeads();
+                
+                log('=== TOUS LES TESTS SONT TERMINÉS ===', 'success');
+                setGlobalStatus('✅ Tous les tests sont au VERT ! Supabase est opérationnel.', 'success');
+                
+            } catch (error) {
+                log(`Erreur générale: ${error.message}`, 'error');
+                setGlobalStatus('❌ Certains tests ont échoué. Vérifiez les logs.', 'error');
+            } finally {
+                showProgress(false);
+            }
+        }
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        // Auto-test au chargement
+        window.addEventListener('load', () => {
+            log('Page chargée. Prêt pour les tests.');
+            log('Cliquez sur "🚀 Lancer Tous les Tests" pour commencer.');
+        });
+    </script>
+</body>
+
+</html>

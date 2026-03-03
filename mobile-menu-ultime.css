@@ -1,0 +1,232 @@
+/* ============================================
+   MENU MOBILE - SOLUTION ULTIME
+   Fichier CSS UNIQUE et SUFFISANT
+   ============================================ */
+
+@media (max-width: 768px) {
+
+  /* =========================================
+     HEADER - Position relative pour le menu
+     ========================================= */
+  header {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    z-index: 1000 !important;
+    background: rgba(8, 16, 41, 0.8) !important;
+    backdrop-filter: blur(10px) !important;
+    border-bottom: 1px solid rgba(14, 165, 255, 0.2) !important;
+    padding: 0.5rem 1rem !important;
+  }
+
+  /* =========================================
+     1. BOUTON BURGER - TOUJOURS VISIBLE ET CLIQUABLE
+     ========================================= */
+  .mobile-menu-btn {
+    display: flex !important;
+    width: 48px !important;
+    height: 48px !important;
+    padding: 8px !important;
+    background: rgba(14, 165, 255, 0.2) !important;
+    border: 2px solid rgba(14, 165, 255, 0.5) !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    position: relative !important;
+    z-index: 10001 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .mobile-menu-btn:hover {
+    background: rgba(14, 165, 255, 0.3) !important;
+    border-color: rgba(14, 165, 255, 0.8) !important;
+  }
+
+  .mobile-menu-btn svg {
+    width: 24px !important;
+    height: 24px !important;
+    pointer-events: none !important;
+  }
+
+  /* =========================================
+     2. MENU - POSITIONNEMENT FIXE
+     ========================================= */
+  .nav-menu {
+    display: none !important;
+  }
+
+  .nav-menu.active {
+    display: flex !important;
+    flex-direction: column !important;
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    width: 280px !important;
+    max-width: 85% !important;
+    height: 100vh !important;
+    min-height: 100vh !important;
+    background: rgba(8, 16, 41, 0.99) !important;
+    backdrop-filter: blur(20px) !important;
+    z-index: 10000 !important;
+    padding: 1.5rem 1rem !important;
+    pointer-events: auto !important;
+    overflow-y: auto !important;
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.7) !important;
+    border-left: 2px solid rgba(139, 92, 246, 0.5) !important;
+    animation: slideInRight 0.3s ease-out !important;
+  }
+
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  /* =========================================
+     3. BOUTON RETOUR - PREMIER ÉLÉMENT
+     ========================================= */
+  .mobile-only {
+    display: block !important;
+    width: 100% !important;
+    margin-bottom: 1.5rem !important;
+    padding-bottom: 1rem !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .btn-back {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    background: rgba(14, 165, 255, 0.15) !important;
+    border: 2px solid rgba(14, 165, 255, 0.5) !important;
+    color: var(--color-galactic-blue) !important;
+    padding: 12px 20px !important;
+    border-radius: 8px !important;
+    font-family: var(--font-heading) !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    width: 100% !important;
+    justify-content: center !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .btn-back:hover {
+    background: rgba(14, 165, 255, 0.25) !important;
+    border-color: var(--color-galactic-blue) !important;
+  }
+
+  /* =========================================
+     4. LIENS DE NAVIGATION - TOUS CLIQUABLES
+     ========================================= */
+  .nav-menu.active li {
+    list-style: none !important;
+    width: 100% !important;
+  }
+
+  .nav-menu.active a {
+    display: block !important;
+    width: 100% !important;
+    padding: 14px 16px !important;
+    margin: 6px 0 !important;
+    color: var(--color-pure-white) !important;
+    text-decoration: none !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    position: relative !important;
+    z-index: 10001 !important;
+    transition: all 0.3s ease !important;
+    border: 1px solid transparent !important;
+  }
+
+  .nav-menu.active a:hover {
+    background: rgba(14, 165, 255, 0.15) !important;
+    border-color: rgba(14, 165, 255, 0.3) !important;
+    padding-left: 20px !important;
+  }
+
+  .nav-menu.active a:active {
+    background: rgba(14, 165, 255, 0.25) !important;
+  }
+
+  /* =========================================
+     5. OVERLAY - FOND SOMBRE (DERIÈRE LE MENU)
+     ========================================= */
+  #nav-overlay {
+    display: none !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(0, 0, 0, 0.6) !important;
+    z-index: 9998 !important; /* DOIT ÊTRE < AU MENU (10000) */
+    cursor: pointer !important;
+    pointer-events: auto !important;
+  }
+
+  #nav-overlay.active {
+    display: block !important;
+  }
+
+  /* =========================================
+     6. ACCESSIBILITÉ ET TACTILE
+     ========================================= */
+  * {
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
+  .nav-menu a,
+  .nav-menu .btn-back,
+  .mobile-menu-btn {
+    -webkit-user-select: auto !important;
+    user-select: auto !important;
+    -webkit-touch-callout: none !important;
+  }
+
+  /* =========================================
+     7. PETIT MOBILE (< 480px)
+     ========================================= */
+  @media (max-width: 480px) {
+    .nav-menu.active {
+      width: 90% !important;
+      max-width: 90% !important;
+      padding: 1rem 0.75rem !important;
+    }
+
+    .nav-menu.active a {
+      font-size: 15px !important;
+      padding: 12px 14px !important;
+    }
+
+    .btn-back {
+      font-size: 13px !important;
+      padding: 10px 16px !important;
+    }
+
+    .mobile-menu-btn {
+      width: 44px !important;
+      height: 44px !important;
+    }
+
+    .mobile-menu-btn svg {
+      width: 22px !important;
+      height: 22px !important;
+    }
+  }
+}

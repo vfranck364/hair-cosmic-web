@@ -207,35 +207,26 @@ class HairAnimations {
             });
         });
 
-        // Portrait parallax effect
-        const portraitWrapper = document.querySelector('.portrait-wrapper');
-        if (portraitWrapper) {
-            portraitWrapper.addEventListener('mousemove', (e) => {
-                const rect = portraitWrapper.getBoundingClientRect();
-                const x = (e.clientX - rect.left) / rect.width - 0.5;
-                const y = (e.clientY - rect.top) / rect.height - 0.5;
+        // Orbiting portrait hover spin effect
+        const portraitImg = document.querySelector('.portrait-image');
+        const orbitPhotoContainer = document.querySelector('.orbit-photo-counter');
 
-                const portraitImage = portraitWrapper.querySelector('.portrait-image');
-                if (portraitImage && typeof gsap !== 'undefined') {
-                    gsap.to(portraitImage, {
-                        rotateY: x * 20,
-                        rotateX: -y * 20,
-                        duration: 0.5,
-                        ease: 'power2.out'
-                    });
+        if (portraitImg && orbitPhotoContainer) {
+            // Au survol, ajouter la classe de spin
+            portraitImg.addEventListener('mouseenter', () => {
+                orbitPhotoContainer.classList.add('self-spinning');
+            });
+
+            // Retirer la classe après l'animation (0.7s)
+            orbitPhotoContainer.addEventListener('animationend', (e) => {
+                if (e.animationName === 'selfSpin') {
+                    orbitPhotoContainer.classList.remove('self-spinning');
                 }
             });
 
-            portraitWrapper.addEventListener('mouseleave', () => {
-                const portraitImage = portraitWrapper.querySelector('.portrait-image');
-                if (portraitImage && typeof gsap !== 'undefined') {
-                    gsap.to(portraitImage, {
-                        rotateY: 0,
-                        rotateX: 0,
-                        duration: 0.5,
-                        ease: 'power2.out'
-                    });
-                }
+            // Support tactile pour mobile
+            portraitImg.addEventListener('touchstart', () => {
+                orbitPhotoContainer.classList.add('self-spinning');
             });
         }
 
@@ -281,48 +272,120 @@ class HairAnimations {
         const menuBtn = document.querySelector('.mobile-menu-btn');
         const navMenu = document.querySelector('.nav-menu');
         const backBtn = document.querySelector('.btn-back');
-        const navLinks = document.querySelectorAll('.nav-menu a');
+        const navLinks = document.querySelectorAll('.nav-menu a[href^="#"]');
 
-        if (!menuBtn || !navMenu) return;
+        if (!menuBtn || !navMenu) {
+            console.warn('initMobileMenu: menuBtn ou navMenu non trouvé');
+            return;
+        }
+
+        console.log('initMobileMenu: Initialisation du menu mobile');
+
+        // Menu est-il ouvert ?
+        let isMenuOpen = false;
 
         const closeMenu = () => {
+            if (!isMenuOpen) return;
+            isMenuOpen = false;
             navMenu.classList.remove('active');
             menuBtn.classList.remove('active');
+            const overlay = document.getElementById('nav-overlay');
+            if (overlay) {
+                overlay.style.display = 'none';
+            }
             document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.body.style.width = '';
+            console.log('initMobileMenu: Menu fermé');
         };
 
-        menuBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            navMenu.classList.toggle('active');
-            menuBtn.classList.toggle('active');
-
-            if (navMenu.classList.contains('active')) {
-                document.body.style.overflow = 'hidden';
+        const openMenu = () => {
+            if (isMenuOpen) return;
+            isMenuOpen = true;
+            navMenu.classList.add('active');
+            menuBtn.classList.add('active');
+            
+            // Créer ou récupérer l'overlay
+            let overlay = document.getElementById('nav-overlay');
+            if (!overlay) {
+                overlay = document.createElement('div');
+                overlay.id = 'nav-overlay';
+                overlay.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100vw;
+                    height: 100vh;
+                    background: rgba(0,0,0,0.6);
+                    z-index: 9998 !important; /* < MENU (10000) */
+                    display: block;
+                `;
+                document.body.appendChild(overlay);
+                
+                // Click sur overlay = fermer menu
+                overlay.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    closeMenu();
+                });
             } else {
-                document.body.style.overflow = '';
+                overlay.style.display = 'block';
+            }
+            
+            document.body.style.overflow = 'hidden';
+            document.body.style.position = 'fixed';
+            document.body.style.width = '100%';
+            console.log('initMobileMenu: Menu ouvert');
+        };
+
+        // Ouvrir le menu
+        menuBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (!isMenuOpen) {
+                openMenu();
             }
         });
 
+        // Bouton retour
         if (backBtn) {
             backBtn.addEventListener('click', (e) => {
+                e.preventDefault();
                 e.stopPropagation();
                 closeMenu();
+                console.log('initMobileMenu: Bouton retour cliqué');
             });
         }
 
-        // Close when clicking outside
-        document.addEventListener('click', (e) => {
-            if (navMenu.classList.contains('active') &&
-                !navMenu.contains(e.target) &&
-                !menuBtn.contains(e.target)) {
+        // Gérer les liens de navigation
+        navLinks.forEach((link, index) => {
+            console.log('initMobileMenu: Lien ' + index + ' trouvé: ' + link.getAttribute('href'));
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const targetId = link.getAttribute('href');
+                const target = document.querySelector(targetId);
+
+                console.log('initMobileMenu: Lien cliqué: ' + targetId);
+
+                // Fermer le menu
                 closeMenu();
-            }
+
+                // Scroll smooth vers la cible
+                if (target) {
+                    setTimeout(() => {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        console.log('initMobileMenu: Scroll vers ' + targetId);
+                    }, 350);
+                }
+            });
         });
 
-        // Close menu when a link is clicked
-        navLinks.forEach(link => {
-            link.addEventListener('click', closeMenu);
-        });
+        console.log('initMobileMenu: Initialisation terminée');
     }
 }
 
@@ -331,8 +394,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize animations
     new HairAnimations();
 
-    // Smooth scroll
+    // Smooth scroll pour les liens EXCEPTÉ ceux du menu mobile (déjà gérés)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        // Ignorer les liens dans le menu de navigation mobile
+        if (anchor.closest('.nav-menu')) {
+            return;
+        }
+        
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));

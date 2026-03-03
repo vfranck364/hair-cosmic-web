@@ -331,6 +331,43 @@
   gap: 0.5rem;
 }
 
+/* RGPD Checkbox — aligné avec les autres champs du formulaire */
+.form-privacy-row {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 0.75rem !important;
+  width: 100% !important;
+  max-width: 600px !important;
+  margin: 0.5rem auto !important;
+  text-align: left !important;
+}
+
+.form-privacy-row input[type="checkbox"] {
+  margin-top: 3px;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--color-nebula-violet);
+  cursor: pointer;
+}
+
+.form-privacy-row label {
+  font-size: 0.85rem;
+  color: var(--color-text-gray);
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.form-privacy-row label a {
+  color: var(--color-nebula-violet);
+  text-decoration: underline;
+}
+
+.form-privacy-row label a:hover {
+  color: var(--color-galactic-blue);
+}
+
+
 /* Mobile responsive for WhatsApp button */
 @media (max-width: 768px) {
   .whatsapp-float {

@@ -8,6 +8,12 @@ class AstroBot {
     this.isOpen = false;
     this.chatbot = new HybridChatbot(); // Use hybrid chatbot instead of just Gemini
     this.autoActivated = false;
+    
+    // Supabase - Lead Management
+    this.currentLeadId = null;
+    this.sessionId = null;
+    this.leadSavedNotification = false;
+    
     this.init();
   }
 
@@ -18,7 +24,7 @@ class AstroBot {
   }
 
   /**
-   * Active automatiquement le chatbot après 20 secondes
+   * Active automatiquement le chatbot après 12 secondes
    */
   scheduleAutoActivation() {
     setTimeout(() => {
@@ -40,7 +46,7 @@ class AstroBot {
           ]
         );
       }
-    }, 20000); // 20 secondes
+    }, 12000); // 12 secondes
   }
 
   createWidget() {
@@ -177,19 +183,163 @@ class AstroBot {
       if (response.success) {
         this.addBotMessage(response.message);
 
+        // Sauvegarder la conversation dans Supabase
+        await this.saveConversationToSupabase(message, response.message);
+
+        // Détecter et notifier les demandes importantes
+        await this.trackImportantRequests(message, response.message);
+
         // Sauvegarder le lead si email détecté
         if (this.chatbot.getUserProfile().email) {
-          this.chatbot.saveLead();
+          await this.saveLeadToSupabase();
         }
       } else {
         this.addBotMessage(response.message);
       }
     } catch (error) {
       this.hideTypingIndicator();
+      console.error('Chatbot error:', error);
       this.addBotMessage(
         "Oups, un petit souci technique 😅\n\nMais tu peux toujours me contacter directement :\n\n📧 vfranck364@gmail.com\n📱 +237 6 83 12 16 54"
       );
     }
+  }
+
+  /**
+   * Détecter et tracker les demandes importantes (tarifs, services, contact)
+   */
+  async trackImportantRequests(userMessage, botMessage) {
+    const lowerMessage = userMessage.toLowerCase();
+    
+    // Mots-clés pour demandes importantes
+    const importantKeywords = {
+      'pricing_request': ['prix', 'tarif', 'coût', 'combien', 'budget', 'devis', 'facturation'],
+      'service_details': ['détails', 'fonctionne', 'étapes', 'processus', 'comment'],
+      'contact_request': ['contact', 'contacter', 'email', 'téléphone', 'rendez-vous', 'appel']
+    };
+
+    for (const [type, keywords] of Object.entries(importantKeywords)) {
+      if (keywords.some(keyword => lowerMessage.includes(keyword))) {
+        await this.sendImportantInfoNotification(type, botMessage);
+        break;
+      }
+    }
+  }
+
+  /**
+   * Sauvegarder la conversation dans Supabase
+   */
+  async saveConversationToSupabase(userMessage, botMessage) {
+    try {
+      if (typeof window.HAIRSupabase !== 'undefined') {
+        await window.HAIRSupabase.saveConversation({
+          lead_id: this.currentLeadId || null,
+          message_user: userMessage,
+          message_bot: botMessage,
+          session_id: this.sessionId || this.generateSessionId()
+        });
+      }
+    } catch (error) {
+      console.warn('⚠️ Erreur sauvegarde conversation:', error);
+      // Non bloquant - continuer même si sauvegarde échoue
+    }
+  }
+
+  /**
+   * Sauvegarder le lead dans Supabase (après collecte infos complètes)
+   */
+  async saveLeadToSupabase() {
+    try {
+      const userProfile = this.chatbot.getUserProfile();
+
+      if (!userProfile.email) return;
+
+      // Vérifier si Supabase est disponible
+      if (typeof window.HAIRSupabase === 'undefined') {
+        console.warn('⚠️ Supabase not loaded yet');
+        return;
+      }
+
+      // Préparer les données du lead
+      const leadData = {
+        email: userProfile.email,
+        full_name: userProfile.name || null,
+        phone: userProfile.phone || null,
+        company: userProfile.company || null,
+        service_wanted: userProfile.service_interest || 'Non spécifié',
+        budget: userProfile.budget || 'Non spécifié',
+        volume: 'Non spécifié',
+        urgency: 'Non spécifié',
+        conversation: this.chatbot.conversationHistory || []
+      };
+
+      // Sauvegarder dans Supabase
+      const result = await window.HAIRSupabase.saveLead(leadData);
+
+      if (result.success) {
+        console.log('✅ Lead sauvegardé dans Supabase:', result.data);
+        this.currentLeadId = result.data[0]?.id;
+
+        // Message de confirmation (une seule fois)
+        if (!this.leadSavedNotification) {
+          this.leadSavedNotification = true;
+          console.log('🎉 Lead envoyé à Franck !');
+          // Notification envoyée automatiquement via Supabase Edge Function
+          // Email + Telegram seront envoyés à Franck
+        }
+      } else {
+        console.error('❌ Erreur sauvegarde lead:', result.error);
+      }
+    } catch (error) {
+      console.error('❌ Erreur sauvegarde lead:', error);
+      // Non bloquant - continuer même si sauvegarde échoue
+    }
+  }
+
+  /**
+   * Envoyer une notification pour information importante (tarifs, détails service)
+   */
+  async sendImportantInfoNotification(infoType, content) {
+    try {
+      if (typeof window.HAIRSupabase === 'undefined') return;
+
+      // Enregistrer l'information importante dans Supabase
+      const notificationData = {
+        type: infoType, // 'pricing_request', 'service_details', 'contact_request'
+        content: content,
+        timestamp: new Date().toISOString(),
+        user_profile: this.chatbot.getUserProfile()
+      };
+
+      // Sauvegarder dans une table 'notifications' ou 'interactions'
+      const { data, error } = await window.HAIRSupabase.supabase
+        .from('chat_interactions')
+        .insert([notificationData]);
+
+      if (error) {
+        console.warn('⚠️ Notification non envoyée:', error);
+      } else {
+        console.log('📬 Notification importante envoyée:', infoType);
+        // Déclencher les notifications Email + Telegram
+        await window.HAIRSupabase.triggerNotifications({
+          full_name: notificationData.user_profile?.name || 'Visiteur',
+          email: notificationData.user_profile?.email || 'Non fourni',
+          service_wanted: infoType,
+          message: content.substring(0, 200) + '...'
+        });
+      }
+    } catch (error) {
+      console.error('❌ Erreur notification info importante:', error);
+      // Non bloquant
+    }
+  }
+
+  /**
+   * Générer un ID de session unique
+   */
+  generateSessionId() {
+    this.sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    return this.sessionId;
   }
 
   addUserMessage(text) {

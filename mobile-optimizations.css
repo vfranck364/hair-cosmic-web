@@ -1,0 +1,1472 @@
+/* ============================================
+   HAIR - OPTIMISATIONS MOBILE PROFESSIONNELLES
+   ============================================
+   Standards : Google Material Design 3, Apple HIG, WCAG 2.1
+   Breakpoints : 360px, 480px, 640px, 768px, 1024px
+   ============================================ */
+
+/* ============================================
+   1. BASE - Empêcher scroll horizontal
+   ============================================ */
+html {
+  overflow-x: hidden !important;
+  max-width: 100vw;
+  position: relative;
+}
+
+body {
+  overflow-x: hidden !important;
+  max-width: 100vw;
+  position: relative;
+}
+
+/* Empêcher les débordements globaux - uniquement sur mobile */
+@media (max-width: 768px) {
+  *:not(canvas):not(#space-canvas) {
+    max-width: 100%;
+  }
+}
+
+/* ============================================
+   2. TYPOGRAPHIE - Tailles optimisées mobile
+   ============================================ */
+
+/* Grand mobile (640-768px) */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 26px !important;
+    line-height: 1.2 !important;
+    letter-spacing: -0.01em !important;
+  }
+
+  h2 {
+    font-size: 22px !important;
+    line-height: 1.3 !important;
+  }
+
+  h3 {
+    font-size: 19px !important;
+    line-height: 1.4 !important;
+  }
+
+  p,
+  .service-description,
+  .content-box p {
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+  }
+
+  .hero-subtitle {
+    font-size: 11px !important;
+    letter-spacing: 0.5px !important;
+  }
+}
+
+/* Mobile standard (480-640px) */
+@media (max-width: 640px) {
+  h1 {
+    font-size: 24px !important;
+    line-height: 1.2 !important;
+  }
+
+  h2 {
+    font-size: 20px !important;
+    line-height: 1.3 !important;
+  }
+
+  h3 {
+    font-size: 18px !important;
+    line-height: 1.4 !important;
+  }
+
+  p {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+  }
+
+  .hero-subtitle {
+    font-size: 10px !important;
+  }
+
+  .service-label {
+    font-size: 11px !important;
+  }
+}
+
+/* Petit mobile (< 480px) */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 22px !important;
+    line-height: 1.2 !important;
+    margin-bottom: 1rem !important;
+  }
+
+  h2 {
+    font-size: 19px !important;
+    line-height: 1.3 !important;
+    margin-bottom: 0.8rem !important;
+  }
+
+  h3 {
+    font-size: 17px !important;
+    line-height: 1.4 !important;
+  }
+
+  p {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    margin-bottom: 0.8rem !important;
+  }
+
+  small,
+  .text-small {
+    font-size: 12px !important;
+  }
+
+  .hero-subtitle {
+    font-size: 9px !important;
+    max-width: 280px !important;
+  }
+}
+
+/* Très petit mobile (< 360px) */
+@media (max-width: 360px) {
+  h1 {
+    font-size: 20px !important;
+  }
+
+  h2 {
+    font-size: 18px !important;
+  }
+
+  h3 {
+    font-size: 16px !important;
+  }
+
+  p {
+    font-size: 13px !important;
+  }
+}
+
+/* ============================================
+   3. BOUTONS - Largeur optimale (MOBILE UNIQUEMENT)
+   ============================================ */
+@media (max-width: 768px) {
+
+  .btn,
+  .contact-form-styled .btn {
+    width: 100% !important;
+    max-width: 320px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    min-height: 44px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* Hero CTA buttons */
+  .hero-cta {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 12px !important;
+  }
+
+  .hero-cta .btn {
+    width: 100% !important;
+    max-width: 320px !important;
+  }
+}
+
+/* ============================================
+   4. TOUCH TARGETS - 44px minimum (WCAG)
+   ============================================ */
+@media (max-width: 768px) {
+
+  /* Navigation links */
+  .nav-menu a {
+    min-height: 48px !important;
+    padding: 14px 16px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  /* Footer links */
+  .footer-column a,
+  .footer-contact-link,
+  .footer-social-link {
+    min-height: 44px !important;
+    padding: 10px 12px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  /* Quick replies */
+  .quick-reply-btn {
+    min-height: 44px !important;
+    padding: 12px 16px !important;
+    font-size: 14px !important;
+  }
+
+  /* Chat input button */
+  .astro-chat-input button {
+    min-width: 48px !important;
+    min-height: 48px !important;
+  }
+
+  /* Form inputs */
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    min-height: 48px !important;
+    padding: 14px 16px !important;
+    font-size: 16px !important;
+    /* Prevents zoom on iOS */
+  }
+
+  /* Mobile menu button */
+  .mobile-menu-btn {
+    min-width: 48px !important;
+    min-height: 48px !important;
+    padding: 12px !important;
+  }
+
+  /* Back button */
+  .btn-back {
+    min-height: 48px !important;
+    padding: 12px 16px !important;
+  }
+
+  /* WhatsApp float button */
+  .whatsapp-float {
+    min-width: 56px !important;
+    min-height: 56px !important;
+  }
+}
+
+/* ============================================
+   5. SECTIONS - Padding optimisé
+   ============================================ */
+@media (max-width: 768px) {
+
+  section,
+  .service-section {
+    padding: 40px 0 !important;
+  }
+
+  .service-hero {
+    padding: 48px 0 !important;
+  }
+}
+
+@media (max-width: 480px) {
+
+  section,
+  .service-section {
+    padding: 32px 0 !important;
+  }
+
+  .service-hero {
+    padding: 40px 0 !important;
+  }
+}
+
+/* Section containers */
+.section-container {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+@media (max-width: 480px) {
+  .section-container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .section-container {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+}
+
+/* ============================================
+   6. GRIDS - Adaptation mobile
+   ============================================ */
+
+/* Stats grid */
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  .stat-number {
+    font-size: 28px !important;
+  }
+
+  .stat-label {
+    font-size: 13px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  .stat-number {
+    font-size: 24px !important;
+  }
+
+  .stat-label {
+    font-size: 12px !important;
+  }
+}
+
+/* Service cards */
+@media (max-width: 768px) {
+
+  .benefits-grid,
+  .examples-grid,
+  .methodology-steps,
+  .requirements-grid,
+  .case-full-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+}
+
+/* Trusted logos */
+@media (max-width: 768px) {
+  .trusted-logos {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 16px !important;
+  }
+
+  .client-logo-placeholder {
+    width: 60px !important;
+    height: 60px !important;
+    font-size: 24px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .trusted-logos {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  .client-logo-placeholder {
+    width: 50px !important;
+    height: 50px !important;
+    font-size: 20px !important;
+  }
+}
+
+/* ============================================
+   7. HERO SECTION - Optimisation
+   ============================================ */
+@media (max-width: 768px) {
+  .hero-logo-large {
+    width: 100px !important;
+    height: auto !important;
+  }
+
+  .hero {
+    padding-top: 80px !important;
+  }
+
+  .hero-title {
+    margin: 1rem 0 !important;
+  }
+
+  .hero-services-subtitle {
+    font-size: 13px !important;
+    padding: 0 10px !important;
+  }
+
+  .hero-cta {
+    margin-top: 1.5rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-logo-large {
+    width: 80px !important;
+  }
+
+  .hero-acronym {
+    font-size: 11px !important;
+    max-width: 280px !important;
+  }
+
+  .hero-subtitle {
+    font-size: 10px !important;
+    max-width: 260px !important;
+  }
+}
+
+/* ============================================
+   8. NAVIGATION MOBILE - CORRIGÉ (COMPACT)
+   ============================================ */
+@media (max-width: 768px) {
+
+  /* Header - COMPACT */
+  header {
+    padding: 0.4rem 0.75rem !important;
+  }
+
+  /* Logo plus petit */
+  .logo-image {
+    height: 32px !important;
+  }
+
+  /* BOUTON BURGER - VISIBLE SUR MOBILE */
+  .mobile-menu-btn {
+    display: flex !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+    padding: 6px !important;
+    width: 40px !important;
+    height: 40px !important;
+    margin-left: auto !important;
+  }
+
+  .mobile-menu-btn svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  /* Menu normal - CACHÉ par défaut sur mobile */
+  .nav-menu {
+    display: none !important;
+  }
+
+  /* Menu drawer - VISIBLE quand actif */
+  .nav-menu.active {
+    display: flex !important;
+    flex-direction: column !important;
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    height: 100vh !important;
+    width: 75% !important;
+    max-width: 280px !important;
+    padding: 1rem 0.75rem !important;
+    z-index: 2000 !important;
+    background: rgba(8, 16, 41, 0.98) !important;
+    backdrop-filter: blur(16px) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  /* Back button - COMPACT */
+  .mobile-only {
+    display: block !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .btn-back {
+    min-height: 36px !important;
+    padding: 8px 12px !important;
+    font-size: 13px !important;
+    width: auto !important;
+    display: inline-block !important;
+  }
+
+
+  /* Menu links */
+  .nav-menu a {
+    min-height: 44px !important;
+    padding: 10px 12px !important;
+    font-size: 15px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+    display: flex !important;
+    align-items: center !important;
+    pointer-events: auto !important;
+    position: relative !important;
+    z-index: 2001 !important;
+  }
+
+  /* NOTE: overlay backdrop géré via JS (#nav-overlay) pour éviter que le ::before
+     ne bloque les clics à l'intérieur du menu (bug z-index pseudo-element) */
+  #nav-overlay {
+    display: none;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    z-index: 1999 !important;
+    /* Sous le menu (2000) et header (1000) */
+    cursor: pointer !important;
+    pointer-events: auto !important;
+  }
+}
+
+
+/* Petit mobile - ENCORE PLUS COMPACT */
+@media (max-width: 480px) {
+  header {
+    padding: 0.3rem 0.5rem !important;
+  }
+
+  .logo-image {
+    height: 28px !important;
+  }
+
+  .nav-menu.active {
+    width: 80% !important;
+    max-width: 260px !important;
+    padding: 0.75rem 0.5rem !important;
+  }
+
+  .nav-menu a {
+    min-height: 36px !important;
+    padding: 6px 8px !important;
+    font-size: 13px !important;
+  }
+
+  .btn-back {
+    font-size: 12px !important;
+    padding: 6px 10px !important;
+    min-height: 34px !important;
+  }
+
+  .mobile-menu-btn {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+  }
+
+  .mobile-menu-btn svg {
+    width: 16px !important;
+    height: 16px !important;
+  }
+}
+
+/* ============================================
+   9. CHATBOT MOBILE - Optimisations
+   ============================================ */
+@media (max-width: 768px) {
+  .astro-chat-widget {
+    width: calc(100vw - 20px) !important;
+    max-width: 400px !important;
+    height: 70vh !important;
+    max-height: 600px !important;
+    bottom: 20px !important;
+    right: 10px !important;
+    left: 10px !important;
+    margin: 0 auto !important;
+  }
+
+  .astro-chat-input input {
+    font-size: 15px !important;
+    min-height: 44px !important;
+  }
+
+  .astro-chat-input button {
+    min-width: 48px !important;
+    min-height: 48px !important;
+  }
+
+  .message-bubble {
+    max-width: 80% !important;
+    font-size: 14px !important;
+    padding: 10px 14px !important;
+  }
+
+  .quick-reply-btn {
+    font-size: 13px !important;
+    padding: 8px 14px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .astro-chat-button {
+    width: 50px !important;
+    height: 50px !important;
+    bottom: 20px !important;
+    right: 20px !important;
+  }
+
+  .astro-avatar {
+    width: 30px !important;
+    height: 30px !important;
+  }
+}
+
+/* ============================================
+   10. WHATSAPP FLOAT BUTTON
+   ============================================ */
+@media (max-width: 768px) {
+  .whatsapp-float {
+    bottom: 80px !important;
+    right: 20px !important;
+    width: 50px !important;
+    height: 50px !important;
+  }
+
+  .whatsapp-float svg {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  .whatsapp-tooltip {
+    display: none !important;
+    /* Hide on mobile */
+  }
+}
+
+/* ============================================
+   11. FOOTER MOBILE
+   ============================================ */
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  .footer-column {
+    width: 100% !important;
+  }
+
+  .footer-column h4 {
+    font-size: 16px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .footer-column a {
+    font-size: 14px !important;
+    padding: 8px 0 !important;
+  }
+
+  .footer-contact-link,
+  .footer-social-link {
+    font-size: 14px !important;
+  }
+
+  .footer-logo {
+    width: 80px !important;
+  }
+
+  .footer-bottom {
+    text-align: center !important;
+    padding: 20px 10px !important;
+  }
+
+  .footer-bottom p {
+    font-size: 13px !important;
+  }
+
+  .footer-bottom .code-text {
+    font-size: 12px !important;
+  }
+}
+
+/* ============================================
+   12. CONTACT FORM MOBILE
+   ============================================ */
+@media (max-width: 768px) {
+  .contact-form-styled {
+    padding: 20px 16px !important;
+    max-width: 100% !important;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-size: 16px !important;
+    /* Prevents iOS zoom */
+    padding: 14px 16px !important;
+  }
+
+  .form-group textarea {
+    min-height: 120px !important;
+  }
+}
+
+/* ============================================
+   13. CARDS & CONTENT BOXES
+   ============================================ */
+@media (max-width: 768px) {
+
+  .service-card,
+  .benefit-card,
+  .example-card,
+  .step-card,
+  .case-card {
+    padding: 20px 16px !important;
+  }
+
+  .content-box {
+    padding: 20px 16px !important;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .service-card,
+  .benefit-card,
+  .example-card,
+  .step-card,
+  .case-card,
+  .content-box {
+    padding: 16px 12px !important;
+  }
+}
+
+/* ============================================
+   14. SCROLL INDICATOR
+   ============================================ */
+@media (max-width: 768px) {
+  .scroll-indicator {
+    bottom: 20px !important;
+  }
+
+  .scroll-indicator svg {
+    width: 24px !important;
+    height: 24px !important;
+  }
+}
+
+/* ============================================
+   15. UTILITIES - Overflow control
+   ============================================ */
+/* Empêcher les images de déborder—SAUF celles avec taille fixe explicite */
+img:not(.logo-image):not(.footer-logo),
+video,
+iframe,
+embed,
+object {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* Logo navbar : toujours 40px sur desktop */
+.logo-image {
+  height: 40px !important;
+  width: auto !important;
+}
+
+pre,
+code {
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+}
+
+/* Prevent text overflow - mobile seulement pour ne pas interférer */
+@media (max-width: 768px) {
+  * {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+/* ============================================
+   16. IPHONE SPECIFIC FIXES
+   ============================================ */
+@supports (-webkit-touch-callout: none) {
+  /* iOS Safari specific fixes */
+  @media (max-width: 768px) {
+
+    /* Prevent zoom on input focus */
+    input,
+    textarea,
+    select {
+      font-size: 16px !important;
+    }
+
+    /* Fix safe area insets */
+    body {
+      padding-left: env(safe-area-inset-left) !important;
+      padding-right: env(safe-area-inset-right) !important;
+    }
+
+    /* Fix notch */
+    .content-wrapper {
+      padding-top: env(safe-area-inset-top) !important;
+    }
+  }
+}
+
+/* NOTE: html { position: fixed } supprimé car il bloque complètement le scroll */
+
+/* ============================================
+   18. PERFORMANCE - Reduce animations
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================
+   19. LANDSCAPE MODE
+   ============================================ */
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero {
+    min-height: auto !important;
+    padding: 40px 0 !important;
+  }
+
+  .astro-chat-widget {
+    height: 80vh !important;
+    max-height: 500px !important;
+  }
+
+  section {
+    padding: 24px 0 !important;
+  }
+}
+
+/* ============================================
+   20. VERY SMALL DEVICES (< 360px)
+   ============================================ */
+@media (max-width: 360px) {
+
+  /* Typography */
+  h1 {
+    font-size: 20px !important;
+  }
+
+  h2 {
+    font-size: 18px !important;
+  }
+
+  h3 {
+    font-size: 16px !important;
+  }
+
+  p {
+    font-size: 13px !important;
+  }
+
+  /* Buttons */
+  .btn {
+    max-width: 280px !important;
+    min-height: 44px !important;
+    font-size: 14px !important;
+  }
+
+  /* Padding */
+  .section-container {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  section,
+  .service-section {
+    padding: 24px 0 !important;
+  }
+
+  /* Grids */
+  .trusted-logos {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Chatbot */
+  .astro-chat-widget {
+    width: calc(100vw - 10px) !important;
+  }
+
+  .message-bubble {
+    max-width: 85% !important;
+  }
+}
+
+/* ============================================
+   END OF MOBILE OPTIMIZATIONS
+   ============================================ */
+
+/* ============================================
+   9. CORRECTION FINALE - BOUTON BURGER À DROITE
+   ============================================ */
+@media (max-width: 768px) {
+
+  /* Force le burger à l'extrême droite */
+  nav {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+
+  .logo {
+    margin-right: auto !important;
+  }
+
+  .mobile-menu-btn {
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    position: relative !important;
+    z-index: 2001 !important;
+  }
+}
+
+/* ============================================
+   10. CORRECTIONS COMPLÉMENTAIRES MOBILE
+   ============================================ */
+
+/* 10.1 LIENS MENU CLIQUABLES */
+@media (max-width: 768px) {
+  .nav-menu.active {
+    z-index: 2000 !important;
+    pointer-events: auto !important;
+  }
+
+  .nav-menu.active a,
+  .nav-menu.active .btn-back {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    position: relative !important;
+    z-index: 2001 !important;
+  }
+}
+
+/* 10.2 CARTES SERVICES - 2 COLONNES + COMPACT */
+@media (max-width: 768px) {
+
+  .services-grid,
+  .benefits-grid,
+  .examples-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  .service-card,
+  .benefit-card,
+  .example-card {
+    padding: 12px 10px !important;
+    min-height: auto !important;
+  }
+
+  .service-card h3,
+  .benefit-card h3,
+  .example-card h3 {
+    font-size: 14px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .service-card p,
+  .benefit-card p,
+  .example-card p {
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+  }
+
+  .service-icon,
+  .benefit-icon,
+  .example-icon {
+    font-size: 24px !important;
+    margin-bottom: 8px !important;
+  }
+}
+
+/* 10.3 PROCESSUS - 2 COLONNES (2x2) */
+@media (max-width: 768px) {
+
+  .methodology-steps,
+  .process-timeline {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  .step-card {
+    padding: 12px 10px !important;
+    min-height: auto !important;
+  }
+
+  .step-number {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 14px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .step-card h3 {
+    font-size: 13px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .step-card p {
+    font-size: 11px !important;
+    line-height: 1.3 !important;
+  }
+}
+
+/* 10.4 ÉTUDES DE CAS - 2 COLONNES */
+@media (max-width: 768px) {
+
+  .case-full-grid,
+  .case-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  .case-card {
+    padding: 12px 10px !important;
+    min-height: auto !important;
+  }
+
+  .case-card h3 {
+    font-size: 13px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .case-card p {
+    font-size: 11px !important;
+    line-height: 1.3 !important;
+  }
+}
+
+/* 10.5 SECTION À PROPOS - ANIMATION PHOTO CORRIGÉE */
+@media (max-width: 768px) {
+
+  /* Container de l'orbite */
+  .about-orbit-container {
+    position: relative !important;
+    width: 200px !important;
+    height: 200px !important;
+    margin: 20px auto !important;
+  }
+
+  /* L'orbite elle-même (le cercle) */
+  .orbit-ring {
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    border: 2px solid rgba(139, 92, 246, 0.3) !important;
+    border-radius: 50% !important;
+    animation: orbit-rotate 10s linear infinite !important;
+  }
+
+  /* La photo qui tourne AUTOUR du centre */
+  .profile-photo {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 50% !important;
+    transform-origin: center center !important;
+    animation: orbit-photo 10s linear infinite !important;
+    z-index: 10 !important;
+  }
+
+  /* Centre de l'orbite (étoile) */
+  .orbit-center {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 30px !important;
+    height: 30px !important;
+    background: radial-gradient(circle, var(--color-galactic-blue), var(--color-nebula-violet)) !important;
+    border-radius: 50% !important;
+    box-shadow: 0 0 20px var(--color-galactic-blue) !important;
+    z-index: 5 !important;
+  }
+
+  /* Texte À Propos - Z-index pour être au-dessus */
+  .about-content,
+  .about-text {
+    position: relative !important;
+    z-index: 20 !important;
+    margin-top: 220px !important;
+  }
+
+  /* Animation au survol - La photo tourne sur elle-même */
+  .profile-photo:hover {
+    animation: photo-spin 1s ease-in-out !important;
+    cursor: pointer !important;
+  }
+}
+
+/* Keyframes pour l'animation orbitale */
+@keyframes orbit-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit-photo {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg) translateX(100px) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg) translateX(100px) rotate(-360deg);
+  }
+}
+
+@keyframes photo-spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* 10.6 FORMULAIRE CONTACT - CHECKBOX ALIGNÉE */
+@media (max-width: 768px) {
+  .contact-form-styled {
+    padding: 20px 16px !important;
+    max-width: 100% !important;
+  }
+
+  .form-group {
+    width: 100% !important;
+  }
+
+  /* Checkbox RGPD - ALIGNÉE */
+  .form-group input[type="checkbox"] {
+    width: 18px !important;
+    height: 18px !important;
+    margin-right: 10px !important;
+    margin-top: 0 !important;
+    vertical-align: middle !important;
+    position: relative !important;
+    top: -2px !important;
+  }
+
+  /* Label checkbox - ALIGNÉ avec les inputs */
+  .form-group label[for="rgpd-consent"] {
+    display: inline-flex !important;
+    align-items: center !important;
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+    max-width: calc(100% - 30px) !important;
+    vertical-align: middle !important;
+  }
+
+  /* Container checkbox - BIEN ALIGNÉ */
+  .form-group:has(input[type="checkbox"]) {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    margin: 10px 0 !important;
+  }
+}
+
+/* 10.7 FOOTER - 2 COLONNES */
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px !important;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1 !important;
+    text-align: center !important;
+    margin-bottom: 10px !important;
+  }
+
+  .footer-column {
+    width: 100% !important;
+  }
+
+  .footer-column h4 {
+    font-size: 14px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .footer-column a {
+    font-size: 12px !important;
+    padding: 4px 0 !important;
+    display: block !important;
+  }
+
+  /* Réduire espaces */
+  .footer-links {
+    gap: 15px !important;
+  }
+
+  .footer-contact-link,
+  .footer-social-link {
+    font-size: 12px !important;
+    margin-bottom: 5px !important;
+  }
+
+  .footer-bottom {
+    margin-top: 20px !important;
+    padding-top: 15px !important;
+  }
+
+  .footer-bottom p {
+    font-size: 11px !important;
+  }
+}
+
+.footer-column {
+  margin-bottom: 15px !important;
+}
+
+/* ============================================
+   FIXES MANQUANTS - Services, Timeline, Cases, About
+   ============================================ */
+
+/* --- SERVICES : cartes compactes 2 COLONNES --- */
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  .service-card {
+    padding: 10px 8px !important;
+    min-height: auto !important;
+  }
+
+  .service-card h3 {
+    font-size: 13px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .service-card p {
+    font-size: 11px !important;
+    margin-bottom: 4px !important;
+    line-height: 1.3 !important;
+  }
+
+  .service-price {
+    font-size: 10px !important;
+    margin: 3px 0 !important;
+  }
+
+  .service-devis {
+    font-size: 10px !important;
+    margin: 2px 0 4px !important;
+  }
+}
+
+/* --- TIMELINE PROCESSUS : grille 2×2 --- */
+@media (max-width: 768px) {
+  .timeline-container {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 14px !important;
+  }
+
+  .timeline-planet {
+    padding: 14px !important;
+    min-height: unset !important;
+  }
+
+  .timeline-planet h3 {
+    font-size: 14px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .timeline-planet p {
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+  }
+}
+
+/* --- ÉTUDES DE CAS : grille 2 colonnes --- */
+@media (max-width: 768px) {
+  .case-studies-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+  }
+
+  .case-card {
+    padding: 14px 12px !important;
+  }
+
+  .case-header {
+    font-size: 9px !important;
+    letter-spacing: 0.05em !important;
+    margin-bottom: 6px !important;
+  }
+
+  .case-card h3 {
+    font-size: 13px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .case-card p {
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+    margin-bottom: 6px !important;
+  }
+
+  .case-results {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 4px !important;
+  }
+
+  .result-badge {
+    font-size: 10px !important;
+    padding: 3px 6px !important;
+  }
+}
+
+/* --- ABOUT ORBITAL : compact sur mobile --- */
+@media (max-width: 768px) {
+  .portrait-container {
+    flex-direction: column !important;
+    gap: 2rem !important;
+    align-items: center !important;
+  }
+
+  .orbit-system {
+    width: 200px !important;
+    height: 200px !important;
+  }
+
+  .orbit-ring-visual {
+    width: 170px !important;
+    height: 170px !important;
+  }
+
+  .orbit-star {
+    width: 44px !important;
+    height: 44px !important;
+  }
+
+  .orbit-star svg {
+    width: 26px !important;
+    height: 26px !important;
+  }
+
+  .orbit-arm {
+    width: 85px !important;
+  }
+
+  .orbit-photo-counter {
+    right: -34px !important;
+    top: -34px !important;
+    width: 68px !important;
+    height: 68px !important;
+  }
+
+  .portrait-image {
+    width: 68px !important;
+    height: 68px !important;
+  }
+
+  /* SECTION À PROPOS - TEXTE CENTRÉ */
+  .portrait-info {
+    max-width: 100% !important;
+    text-align: center !important;
+    margin-top: 20px !important;
+    padding: 0 10px !important;
+  }
+
+  .portrait-info h3 {
+    text-align: center !important;
+    margin-bottom: 8px !important;
+  }
+
+  .portrait-info .code-text {
+    text-align: center !important;
+    display: block !important;
+    margin-bottom: 16px !important;
+  }
+
+  /* Paragraphes centrés */
+  .portrait-info p {
+    text-align: center !important;
+    margin-bottom: 12px !important;
+  }
+
+  /* Strong elements centrés */
+  .portrait-info strong {
+    display: inline-block !important;
+    text-align: center !important;
+  }
+
+  /* Liste d'expertise centrée */
+  .portrait-info ul {
+    text-align: center !important;
+    list-style-position: inside !important;
+    margin: 10px auto !important;
+    padding: 0 !important;
+    max-width: 90% !important;
+  }
+
+  .portrait-info ul li {
+    text-align: center !important;
+    display: list-item !important;
+    list-style-type: disc !important;
+    margin-bottom: 6px !important;
+  }
+}
+
+/* 10.7 FOOTER MOBILE - 2 COLONNES */
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr !important;
+    /* Stack brand and links */
+    gap: 20px !important;
+    text-align: center !important;
+  }
+
+  .footer-links {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px !important;
+    text-align: left !important;
+  }
+
+  .footer-brand {
+    margin-bottom: 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .footer-column {
+    margin-bottom: 0 !important;
+  }
+
+  .footer-column h4 {
+    font-size: 14px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .footer-column a,
+  .footer-column p {
+    font-size: 12px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-links {
+    gap: 15px !important;
+  }
+}

@@ -1,0 +1,66 @@
+# ============================================
+# robots.txt - HAIR (hair-fr.com)
+# ============================================
+# Ce fichier indique aux moteurs de recherche
+# quelles pages crawler et indexer
+# ============================================
+
+# Autoriser tous les robots
+User-agent: *
+
+# Pages à autoriser (tout le site est public)
+Allow: /
+
+# Pages à exclure du crawling
+Disallow: /test-chatbot.html
+Disallow: /config-api.js
+Disallow: /cloudflare-worker.js
+Disallow: /chatbot-gemini-proxy.js
+
+# Fichiers à ne pas crawler
+Disallow: /*.js$
+Disallow: /*.css$
+
+# Sitemap
+Sitemap: https://hair-fr.com/sitemap.xml
+
+# ============================================
+# Instructions spécifiques par moteur
+# ============================================
+
+# Google
+User-agent: Googlebot
+Allow: /
+Disallow: /test-chatbot.html
+Disallow: /config-api.js
+
+# Google Images
+User-agent: Googlebot-Image
+Allow: /assets/
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Disallow: /test-chatbot.html
+
+# Baidu
+User-agent: Baiduspider
+Allow: /
+Disallow: /test-chatbot.html
+
+# ============================================
+# Politiques de crawl
+# ============================================
+
+# Délai entre les requêtes (en secondes)
+Crawl-delay: 1
+
+# ============================================
+# Notes :
+# - Le sitemap.xml contient toutes les pages
+#   importantes à indexer
+# - Les fichiers JavaScript sensibles sont
+#   exclus pour des raisons de sécurité
+# - test-chatbot.html est exclu car c'est
+#   une page de test interne
+# ============================================

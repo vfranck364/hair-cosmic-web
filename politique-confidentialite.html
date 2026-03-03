@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Politique de confidentialité de HAIR - Protection de vos données personnelles conformément au RGPD.">
+    <title>Politique de Confidentialité — HAIR | Protection des Données RGPD</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="service-page.css">
+    <style>
+        .legal-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .legal-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .legal-section h2 {
+            color: var(--color-nebula-violet);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .legal-section h3 {
+            color: var(--color-galactic-blue);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 1.2rem;
+        }
+
+        .legal-section p,
+        .legal-section ul {
+            line-height: 1.8;
+            color: var(--color-text-gray);
+        }
+
+        .legal-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .legal-section ul li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .legal-section ul li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--color-nebula-violet);
+        }
+
+        .legal-highlight {
+            background: rgba(139, 92, 246, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--color-nebula-violet);
+            margin: 1rem 0;
+        }
+
+        .rgpd-rights-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(59, 130, 246, 0.15));
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .rgpd-rights-box h3 {
+            margin-top: 0;
+            color: var(--color-pure-white);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .data-table th {
+            background: rgba(139, 92, 246, 0.2);
+            color: var(--color-nebula-violet);
+            font-weight: 600;
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .contact-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1));
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .contact-box a {
+            color: var(--color-nebula-violet);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-box a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="space-canvas"></canvas>
+    <div class="content-wrapper">
+        <!-- Header -->
+        <header>
+            <nav>
+                <a href="index.html" class="logo" title="Home of AI Solutions">
+                    <img src="assets/logo.jpg" alt="HAIR Logo" class="logo-image">
+                </a>
+                <ul class="nav-menu">
+                    <li class="mobile-only"><button class="btn-back" aria-label="Retour">← Retour</button></li>
+                    <li><a href="index.html#services">Services</a></li>
+                    <li><a href="index.html#process">Processus</a></li>
+                    <li><a href="index.html#cases">Études de Cas</a></li>
+                    <li><a href="index.html#about">À Propos</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-btn" aria-label="Menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="legal-content">
+            <div class="service-hero" style="text-align: center;">
+                <p class="service-label">CONFIDENTIALITÉ & RGPD</p>
+                <h1 class="service-title">Politique de Confidentialité</h1>
+                <p class="service-description">Vos données personnelles sont protégées et respectées</p>
+                <p style="font-size: 0.9rem; margin-top: 1rem; color: var(--color-text-gray);">
+                    Dernière mise à jour : 1er mars 2026
+                </p>
+            </div>
+
+            <!-- Introduction -->
+            <section class="legal-section">
+                <h2>🔒 Engagement de Confidentialité</h2>
+                <p>HAIR — Home of AI Revolutions attache une importance fondamentale à la protection de vos données
+                    personnelles et de votre vie privée.</p>
+                <div class="legal-highlight">
+                    <p><strong>Notre engagement :</strong> Nous nous engageons à protéger vos données personnelles et
+                        à respecter votre vie privée conformément au Règlement Général sur la Protection des Données
+                        (RGPD) et à la législation camerounaise en vigueur.</p>
+                </div>
+            </section>
+
+            <!-- Responsable du traitement -->
+            <section class="legal-section">
+                <h2>👤 Responsable du Traitement</h2>
+                <p>Le responsable du traitement des données collectées sur ce site est :</p>
+                <div class="legal-highlight">
+                    <p><strong>HAIR — Home of AI Revolutions</strong></p>
+                    <p>Représenté par Franck GUEKEU, Fondateur</p>
+                    <p>Localisation : Yaoundé, Cameroun</p>
+                    <p>Email : <a href="mailto:vfranck364@gmail.com">vfranck364@gmail.com</a></p>
+                    <p>Téléphone : <a href="tel:+237683121654">+237 6 83 12 16 54</a></p>
+                </div>
+            </section>
+
+            <!-- Données collectées -->
+            <section class="legal-section">
+                <h2>📋 Données Collectées</h2>
+                <p>Nous collectons uniquement les données nécessaires à la fourniture de nos services et à la relation
+                    client :</p>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Type de donnée</th>
+                            <th>Finalité</th>
+                            <th>Base légale</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Nom et prénom</strong></td>
+                            <td>Identification, personnalisation des échanges</td>
+                            <td>Exécution du contrat</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Adresse email</strong></td>
+                            <td>Communication, envoi de devis, suivi de projet</td>
+                            <td>Exécution du contrat</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Numéro de téléphone</strong></td>
+                            <td>Contact téléphonique, WhatsApp</td>
+                            <td>Exécution du contrat</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nom de l'entreprise</strong></td>
+                            <td>Contexte professionnel, facturation</td>
+                            <td>Exécution du contrat</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Informations de projet</strong></td>
+                            <td>Réalisation des prestations commandées</td>
+                            <td>Exécution du contrat</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Données de navigation</strong></td>
+                            <td>Analyse d'audience, amélioration du site</td>
+                            <td>Consentement (cookies)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Finalités -->
+            <section class="legal-section">
+                <h2>🎯 Finalités du Traitement</h2>
+                <p>Vos données sont utilisées exclusivement pour :</p>
+                <ul>
+                    <li>Traiter vos demandes de contact et de devis</li>
+                    <li>Gérer la relation client et le suivi de projet</li>
+                    <li>Envoyer des informations commerciales (uniquement avec votre consentement)</li>
+                    <li>Améliorer nos services et le contenu du site</li>
+                    <li>Respecter nos obligations légales et réglementaires</li>
+                </ul>
+            </section>
+
+            <!-- Durée de conservation -->
+            <section class="legal-section">
+                <h2>📅 Durée de Conservation</h2>
+                <p>Nous conservons vos données pendant une durée strictement nécessaire aux finalités poursuivies :</p>
+                <ul>
+                    <li><strong>Données de contact (prospects) :</strong> 3 ans à compter du dernier contact</li>
+                    <li><strong>Données clients :</strong> 10 ans (obligation légale de conservation des factures)</li>
+                    <li><strong>Données de navigation :</strong> 13 mois maximum</li>
+                    <li><strong>Cookies :</strong> 6 mois maximum</li>
+                </ul>
+                <p>À l'issue de ces délais, vos données sont supprimées ou anonymisées.</p>
+            </section>
+
+            <!-- Destinataires -->
+            <section class="legal-section">
+                <h2>👥 Destinataires des Données</h2>
+                <p>Vos données sont accessibles uniquement à :</p>
+                <ul>
+                    <li>Franck GUEKEU, Fondateur de HAIR (responsable du traitement)</li>
+                    <li>Nos prestataires techniques (hébergeur, outils de communication) dans le cadre de l'exécution
+                        des prestations</li>
+                </ul>
+                <div class="legal-highlight">
+                    <p><strong>Important :</strong> Nous ne vendons, n'échangeons et ne transférons jamais vos données
+                        à des tiers à des fins commerciales.</p>
+                </div>
+            </section>
+
+            <!-- Transfert hors UE -->
+            <section class="legal-section">
+                <h2>🌍 Transfert de Données Hors Cameroun</h2>
+                <p>Certains de nos prestataires techniques peuvent être situés hors du Cameroun :</p>
+                <ul>
+                    <li><strong>Hébergeur :</strong> Netlify (États-Unis) — certifié Privacy Shield</li>
+                    <li><strong>Outils de communication :</strong> WhatsApp, Email (serveurs internationaux)</li>
+                </ul>
+                <p>Nous nous assurons que ces transferts sont encadrés par des garanties appropriées (clauses
+                    contractuelles types, certifications internationales).</p>
+            </section>
+
+            <!-- Sécurité -->
+            <section class="legal-section">
+                <h2>🛡️ Sécurité des Données</h2>
+                <p>Nous mettons en œuvre des mesures techniques et organisationnelles pour protéger vos données :</p>
+                <ul>
+                    <li>Chiffrement des communications (HTTPS/SSL)</li>
+                    <li>Accès restreint aux données personnelles</li>
+                    <li>Sauvegardes régulières et sécurisées</li>
+                    <li>Mise à jour régulière des systèmes de sécurité</li>
+                    <li>Formation à la protection des données</li>
+                </ul>
+            </section>
+
+            <!-- Vos droits RGPD -->
+            <div class="rgpd-rights-box">
+                <h3>⚖️ Vos Droits (Conformément au RGPD)</h3>
+                <p>Vous disposez des droits suivants sur vos données personnelles :</p>
+                <ul>
+                    <li><strong>Droit d'accès :</strong> Savoir quelles données nous détenons sur vous</li>
+                    <li><strong>Droit de rectification :</strong> Corriger des données inexactes ou incomplètes</li>
+                    <li><strong>Droit à l'effacement :</strong> Demander la suppression de vos données</li>
+                    <li><strong>Droit à la limitation :</strong> Demander la limitation du traitement</li>
+                    <li><strong>Droit à la portabilité :</strong> Récupérer vos données dans un format structuré</li>
+                    <li><strong>Droit d'opposition :</strong> Vous opposer au traitement de vos données</li>
+                    <li><strong>Droit de retirer votre consentement :</strong> À tout moment, sans justification</li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>Pour exercer ces droits :</strong> Écrivez-nous à <a
+                        href="mailto:vfranck364@gmail.com" style="color: var(--color-nebula-violet);">vfranck364@gmail.com</a>
+                    en précisant votre demande. Nous vous répondrons sous 30 jours.</p>
+            </div>
+
+            <!-- Cookies -->
+            <section class="legal-section">
+                <h2>🍪 Gestion des Cookies</h2>
+                <p>Notre site utilise des cookies pour améliorer votre expérience :</p>
+                <ul>
+                    <li><strong>Cookies essentiels :</strong> Nécessaires au fonctionnement du site (ne peuvent pas être
+                        désactivés)</li>
+                    <li><strong>Cookies d'analyse :</strong> Nous aident à comprendre comment vous utilisez le site
+                        (Google Analytics)</li>
+                    <li><strong>Cookies fonctionnels :</strong> Mémorisent vos préférences (langue, région)</li>
+                </ul>
+                <p>Vous pouvez gérer vos préférences de cookies à tout moment via notre bandeau de consentement ou les
+                    paramètres de votre navigateur.</p>
+                <p>Pour plus d'informations, consultez notre <a href="cookies.html"
+                        style="color: var(--color-nebula-violet);">Politique de Cookies</a>.</p>
+            </section>
+
+            <!-- Chatbot et IA -->
+            <section class="legal-section">
+                <h2>🤖 Chatbot et Intelligence Artificielle</h2>
+                <p>Notre chatbot Astro utilise l'IA de Google (Gemini) pour répondre à vos questions :</p>
+                <ul>
+                    <li>Les conversations avec le chatbot sont traitées par Google Gemini API</li>
+                    <li>Nous ne stockons pas le contenu intégral des conversations</li>
+                    <li>Seules les informations de contact (email, nom) que vous fournissez volontairement sont
+                        conservées</li>
+                    <li>Évitez de partager des informations sensibles (mots de passe, données bancaires) avec le
+                        chatbot</li>
+                </ul>
+            </section>
+
+            <!-- Réclamations -->
+            <section class="legal-section">
+                <h2>📢 Droit de Réclamation</h2>
+                <p>Si vous estimez que vos droits ne sont pas respectés, vous pouvez déposer une réclamation auprès de
+                    l'autorité de protection des données compétente :</p>
+                <div class="legal-highlight">
+                    <p><strong>Au Cameroun :</strong> ART (Agence de Régulation des Télécommunications)</p>
+                    <p><strong>En France (si applicable) :</strong> CNIL (Commission Nationale de l'Informatique et des
+                        Libertés)</p>
+                </div>
+            </section>
+
+            <!-- Modifications -->
+            <section class="legal-section">
+                <h2>📝 Modifications de la Politique</h2>
+                <p>Nous nous réservons le droit de modifier cette politique de confidentialité à tout moment pour nous
+                    conformer aux évolutions légales, réglementaires ou à nos pratiques.</p>
+                <p>En cas de modification substantielle, nous vous informerons par email ou via un avis visible sur
+                    notre site.</p>
+                <p><strong>Dernière mise à jour :</strong> 1er mars 2026</p>
+            </section>
+
+            <!-- Contact Box -->
+            <div class="contact-box">
+                <h3 style="margin-bottom: 1rem; color: var(--color-pure-white);">📞 Une question sur vos données ?</h3>
+                <p style="margin-bottom: 1rem;">Pour toute question relative à cette politique ou pour exercer vos
+                    droits :</p>
+                <p>
+                    <a href="mailto:vfranck364@gmail.com">📧 vfranck364@gmail.com</a><br>
+                    <a href="tel:+237683121654">📱 +237 6 83 12 16 54</a>
+                </p>
+                <p style="margin-top: 1rem; font-size: 0.9rem;">Temps de réponse : sous 30 jours maximum</p>
+            </div>
+
+            <!-- Navigation vers autres pages légales -->
+            <div class="legal-section" style="text-align: center;">
+                <h3 style="margin-bottom: 1rem;">📋 Autres informations légales</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+                    <a href="mentions-legales.html" class="btn btn-secondary"
+                        style="text-decoration: none; display: inline-block;">
+                        📰 Mentions Légales
+                    </a>
+                    <a href="cgv.html" class="btn btn-secondary"
+                        style="text-decoration: none; display: inline-block;">
+                        📄 Conditions Générales de Vente
+                    </a>
+                    <a href="cookies.html" class="btn btn-secondary"
+                        style="text-decoration: none; display: inline-block;">
+                        🍪 Politique de Cookies
+                    </a>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div class="section-container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <img src="assets/logo.jpg" alt="HAIR Logo" class="footer-logo">
+                        <p class="code-text" style="margin-top: 0.5rem;">Automatisation & IA</p>
+                    </div>
+
+                    <div class="footer-links">
+                        <div class="footer-column">
+                            <h4>Services</h4>
+                            <a href="automatisation.html">Automatisation</a>
+                            <a href="chatbot.html">Assistants IA</a>
+                            <a href="sites-web.html">Sites Web</a>
+                            <a href="formations.html">Formations</a>
+                            <a href="conseil.html">Conseil</a>
+                            <a href="contenus-ia.html">Contenus IA</a>
+                        </div>
+
+                        <div class="footer-column">
+                            <h4>Entreprise</h4>
+                            <a href="index.html#process">Processus</a>
+                            <a href="index.html#cases">Études de Cas</a>
+                            <a href="index.html#about">À Propos</a>
+                            <a href="mentions-legales.html">Mentions Légales</a>
+                        </div>
+
+                        <div class="footer-column">
+                            <h4>Contact</h4>
+                            <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Discutons de votre projet</p>
+                            <a href="mailto:vfranck364@gmail.com" class="footer-contact-link">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M3 8L10.89 13.26C11.2187 13.4793 11.6049 13.5963 12 13.5963C12.3951 13.5963 12.7813 13.4793 13.11 13.26L21 8M5 19H19C19.5304 19 20.0391 18.7893 20.4142 18.4142C20.7893 18.0391 21 17.5304 21 17V7C21 6.46957 20.7893 5.96086 20.4142 5.58579C20.0391 5.21071 19.5304 5 19 5H5C4.46957 5 3.96086 5.21071 3.58579 5.58579C3.21071 5.96086 3 6.46957 3 7V17C3 17.5304 3.21071 18.4142C3.96086 18.7893 4.46957 19 5 19Z"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                                vfranck364@gmail.com
+                            </a>
+                            <a href="tel:+237683121654" class="footer-contact-link">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M22 16.92V19.92C22.0012 20.1986 21.9441 20.4743 21.8525 20.7303C21.761 20.9863 21.6373 21.2173 21.4891 21.4089C21.3408 21.6006 21.1712 21.7487 20.991 21.8439C20.8108 21.9391 20.6239 21.9794 20.44 21.96C17.4477 21.6441 14.5714 20.6253 11.96 18.96C9.53008 17.4303 7.42967 15.3299 5.89999 12.9C4.22995 10.2748 3.21115 7.38243 2.89999 4.38C2.88057 4.1963 2.92082 4.00958 3.01602 3.82955C3.11122 3.64955 3.25925 3.47986 3.45089 3.33164C3.64253 3.18341 3.87375 3.05972 4.12975 2.96825C4.38575 2.87677 4.66144 2.81944 4.93999 2.82H7.93999C8.42879 2.81504 8.89674 3.00628 9.24434 3.35245C9.59193 3.69862 9.79374 4.16248 9.80999 4.65C9.84074 5.17691 9.97014 5.69421 10.194 6.18C10.334 6.478 10.39 6.81 10.36 7.14C10.32 7.47 10.19 7.79 9.99 8.06L8.71999 9.68C10.1332 12.1643 12.1856 14.2168 14.67 15.63L16.29 14.36C16.56 14.16 16.89 14.04 17.22 14C17.55 13.96 17.88 14.01 18.17 14.15C18.6631 14.3768 19.1867 14.508 19.72 14.54C20.2128 14.5574 20.6811 14.7628 21.0267 15.1127C21.3722 15.4626 21.5644 15.934 21.56 16.43L22 16.92Z"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                                +237 6 83 12 16 54
+                            </a>
+                        </div>
+
+                        <div class="footer-column">
+                            <h4>Réseaux Sociaux</h4>
+                            <div class="footer-socials">
+                                <a href="https://chat.whatsapp.com/Dod2aN0DK5hAcCU2ZXah4y" target="_blank"
+                                    class="footer-social-link">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                    Groupe 🚀
+                                </a>
+                                <a href="https://whatsapp.com/channel/0029Vb7FYN4FHWq9ExyhWu1t" target="_blank"
+                                    class="footer-social-link">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M12 16V12M12 8H12.01" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    Chaîne ✨
+                                </a>
+                                <a href="https://www.facebook.com/profile.php?id=61585635032631" target="_blank"
+                                    class="footer-social-link">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                    Facebook
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p>&copy; 2026 HAIR — Home of AI Revolutions. Tous droits réservés.</p>
+                    <p class="code-text">Simplifiez vos processus, boostez votre croissance.</p>
+                    <div style="margin-top: 0.5rem; display: flex; gap: 1rem; justify-content: center; font-size: 0.85rem;">
+                        <a href="mentions-legales.html" style="color: var(--color-text-gray); text-decoration: none;">Mentions légales</a>
+                        <a href="politique-confidentialite.html" style="color: var(--color-text-gray); text-decoration: none;">Confidentialité</a>
+                        <a href="cgv.html" style="color: var(--color-text-gray); text-decoration: none;">CGV</a>
+                        <a href="cookies.html" style="color: var(--color-text-gray); text-decoration: none;">Cookies</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="space-background.js"></script>
+    <script src="animations.js"></script>
+    <script src="bigbang-effect.js"></script>
+</body>
+
+</html>

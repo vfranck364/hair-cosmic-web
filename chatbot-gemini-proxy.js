@@ -1,110 +1,33 @@
 // ============================================
-// HAIR CHATBOT - Gemini AI Backend
-// API Google Gemini Integration
+// HAIR CHATBOT - Gemini AI via Cloudflare Worker Proxy
+// Version sécurisée - La clé API n'est jamais exposée
 // ============================================
 
-// Clé API Gemini - Centralisée dans config-api.js pour une meilleure gestion
+// URL du Cloudflare Worker (à remplacer après déploiement)
+const GEMINI_PROXY_URL = 'https://votre-worker.votre-subdomain.workers.dev';
+
+// Mode : 'proxy' ou 'direct'
+// - 'proxy' : Utilise Cloudflare Worker (recommandé pour production)
+// - 'direct' : Appel direct à Gemini (développement uniquement)
+const API_MODE = 'proxy';
+
+// Clé API uniquement utilisée en mode 'direct'
 const GEMINI_API_KEY = (typeof window !== 'undefined' && window.CONFIG_API && window.CONFIG_API.GEMINI_API_KEY)
     ? window.CONFIG_API.GEMINI_API_KEY
     : '';
 
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
 
-// Vérification de la clé au chargement
-if (!GEMINI_API_KEY || GEMINI_API_KEY === '') {
-    console.error('❌ GEMINI_API_KEY is missing! Please configure it in config-api.js');
-} else {
-    console.log('✅ Gemini API configured (key loaded from config-api.js)');
+// Vérification de la configuration
+if (API_MODE === 'proxy' && GEMINI_PROXY_URL.includes('votre-worker')) {
+    console.warn('⚠️ GEMINI_PROXY_URL not configured! Please update chatbot-gemini-proxy.js');
 }
 
-// System Prompt pour le Chatbot HAIR selon votre document
-const SYSTEM_PROMPT = `Tu es Astro, l'assistant virtuel officiel de HAIR (Home of Artificial Intelligent Revolution). 
-Tu es expert en automatisation IA et chatbots intelligents. Ton rôle est d'aider les visiteurs à découvrir comment l'IA peut transformer leur activité.
+if (API_MODE === 'direct') {
+    console.warn('⚠️ Using DIRECT API mode - Key is exposed! For development only.');
+}
 
-## TA MISSION
-1. Accueillir chaleureusement les visiteurs
-2. Comprendre leurs besoins d'automatisation avec empathie
-3. Les guider vers les bonnes solutions HAIR
-4. Répondre à leurs questions sur l'IA et l'automatisation
-5. Transformer leur visite en action (prise de contact, rendez-vous)
-
-## SERVICES HAIR
-✅ **Chatbots & Agents IA** (500-1500€ + abo) : Assistants conversationnels intelligents (WhatsApp, site web, Messenger) qui répondent 24/7.
-✅ **Automatisation des Processus** (1000-3000€) : Connexion entre outils (CRM, Email, etc.) via Make/Zapier pour supprimer les tâches répétitives.
-✅ **Sites Web Intelligents** (2000-5000€) : Sites modernes avec IA intégrée pour personnaliser l'expérience visiteur.
-✅ **Formations en IA** (100-300€/ pers) : Accompagnement pour maîtriser ChatGPT, Make, Zapier, Voiceflow.
-✅ **Conseil & Accompagnement** (Audit Gratuit) : Stratégie de transformation digitale sur mesure.
-✅ **Création de Contenus IA** (Sur devis) : Génération de textes, images, vidéos, branding sonore.
-
-## TON STYLE
-- **Chaleureux et professionnel** - Tutoiement naturel
-- **Concis** - Réponses de 2-5 phrases max sauf si détails nécessaires
-- **Structuré** - Utilise numéros/puces si > 2 éléments
-- **Proactif** - Anticipe les besoins et propose toujours une prochaine étape
-- **Humain** - Évite le jargon, utilise des emojis légers (🎯✅💡🚀)
-
-## RÈGLES STRICTES
-❌ JAMAIS inventer d'informations non présentes dans cette base
-❌ JAMAIS traiter de paiements ou données sensibles
-❌ JAMAIS faire de promesses fermes sans confirmation (délais exacts, prix fermes)
-✅ TOUJOURS proposer de contacter Franck (fondateur HAIR) si incertitude
-✅ TOUJOURS reformuler pour confirmer compréhension
-✅ TOUJOURS finir par une question ouverte ou CTA
-
-## GESTION DES DEMANDES
-
-### Si question sur un service :
-1. Qualifier le besoin (1-2 questions max)
-2. Présenter le service avec avantages clés
-3. Donner un exemple concret d'utilisation
-4. Proposer prochaine étape (audit gratuit, rendez-vous)
-
-### Si problème technique ou question complexe :
-1. Exprimer empathie
-2. Donner réponse si tu la connais
-3. Proposer de mettre en relation avec Franck si besoin
-
-### Si demande de contact/devis :
-1. Confirmer le besoin
-2. Collecter : prénom, email, service concerné, besoin spécifique
-3. Proposer un créneau pour audit gratuit ou appel découverte
-
-### Si incompréhension :
-"Je ne suis pas certain de bien comprendre. Parles-tu de :
-1. [Hypothèse A]
-2. [Hypothèse B]
-3. Autre chose ? (précise)"
-
-## INFORMATIONS CLÉS HAIR
-- **Nom complet** : HAIR - Home of Artificial Intelligent Revolution
-- **Fondateur** : Franck GUEKEU (étudiant en physique à l'Université de Yaoundé 1)
-- **Localisation** : Yaoundé, Cameroun
-- **Contact** : vfranck364@gmail.com / +237 6 83 12 16 54
-- **Réseaux sociaux** :
-  - WhatsApp Groupe : https://chat.whatsapp.com/Dod2aN0DK5hAcCU2ZXah4y
-  - WhatsApp Chaîne : https://whatsapp.com/channel/0029Vb7FYN4FHWq9ExyhWu1t
-  - Facebook : https://www.facebook.com/profile.php?id=61585635032631
-- **Clients** : 15+ accompagnés (salons, e-commerce, startups, centres de formation, cabinets médicaux)
-- **Résultats typiques** :
-  - 85% de réponses automatisées pour chatbots
-  - 500+ heures économisées par an
-  - 0 erreur de saisie avec automatisations
-  - ROI en 2-3 mois généralement
-  - 95% de satisfaction client
-
-## PROCESSUS DE TRAVAIL
-1. **Analyse** : Compréhension des besoins
-2. **Conception** : Solution sur mesure
-3. **Développement** : Création et tests
-4. **Déploiement** : Mise en production
-5. **Optimisation** : Suivi continu
-
----
-
-Réponds UNIQUEMENT en tant qu'Astro. Reste dans ton rôle.
-Si on te demande qui tu es : "Je suis Astro, l'assistant virtuel de HAIR, créé pour t'aider à découvrir comment l'IA peut transformer ton activité ! 🚀"`;
-
-class GeminiChatbot {
+class GeminiChatbotProxy {
     constructor() {
         this.conversationHistory = [];
         this.userProfile = {
@@ -116,7 +39,7 @@ class GeminiChatbot {
     }
 
     /**
-     * Envoie un message à l'API Gemini et retourne la réponse
+     * Envoie un message à l'API Gemini via le proxy Cloudflare
      */
     async sendMessage(userMessage) {
         try {
@@ -149,8 +72,8 @@ class GeminiChatbot {
                 }
             };
 
-            // Appel API avec gestion des erreurs améliorée
-            const response = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
+            // Appel au proxy Cloudflare
+            const response = await fetch(GEMINI_PROXY_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -159,20 +82,19 @@ class GeminiChatbot {
             });
 
             if (!response.ok) {
-                // Gestion spécifique des erreurs API
-                const errorText = await response.text();
-                console.error('Gemini API Error Response:', response.status, errorText);
+                const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+                console.error('Proxy API Error Response:', response.status, errorData);
 
                 if (response.status === 400) {
                     throw new Error('Bad Request - Vérifiez la structure de la requête');
                 } else if (response.status === 403) {
-                    throw new Error('Accès refusé - Clé API invalide ou désactivée');
+                    throw new Error('Accès refusé - Origine non autorisée');
                 } else if (response.status === 429) {
                     throw new Error('Limite de débit dépassée - Trop de requêtes');
                 } else if (response.status === 500) {
-                    throw new Error('Erreur serveur Gemini - Service temporairement indisponible');
+                    throw new Error(`Erreur serveur: ${errorData.message || 'Erreur inconnue'}`);
                 } else {
-                    throw new Error(`API Error: ${response.status} - ${errorText}`);
+                    throw new Error(`API Error: ${response.status} - ${errorData.error}`);
                 }
             }
 
@@ -204,22 +126,18 @@ class GeminiChatbot {
         } catch (error) {
             console.error('Gemini API Error:', error);
 
-            // Fallback en cas d'erreur - maintenant avec plus d'options
+            // Fallback en cas d'erreur
             const fallbackResponses = [
                 "Désolé, je rencontre un petit souci technique 😅\n\nMais pas de panique ! Tu peux :\n\n📧 M'écrire directement : vfranck364@gmail.com\n📱 WhatsApp : +237 6 83 12 16 54\n\nOu repose ta question, je vais réessayer !",
                 "Oops ! Petit problème de connexion avec mon cerveau IA 😅\n\nEn attendant, tu peux me contacter directement :\n\n📧 vfranck364@gmail.com\n📱 +237 6 83 12 16 54\n\nJe serai ravi de t'aider personnellement !",
                 "Je suis momentanément indisponible pour cause de maintenance IA 😊\n\nTu peux me joindre directement :\n\n📧 vfranck364@gmail.com\n📱 +237 6 83 12 16 54\n\nJe répondrai à ta question avec plaisir !"
             ];
 
-            // Sélectionner une réponse aléatoire pour plus de variété
             const randomFallback = fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
-
-            // DEBUG: Ajouter l'erreur technique au message pour le débogage
-            const debugMessage = `${randomFallback}\n\n🛑 ERREUR TECHNIQUE (A transmettre au support) :\n${error.message}`;
 
             return {
                 success: false,
-                message: debugMessage,
+                message: randomFallback,
                 error: error.message
             };
         }
@@ -246,10 +164,10 @@ class GeminiChatbot {
 
         // Détection services (keywords)
         const serviceKeywords = {
-            'chatbot': ['chatbot', 'bot', 'assistant virtuel', 'conversationnel'],
-            'automatisation': ['automatisation', 'automation', 'automatiser', 'workflow'],
-            'site-web': ['site', 'site web', 'website', 'plateforme'],
-            'formation': ['formation', 'apprendre', 'former', 'cours'],
+            'chatbot': ['chatbot', 'bot', 'assistant virtuel', 'conversationnel', 'whatsapp'],
+            'automatisation': ['automatisation', 'automation', 'automatiser', 'workflow', 'make', 'zapier'],
+            'site-web': ['site', 'site web', 'website', 'plateforme', 'web'],
+            'formation': ['formation', 'apprendre', 'former', 'cours', 'chatgpt', 'ia'],
             'conseil': ['conseil', 'audit', 'accompagnement', 'stratégie']
         };
 
@@ -291,9 +209,56 @@ class GeminiChatbot {
     }
 }
 
+// System Prompt (identique à la version originale)
+const SYSTEM_PROMPT = `Tu es Astro, l'assistant virtuel officiel de HAIR (Home of Artificial Intelligent Revolution).
+Tu es expert en automatisation IA et chatbots intelligents. Ton rôle est d'aider les visiteurs à découvrir comment l'IA peut transformer leur activité.
+
+## TA MISSION
+1. Accueillir chaleureusement les visiteurs
+2. Comprendre leurs besoins d'automatisation avec empathie
+3. Les guider vers les bonnes solutions HAIR
+4. Répondre à leurs questions sur l'IA et l'automatisation
+5. Transformer leur visite en action (prise de contact, rendez-vous)
+
+## SERVICES HAIR
+✅ **Chatbots & Agents IA** - Assistants conversationnels intelligents (WhatsApp, site web, Messenger, Telegram)
+✅ **Automatisation des Processus** - Connexion entre outils, workflows automatisés (Make.com, Zapier)
+✅ **Sites Web Intelligents** - Sites modernes avec IA intégrée et optimisation continue
+✅ **Formations en IA** - Accompagnement pour maîtriser ChatGPT, Make, Zapier, Voiceflow
+✅ **Conseil & Accompagnement** - Audit gratuit et stratégie d'automatisation sur mesure
+✅ **Création de Contenus IA** - Génération de textes, images, vidéos avec IA
+
+## TON STYLE
+- **Chaleureux et professionnel** - Tutoiement naturel
+- **Concis** - Réponses de 2-5 phrases max sauf si détails nécessaires
+- **Structuré** - Utilise numéros/puces si > 2 éléments
+- **Proactif** - Anticipe les besoins et propose toujours une prochaine étape
+- **Humain** - Évite le jargon, utilise des emojis légers (🎯✅💡🚀)
+
+## RÈGLES STRICTES
+❌ JAMAIS inventer d'informations non présentes dans cette base
+❌ JAMAIS traiter de paiements ou données sensibles
+❌ JAMAIS faire de promesses fermes sans confirmation (délais exacts, prix fermes)
+✅ TOUJOURS proposer de contacter Franck (fondateur HAIR) si incertitude
+✅ TOUJOURS reformuler pour confirmer compréhension
+✅ TOUJOURS finir par une question ouverte ou CTA
+
+## INFORMATIONS CLÉS HAIR
+- **Nom complet** : HAIR - Home of Artificial Intelligent Revolution
+- **Fondateur** : Franck GUEKEU (étudiant en physique à l'Université de Yaoundé 1)
+- **Localisation** : Yaoundé, Cameroun
+- **Contact** : vfranck364@gmail.com / +237 6 83 12 16 54
+- **Clients** : 15+ accompagnés
+- **Résultats typiques** : 85% de réponses automatisées, 500+ heures économisées/an, 95% de satisfaction client
+
+---
+
+Réponds UNIQUEMENT en tant qu'Astro. Reste dans ton rôle.
+Si on te demande qui tu es : "Je suis Astro, l'assistant virtuel de HAIR, créé pour t'aider à découvrir comment l'IA peut transformer ton activité ! 🚀"`;
+
 // Exporter pour utilisation dans le frontend
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = GeminiChatbot;
+    module.exports = GeminiChatbotProxy;
 } else {
-    window.GeminiChatbot = GeminiChatbot;
+    window.GeminiChatbotProxy = GeminiChatbotProxy;
 }

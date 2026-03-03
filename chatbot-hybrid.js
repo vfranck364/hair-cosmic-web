@@ -458,50 +458,45 @@ class LocalRulesEngine {
 class HybridChatbot {
   constructor() {
     this.localEngine = new LocalRulesEngine(LOCAL_KNOWLEDGE_BASE);
-    // Charger la version améliorée si disponible, sinon utiliser la version standard
-    this.geminiChatbot = typeof GeminiChatbotEnhanced !== 'undefined'
-      ? new GeminiChatbotEnhanced()
-      : new GeminiChatbot(); // Using existing Gemini implementation
+
+    // Use GeminiChatbotEnhanced for better responses with full site context
+    // Falls back to GeminiChatbot if not available
+    if (typeof GeminiChatbotEnhanced !== 'undefined') {
+      this.geminiChatbot = new GeminiChatbotEnhanced();
+      console.log('🚀 Chatbot initialized with Gemini Enhanced (full site context)');
+    } else if (typeof GeminiChatbot !== 'undefined') {
+      this.geminiChatbot = new GeminiChatbot();
+      console.log('💎 Chatbot initialized with Google Gemini');
+    } else {
+      console.error('❌ No chatbot backend available!');
+    }
+
     this.conversationHistory = [];
   }
 
   /**
-   * Handles user message using hybrid approach
+   * Handles user message - ALWAYS use AI API for intelligent responses
+   * No more static responses - every message is analyzed by the AI
    */
   async sendMessage(userMessage) {
-    // PURE AI MODE ENABLED: Bypass local rules to ensure 100% LLM responses
-    /*
-    // First, try local rules for fast responses
-    const localResponse = this.localEngine.processMessage(userMessage);
-
-    if (localResponse) {
-      // Return local response immediately
-      return {
-        success: true,
-        message: localResponse,
-        source: 'local'
-      };
-    }
-    */
-
-    // If no local match, use Gemini API
+    // ALWAYS use AI API - every message is analyzed intelligently
+    console.log('🤖 Sending to AI for analysis:', userMessage.substring(0, 50) + '...');
     try {
       const geminiResponse = await this.geminiChatbot.sendMessage(userMessage);
       return {
         ...geminiResponse,
-        source: 'gemini'
+        source: geminiResponse.success ? 'ai' : 'ai-error'
       };
     } catch (error) {
       console.error('HybridChatbot Error:', error);
 
-      // Enhanced fallback with more helpful information
+      // Fallback with helpful contact info
       const fallbackResponses = [
         "Désolé, je rencontre un petit souci technique 😅\n\nMais pas de panique ! Je peux quand même vous aider :\n\n📧 Contacter directement Franck : vfranck364@gmail.com\n📱 WhatsApp : +237 6 83 12 16 54\n\nOu posez-moi une autre question, je ferai de mon mieux !",
         "Oops ! Problème de connexion avec mon cerveau IA 😅\n\nEn attendant, voici comment me contacter directement :\n\n📧 vfranck364@gmail.com\n📱 +237 6 83 12 16 54\n\nJe serai ravi de vous aider personnellement !",
         "Je suis momentanément indisponible pour cause de maintenance IA 😊\n\nEn attendant, vous pouvez me joindre directement :\n\n📧 vfranck364@gmail.com\n📱 +237 6 83 12 16 54\n\nJe répondrai à votre question avec plaisir !"
       ];
 
-      // Select random response for variety
       const randomFallback = fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
 
       return {

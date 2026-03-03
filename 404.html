@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Non Trouvée — 404 | HAIR</title>
+    <meta name="description" content="Oups ! La page que vous recherchez n'existe pas. Retournez à l'accueil de HAIR.">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .error-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .error-content {
+            max-width: 600px;
+        }
+
+        .error-code {
+            font-size: 10rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--color-nebula-violet), var(--color-galactic-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .error-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-pure-white);
+            margin-bottom: 1rem;
+            font-family: var(--font-heading);
+        }
+
+        .error-message {
+            font-size: 1.1rem;
+            color: var(--color-text-gray);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .error-suggestions {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .error-suggestions h3 {
+            color: var(--color-pure-white);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .error-suggestions ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .error-suggestions li {
+            margin-bottom: 0.75rem;
+        }
+
+        .error-suggestions a {
+            color: var(--color-nebula-violet);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .error-suggestions a:hover {
+            color: var(--color-galactic-blue);
+            text-decoration: underline;
+        }
+
+        .error-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .astro-mascot {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: wave 2s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(15deg); }
+            75% { transform: rotate(-15deg); }
+        }
+
+        .chatbot-suggestion {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1));
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .chatbot-suggestion p {
+            color: var(--color-text-gray);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="space-canvas"></canvas>
+
+    <div class="error-page">
+        <div class="error-content">
+            <div class="astro-mascot">👨‍🚀</div>
+            
+            <div class="error-code">404</div>
+            
+            <h1 class="error-title">Oups ! Page non trouvée</h1>
+            
+            <p class="error-message">
+                Il semble que vous vous soyez égaré dans l'espace digital. 
+                La page que vous recherchez n'existe pas ou a été déplacée.
+            </p>
+
+            <div class="error-suggestions">
+                <h3>🔍 Pages populaires :</h3>
+                <ul>
+                    <li><a href="index.html">→ Page d'accueil</a></li>
+                    <li><a href="index.html#services">→ Nos Services IA</a></li>
+                    <li><a href="chatbot.html">→ Chatbots & Agents IA</a></li>
+                    <li><a href="automatisation.html">→ Automatisation</a></li>
+                    <li><a href="sites-web.html">→ Sites Web Intelligents</a></li>
+                    <li><a href="formations.html">→ Formations en IA</a></li>
+                    <li><a href="index.html#contact">→ Nous Contacter</a></li>
+                </ul>
+            </div>
+
+            <div class="error-actions">
+                <a href="index.html" class="btn btn-primary">
+                    🏠 Retour à l'accueil
+                </a>
+                <a href="index.html#contact" class="btn btn-secondary">
+                    📞 Contacter le support
+                </a>
+            </div>
+
+            <div class="chatbot-suggestion">
+                <p>🤖 <strong>Besoin d'aide immédiate ?</strong></p>
+                <p>Notre chatbot Astro est disponible 24/7 pour vous aider à trouver ce que vous cherchez.</p>
+                <a href="chatbot.html" class="btn btn-secondary" style="text-decoration: none; display: inline-block;">
+                    💬 Parler à Astro
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="space-background.js"></script>
+    <script src="animations.js"></script>
+    <script src="bigbang-effect.js"></script>
+
+    <script>
+        // Optionnel : Enregistrer l'erreur pour analyse
+        console.log('404 Error - Page not found:', window.location.href);
+        
+        // Optionnel : Envoyer à Google Analytics si disponible
+        if (typeof gtag !== 'undefined') {
+            gtag('event', '404_error', {
+                'event_category': 'Navigation',
+                'event_label': window.location.href
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Conditions Générales de Vente de HAIR - Tarifs, paiements, délais et garanties pour nos services IA.">
+    <title>Conditions Générales de Vente (CGV) — HAIR | Tarifs & Paiements</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="service-page.css">
+    <style>
+        .legal-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .legal-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .legal-section h2 {
+            color: var(--color-nebula-violet);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .legal-section h3 {
+            color: var(--color-galactic-blue);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 1.2rem;
+        }
+
+        .legal-section p,
+        .legal-section ul {
+            line-height: 1.8;
+            color: var(--color-text-gray);
+        }
+
+        .legal-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .legal-section ul li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .legal-section ul li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--color-nebula-violet);
+        }
+
+        .legal-highlight {
+            background: rgba(139, 92, 246, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--color-nebula-violet);
+            margin: 1rem 0;
+        }
+
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .pricing-table th,
+        .pricing-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .pricing-table th {
+            background: rgba(139, 92, 246, 0.2);
+            color: var(--color-nebula-violet);
+            font-weight: 600;
+        }
+
+        .pricing-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .pricing-table tr:hover {
+            background: rgba(139, 92, 246, 0.05);
+        }
+
+        .price-highlight {
+            font-weight: 600;
+            color: var(--color-energy-lime);
+        }
+
+        .contact-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1));
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .contact-box a {
+            color: var(--color-nebula-violet);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-box a:hover {
+            text-decoration: underline;
+        }
+
+        .warning-box {
+            background: rgba(251, 191, 36, 0.1);
+            border-left: 4px solid rgba(251, 191, 36, 0.8);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .warning-box strong {
+            color: rgba(251, 191, 36, 1);
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="space-canvas"></canvas>
+    <div class="content-wrapper">
+        <!-- Header -->
+        <header>
+            <nav>
+                <a href="index.html" class="logo" title="Home of AI Solutions">
+                    <img src="assets/logo.jpg" alt="HAIR Logo" class="logo-image">
+                </a>
+                <ul class="nav-menu">
+                    <li class="mobile-only"><button class="btn-back" aria-label="Retour">← Retour</button></li>
+                    <li><a href="index.html#services">Services</a></li>
+                    <li><a href="index.html#process">Processus</a></li>
+                    <li><a href="index.html#cases">Études de Cas</a></li>
+                    <li><a href="index.html#about">À Propos</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-btn" aria-label="Menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="legal-content">
+            <div class="service-hero" style="text-align: center;">
+                <p class="service-label">CONDITIONS CONTRACTUELLES</p>
+                <h1 class="service-title">Conditions Générales de Vente</h1>
+                <p class="service-description">Cadre juridique et commercial de nos prestations</p>
+                <p style="font-size: 0.9rem; margin-top: 1rem; color: var(--color-text-gray);">
+                    Dernière mise à jour : 1er mars 2026
+                </p>
+            </div>
+
+            <!-- Article 1 : Objet -->
+            <section class="legal-section">
+                <h2>📄 Article 1 — Objet</h2>
+                <p>Les présentes Conditions Générales de Vente (CGV) ont pour objet de définir les modalités et
+                    conditions dans lesquelles HAIR — Home of AI Revolutions propose et fournit ses services
+                    d'automatisation et d'intelligence artificielle à ses clients.</p>
+                <p>Elles s'appliquent à l'ensemble des prestations proposées par HAIR, notamment :</p>
+                <ul>
+                    <li>Création et déploiement de Chatbots & Agents IA</li>
+                    <li>Automatisation de processus et workflows</li>
+                    <li>Création de Sites Web Intelligents</li>
+                    <li>Formations en Intelligence Artificielle</li>
+                    <li>Conseil et accompagnement stratégique</li>
+                    <li>Création de contenus générés par IA</li>
+                </ul>
+                <div class="legal-highlight">
+                    <p><strong>Important :</strong> Toute commande de prestation implique l'acceptation sans réserve
+                        des présentes CGV par le client.</p>
+                </div>
+            </section>
+
+            <!-- Article 2 : Tarifs -->
+            <section class="legal-section">
+                <h2>💰 Article 2 — Tarifs</h2>
+                <p>Les tarifs de nos prestations sont déterminés en fonction de la complexité et de l'envergure du
+                    projet. Voici nos fourchettes de prix indicatives :</p>
+
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th>Tarif</th>
+                            <th>Détails</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Chatbot IA simple</strong></td>
+                            <td class="price-highlight">500€ - 1 500€</td>
+                            <td>+ abonnement 50-150€/mois (maintenance)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Automatisation workflows</strong></td>
+                            <td class="price-highlight">1 000€ - 3 000€</td>
+                            <td>Selon complexité et nombre d'intégrations</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Site web intelligent</strong></td>
+                            <td class="price-highlight">2 000€ - 5 000€</td>
+                            <td>Selon nombre de pages et fonctionnalités</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Formation IA</strong></td>
+                            <td class="price-highlight">100€ - 300€</td>
+                            <td>Par personne ou forfait groupe</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Audit stratégique</strong></td>
+                            <td class="price-highlight">Gratuit</td>
+                            <td>Premier audit offert</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Création de contenus IA</strong></td>
+                            <td class="price-highlight">Sur devis</td>
+                            <td>Selon projet et volume</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="warning-box">
+                    <p><strong>⚠️ Note importante :</strong> Les tarifs ci-dessus sont indicatifs. Un devis personnalisé
+                        et détaillé est systématiquement établi après analyse de vos besoins lors de l'audit gratuit.</p>
+                </div>
+
+                <h3>TVA et Taxes</h3>
+                <p>HAIR étant une activité indépendante en cours de formalisation au Cameroun, les tarifs sont
+                    exprimés en Euros (€) hors taxes. La TVA et autres taxes applicables seront précisées sur le devis
+                    en fonction de la localisation du client et de la réglementation fiscale en vigueur.</p>
+            </section>
+
+            <!-- Article 3 : Modalités de Paiement -->
+            <section class="legal-section">
+                <h2>💳 Article 3 — Modalités de Paiement</h2>
+
+                <h3>Échéancier standard</h3>
+                <p>Pour l'ensemble de nos prestations, les paiements sont échelonnés comme suit :</p>
+                <div class="legal-highlight">
+                    <ul>
+                        <li><strong>50% à la commande</strong> — Versement d'acompte pour démarrer le projet</li>
+                        <li><strong>50% à la livraison</strong> — Solde après validation et mise en production</li>
+                    </ul>
+                </div>
+
+                <h3>Échéancier pour projets complexes</h3>
+                <p>Pour les projets de grande envergure (site web complet + automatisation, déploiement multi-services),
+                    l'échéancier suivant s'applique :</p>
+                <div class="legal-highlight">
+                    <ul>
+                        <li><strong>40% à la commande</strong> — Acompte de démarrage</li>
+                        <li><strong>40% en cours de projet</strong> — À mi-parcours, après validation des jalons intermédiaires</li>
+                        <li><strong>20% à la livraison</strong> — Solde après mise en production</li>
+                    </ul>
+                </div>
+
+                <h3>Moyens de paiement acceptés</h3>
+                <ul>
+                    <li><strong>Mobile Money</strong> — MTN Mobile Money & Orange Money</li>
+                    <li><strong>Virement bancaire</strong> — Sur présentation du RIB</li>
+                    <li><strong>PayPal</strong> — Pour les clients internationaux</li>
+                </ul>
+
+                <h3>Retards de paiement</h3>
+                <div class="warning-box">
+                    <p><strong>⚠️ Pénalités de retard :</strong> Tout retard de paiement supérieur à <strong>7 jours</strong>
+                        après la date d'échéance peut entraîner la <strong>suspension temporaire du service</strong>
+                        jusqu'à régularisation complète de la situation.</p>
+                    <p>Après 30 jours de retard, HAIR se réserve le droit de résilier le contrat et de désactiver
+                        définitivement les services fournis, sans préjudice des poursuites pour recouvrement des sommes
+                        dues.</p>
+                </div>
+            </section>
+
+            <!-- Article 4 : Délais de Livraison -->
+            <section class="legal-section">
+                <h2>🚀 Article 4 — Délais de Livraison</h2>
+                <p>Les délais de livraison indiqués sont des moyennes constatées et peuvent varier selon la complexité
+                    du projet et la réactivité du client dans la fourniture des éléments nécessaires :</p>
+
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th>Délai moyen</th>
+                            <th>Variables</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Chatbot IA</strong></td>
+                            <td class="price-highlight">5 à 10 jours</td>
+                            <td>Complexité des flux, nombre d'intégrations</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Automatisation</strong></td>
+                            <td class="price-highlight">7 à 14 jours</td>
+                            <td>Nombre de workflows, outils à connecter</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Site Web intelligent</strong></td>
+                            <td class="price-highlight">2 à 4 semaines</td>
+                            <td>Nombre de pages, design personnalisé, fonctionnalités</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Audit stratégique</strong></td>
+                            <td class="price-highlight">5 à 7 jours</td>
+                            <td>Profondeur de l'analyse demandée</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Formation IA</strong></td>
+                            <td class="price-highlight">Selon planning</td>
+                            <td>Disponibilités des parties, programme personnalisé</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Création de contenu IA</strong></td>
+                            <td class="price-highlight">3 à 7 jours</td>
+                            <td>Volume et type de contenus</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Retards imputables au client</h3>
+                <p>Tout retard dans la fourniture des éléments nécessaires (contenus, validations, accès techniques)
+                    entraîne un report proportionnel du délai de livraison. HAIR ne saurait être tenu responsable des
+                    retards dus au client.</p>
+            </section>
+
+            <!-- Article 5 : Déroulement de la Prestation -->
+            <section class="legal-section">
+                <h2>📋 Article 5 — Déroulement de la Prestation</h2>
+                <p>Chaque projet suit une méthodologie structurée en 5 phases :</p>
+                <ul>
+                    <li><strong>1. Analyse</strong> — Compréhension des besoins, audit gratuit, définition des objectifs</li>
+                    <li><strong>2. Conception</strong> — Création de la solution sur mesure, validation du cahier des charges</li>
+                    <li><strong>3. Développement</strong> — Création et tests rigoureux de la solution</li>
+                    <li><strong>4. Déploiement</strong> — Mise en production, formation des équipes</li>
+                    <li><strong>5. Optimisation</strong> — Suivi post-lancement, améliorations continues</li>
+                </ul>
+                <p>À chaque étape, le client est invité à valider les livrables avant passage à l'étape suivante.</p>
+            </section>
+
+            <!-- Article 6 : Révisions et Ajustements -->
+            <section class="legal-section">
+                <h2>🔄 Article 6 — Révisions et Ajustements</h2>
+                <p>HAIR s'engage à effectuer des <strong>ajustements raisonnables</strong> jusqu'à satisfaction du
+                    client, dans le cadre du périmètre défini lors de la conception.</p>
+
+                <h3>Inclus dans le prix</h3>
+                <ul>
+                    <li>Corrections de bugs et dysfonctionnements</li>
+                    <li>Ajustements mineurs (textes, couleurs, paramètres)</li>
+                    <li>2 à 3 tours de révisions selon la prestation</li>
+                </ul>
+
+                <h3>Non inclus (devis complémentaire)</h3>
+                <ul>
+                    <li>Ajout de fonctionnalités non prévues au cahier des charges</li>
+                    <li>Refonte complète après validation</li>
+                    <li>Modifications substantielles du périmètre initial</li>
+                </ul>
+
+                <div class="legal-highlight">
+                    <p><strong>Engagement HAIR :</strong> Nous privilégions la satisfaction client. Si un ajustement
+                        est raisonnable et techniquement faisable, nous le réalisons sans surcoût.</p>
+                </div>
+            </section>
+
+            <!-- Article 7 : Remboursements -->
+            <section class="legal-section">
+                <h2>💸 Article 7 — Politique de Remboursement</h2>
+                <div class="warning-box">
+                    <p><strong>⚠️ Principe général :</strong> Les prestations de HAIR étant <strong>personnalisées et
+                        réalisées sur mesure</strong>, <strong>aucun remboursement n'est effectué</strong> après
+                        validation du projet par le client.</p>
+                </div>
+
+                <h3>Exceptions possibles</h3>
+                <p>Dans des cas exceptionnels, un remboursement partiel peut être envisagé :</p>
+                <ul>
+                    <li>Incapacité avérée de HAIR à livrer la prestation promise (force majeure exclue)</li>
+                    <li>Non-conformité majeure non résolue après 3 tentatives de correction</li>
+                    <li>Annulation par le client avant le début du développement (acompte conservé)</li>
+                </ul>
+
+                <h3>Garantie satisfaction</h3>
+                <p>Plutôt qu'un remboursement, HAIR privilégie la <strong>garantie satisfaction</strong> : nous nous
+                    engageons à effectuer toutes les modifications nécessaires jusqu'à ce que le client soit satisfait,
+                    dans le cadre du périmètre initial.</p>
+            </section>
+
+            <!-- Article 8 : Propriété Intellectuelle -->
+            <section class="legal-section">
+                <h2>© Article 8 — Propriété Intellectuelle</h2>
+
+                <h3>Avant paiement complet</h3>
+                <p>Tant que le paiement intégral n'a pas été effectué, HAIR conserve la pleine propriété des livrables
+                    (code, designs, configurations, etc.). Le client ne dispose que d'un droit d'usage limité pour
+                    testing et validation.</p>
+
+                <h3>Après paiement complet</h3>
+                <p>Après acquittement intégral du prix, le client devient propriétaire des éléments personnalisés
+                    créés spécifiquement pour lui (contenus, configurations, designs sur mesure).</p>
+
+                <h3>Réservation de droits HAIR</h3>
+                <ul>
+                    <li>HAIR conserve la propriété de ses outils propriétaires, bibliothèques de code, et savoir-faire</li>
+                    <li>HAIR se réserve le droit d'utiliser le projet réalisé à des fins de portfolio et de promotion
+                        (sauf opposition écrite du client)</li>
+                    <li>Les éléments génériques (templates, composants réutilisables) restent la propriété de HAIR</li>
+                </ul>
+            </section>
+
+            <!-- Article 9 : Support et Maintenance -->
+            <section class="legal-section">
+                <h2>🛠️ Article 9 — Support et Maintenance</h2>
+
+                <h3>Période de garantie</h3>
+                <p>Toute prestation bénéficie d'une <strong>garantie de 30 jours</strong> après livraison, pendant
+                    laquelle HAIR corrige gratuitement tout bug ou dysfonctionnement non imputable au client.</p>
+
+                <h3>Contrats de maintenance (optionnel)</h3>
+                <p>Pour les services nécessitant un suivi continu (chatbots, automatisation), HAIR propose des contrats
+                    de maintenance mensuels :</p>
+                <ul>
+                    <li><strong>Chatbot IA :</strong> 50-150€/mois selon complexité</li>
+                    <li><strong>Automatisation :</strong> Sur devis selon nombre de workflows</li>
+                    <li><strong>Site web :</strong> Sur devis selon besoins (mises à jour, sécurité, etc.)</li>
+                </ul>
+
+                <h3>Support inclus</h3>
+                <ul>
+                    <li>Support par email : vfranck364@gmail.com</li>
+                    <li>Support WhatsApp : +237 6 83 12 16 54</li>
+                    <li>Temps de réponse : sous 24-48h ouvrées</li>
+                </ul>
+            </section>
+
+            <!-- Article 10 : Responsabilité -->
+            <section class="legal-section">
+                <h2>⚖️ Article 10 — Responsabilité</h2>
+
+                <h3>Limitation de responsabilité</h3>
+                <p>HAIR met en œuvre tous les moyens nécessaires pour fournir des prestations de qualité. Toutefois, la
+                    responsabilité de HAIR est limitée au montant total de la prestation commandée.</p>
+
+                <h3>Cas d'exonération</h3>
+                <p>HAIR ne saurait être tenu responsable des dommages résultant de :</p>
+                <ul>
+                    <li>Force majeure (pannes générales, catastrophes naturelles, etc.)</li>
+                    <li>Mauvaise utilisation des livrables par le client</li>
+                    <li>Modification des livrables par un tiers non autorisé</li>
+                    <li>Évolution défavorable du marché ou de l'environnement technologique</li>
+                    <li>Perte de données due à une négligence du client (absence de sauvegarde)</li>
+                </ul>
+
+                <h3>Obligation de moyens</h3>
+                <p>HAIR est tenu à une obligation de moyens et non de résultats. Les performances annoncées (ex: "85%
+                    de réponses automatisées") sont des moyennes constatées et non des garanties contractuelles.</p>
+            </section>
+
+            <!-- Article 11 : Confidentialité -->
+            <section class="legal-section">
+                <h2>🔒 Article 11 — Confidentialité</h2>
+                <p>HAIR s'engage à :</p>
+                <ul>
+                    <li>Traiter de manière confidentielle toutes les informations transmises par le client</li>
+                    <li>Ne pas divulguer à des tiers les données commerciales, stratégiques ou techniques du client</li>
+                    <li>Limiter l'accès aux informations aux seules personnes impliquées dans le projet</li>
+                    <li>Détruire ou restituer les données confidentielles à la fin de la prestation (sur demande)</li>
+                </ul>
+                <p>Pour plus de détails, consultez notre <a href="politique-confidentialite.html"
+                        style="color: var(--color-nebula-violet);">Politique de Confidentialité</a>.</p>
+            </section>
+
+            <!-- Article 12 : Droit Applicable et Litiges -->
+            <section class="legal-section">
+                <h2>⚖️ Article 12 — Droit Applicable et Litiges</h2>
+
+                <h3>Droit applicable</h3>
+                <p>Les présentes CGV sont soumises au <strong>droit camerounais</strong>. À défaut de disposition
+                    spécifique, les usages du commerce international s'appliquent.</p>
+
+                <h3>Tribunaux compétents</h3>
+                <p>En cas de litige, les <strong>tribunaux de Yaoundé (Cameroun)</strong> seront seuls compétents, sauf
+                    disposition légale contraire.</p>
+
+                <h3>Resolution amiable</h3>
+                <p>Avant toute action judiciaire, les parties s'engagent à tenter une résolution amiable du litige. HAIR
+                    privilégie le dialogue et la satisfaction client pour résoudre tout différend.</p>
+            </section>
+
+            <!-- Article 13 : Modification des CGV -->
+            <section class="legal-section">
+                <h2>📝 Article 13 — Modification des CGV</h2>
+                <p>HAIR se réserve le droit de modifier les présentes CGV à tout moment pour s'adapter aux évolutions
+                    légales, réglementaires ou à ses pratiques commerciales.</p>
+                <p>Les CGV applicables sont celles en vigueur à la date de la commande par le client. Toute modification
+                    n'affecte pas les contrats déjà conclus.</p>
+                <p><strong>Dernière mise à jour :</strong> 1er mars 2026</p>
+            </section>
+
+            <!-- Contact Box -->
+            <div class="contact-box">
+                <h3 style="margin-bottom: 1rem; color: var(--color-pure-white);">📞 Une question sur nos CGV ?</h3>
+                <p style="margin-bottom: 1rem;">Pour toute question relative à ces conditions ou pour demander un devis
+                    personnalisé :</p>
+                <p>
+                    <a href="mailto:vfranck364@gmail.com">📧 vfranck364@gmail.com</a><br>
+                    <a href="tel:+237683121654">📱 +237 6 83 12 16 54</a>
+                </p>
+                <p style="margin-top: 1rem; font-size: 0.9rem;">Audit gratuit sans engagement</p>
+            </div>
+
+            <!-- Navigation vers autres pages légales -->
+            <div class="legal-section" style="text-align: center;">
+                <h3 style="margin-bottom: 1rem;">📋 Autres informations légales</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+                    <a href="mentions-legales.html" class="btn btn-secondary"
+                        style="text-decoration: none; display: inline-block;">
+                        📰 Mentions Légales
+                    </a>
+                    <a href="politique-confidentialite.html" class="btn btn-secondary"
+                        style="text-decoration: none; display: inline-block;">
+                        🔒 Politique de Confidentialité
+                    </a>
+                    <a href="cookies.html" class="btn btn-secondary"
+                        style="text-decoration: none; display: inline-block;">
+                        🍪 Politique de Cookies
+                    </a>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div class="section-container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <img src="assets/logo.jpg" alt="HAIR Logo" class="footer-logo">
+                        <p class="code-text" style="margin-top: 0.5rem;">Automatisation & IA</p>
+                    </div>
+
+                    <div class="footer-links">
+                        <div class="footer-column">
+                            <h4>Services</h4>
+                            <a href="automatisation.html">Automatisation</a>
+                            <a href="chatbot.html">Assistants IA</a>
+                            <a href="sites-web.html">Sites Web</a>
+                            <a href="formations.html">Formations</a>
+                            <a href="conseil.html">Conseil</a>
+                            <a href="contenus-ia.html">Contenus IA</a>
+                        </div>
+
+                        <div class="footer-column">
+                            <h4>Entreprise</h4>
+                            <a href="index.html#process">Processus</a>
+                            <a href="index.html#cases">Études de Cas</a>
+                            <a href="index.html#about">À Propos</a>
+                            <a href="mentions-legales.html">Mentions Légales</a>
+                        </div>
+
+                        <div class="footer-column">
+                            <h4>Contact</h4>
+                            <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Discutons de votre projet</p>
+                            <a href="mailto:vfranck364@gmail.com" class="footer-contact-link">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M3 8L10.89 13.26C11.2187 13.4793 11.6049 13.5963 12 13.5963C12.3951 13.5963 12.7813 13.4793 13.11 13.26L21 8M5 19H19C19.5304 19 20.0391 18.7893 20.4142 18.4142C20.7893 18.0391 21 17.5304 21 17V7C21 6.46957 20.7893 5.96086 20.4142 5.58579C20.0391 5.21071 19.5304 5 19 5H5C4.46957 5 3.96086 5.21071 3.58579 5.58579C3.21071 5.96086 3 6.46957 3 7V17C3 17.5304 3.21071 18.4142C3.96086 18.7893 4.46957 19 5 19Z"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                                vfranck364@gmail.com
+                            </a>
+                            <a href="tel:+237683121654" class="footer-contact-link">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M22 16.92V19.92C22.0012 20.1986 21.9441 20.4743 21.8525 20.7303C21.761 20.9863 21.6373 21.2173 21.4891 21.4089C21.3408 21.6006 21.1712 21.7487 20.991 21.8439C20.8108 21.9391 20.6239 21.9794 20.44 21.96C17.4477 21.6441 14.5714 20.6253 11.96 18.96C9.53008 17.4303 7.42967 15.3299 5.89999 12.9C4.22995 10.2748 3.21115 7.38243 2.89999 4.38C2.88057 4.1963 2.92082 4.00958 3.01602 3.82955C3.11122 3.64955 3.25925 3.47986 3.45089 3.33164C3.64253 3.18341 3.87375 3.05972 4.12975 2.96825C4.38575 2.87677 4.66144 2.81944 4.93999 2.82H7.93999C8.42879 2.81504 8.89674 3.00628 9.24434 3.35245C9.59193 3.69862 9.79374 4.16248 9.80999 4.65C9.84074 5.17691 9.97014 5.69421 10.194 6.18C10.334 6.478 10.39 6.81 10.36 7.14C10.32 7.47 10.19 7.79 9.99 8.06L8.71999 9.68C10.1332 12.1643 12.1856 14.2168 14.67 15.63L16.29 14.36C16.56 14.16 16.89 14.04 17.22 14C17.55 13.96 17.88 14.01 18.17 14.15C18.6631 14.3768 19.1867 14.508 19.72 14.54C20.2128 14.5574 20.6811 14.7628 21.0267 15.1127C21.3722 15.4626 21.5644 15.934 21.56 16.43L22 16.92Z"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                                +237 6 83 12 16 54
+                            </a>
+                        </div>
+
+                        <div class="footer-column">
+                            <h4>Réseaux Sociaux</h4>
+                            <div class="footer-socials">
+                                <a href="https://chat.whatsapp.com/Dod2aN0DK5hAcCU2ZXah4y" target="_blank"
+                                    class="footer-social-link">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                    Groupe 🚀
+                                </a>
+                                <a href="https://whatsapp.com/channel/0029Vb7FYN4FHWq9ExyhWu1t" target="_blank"
+                                    class="footer-social-link">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M12 16V12M12 8H12.01" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    Chaîne ✨
+                                </a>
+                                <a href="https://www.facebook.com/profile.php?id=61585635032631" target="_blank"
+                                    class="footer-social-link">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                    Facebook
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p>&copy; 2026 HAIR — Home of AI Revolutions. Tous droits réservés.</p>
+                    <p class="code-text">Simplifiez vos processus, boostez votre croissance.</p>
+                    <div style="margin-top: 0.5rem; display: flex; gap: 1rem; justify-content: center; font-size: 0.85rem;">
+                        <a href="mentions-legales.html" style="color: var(--color-text-gray); text-decoration: none;">Mentions légales</a>
+                        <a href="politique-confidentialite.html" style="color: var(--color-text-gray); text-decoration: none;">Confidentialité</a>
+                        <a href="cgv.html" style="color: var(--color-text-gray); text-decoration: none;">CGV</a>
+                        <a href="cookies.html" style="color: var(--color-text-gray); text-decoration: none;">Cookies</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="space-background.js"></script>
+    <script src="animations.js"></script>
+    <script src="bigbang-effect.js"></script>
+</body>
+
+</html>
