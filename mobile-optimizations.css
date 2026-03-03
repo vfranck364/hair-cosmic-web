@@ -1274,25 +1274,32 @@ code {
 @media (max-width: 768px) {
   .timeline-container {
     display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 8px !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 15px !important;
+    justify-items: center !important;
   }
 
   .timeline-planet {
-    padding: 5px !important;
-    width: 45px !important;
-    height: 45px !important;
+    padding: 10px !important;
+    width: clamp(100px, 38vw, 150px) !important;
+    height: clamp(100px, 38vw, 150px) !important;
     min-height: unset !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   .timeline-planet h3 {
-    font-size: 8px !important;
-    margin-bottom: 2px !important;
+    font-size: clamp(12px, 3.5vw, 16px) !important;
+    margin-bottom: 5px !important;
   }
 
   .timeline-planet p {
-    display: none;
-    /* Masqué sur très petit écran pour lisibilité */
+    font-size: clamp(9px, 2.5vw, 12px) !important;
+    line-height: 1.3 !important;
+    display: block !important;
+    max-width: 90% !important;
   }
 }
 
