@@ -219,6 +219,12 @@ class GeminiChatbotEnhanced {
      */
     async sendMessage(userMessage) {
         try {
+            // Vérifier que la clé API est présente
+            if (!GROQ_API_KEY || GROQ_API_KEY === '') {
+                console.error('❌ [Groq] Clé API manquante!');
+                throw new Error('Clé API Groq manquante - Vérifiez config-api.js');
+            }
+
             // Construire le prompt système complet
             const completeSystemPrompt = await this.buildCompleteSystemPrompt();
 
@@ -237,6 +243,8 @@ class GeminiChatbotEnhanced {
                 }))
             ];
 
+            console.log('🤖 [Groq] Envoi de la requête API...', userMessage.substring(0, 50));
+
             // Appel API Groq
             const response = await fetch(GROQ_API_URL, {
                 method: 'POST',
@@ -248,19 +256,34 @@ class GeminiChatbotEnhanced {
                     model: "llama-3.3-70b-versatile", // Modèle Llama 3.3 70B (actuel - le plus puissant)
                     messages: messages,
                     temperature: 0.7,
-                    max_tokens: 500,
+                    max_tokens: 800, // Augmenté pour des réponses plus complètes
                     top_p: 1,
                     stream: false
                 })
             });
 
+            console.log('📡 [Groq] Réponse HTTP:', response.status);
+
             if (!response.ok) {
                 const errorText = await response.text();
-                console.error('Groq API Error Response:', response.status, errorText);
-                throw new Error(`Groq API Error: ${response.status} - ${errorText}`);
+                console.error('❌ [Groq] Erreur API:', response.status, errorText);
+                
+                // Messages d'erreur détaillés
+                if (response.status === 401) {
+                    throw new Error('Clé API invalide (401) - Vérifiez votre clé Groq dans config-api.js');
+                } else if (response.status === 403) {
+                    throw new Error('Accès refusé (403) - Clé API expirée ou permissions insuffisantes');
+                } else if (response.status === 429) {
+                    throw new Error('Limite de débit dépassée (429) - Trop de requêtes, attendez quelques secondes');
+                } else if (response.status === 500) {
+                    throw new Error('Erreur serveur Groq (500) - Service temporairement indisponible');
+                } else {
+                    throw new Error(`Erreur API Groq (${response.status}): ${errorText.substring(0, 200)}`);
+                }
             }
 
             const data = await response.json();
+            console.log('✅ [Groq] Réponse reçue avec succès');
 
             // Vérifier la réponse
             if (!data.choices || data.choices.length === 0) {
@@ -269,6 +292,7 @@ class GeminiChatbotEnhanced {
 
             // Extraire la réponse
             const botResponse = data.choices[0].message.content;
+            console.log('💬 [Groq] Réponse:', botResponse.substring(0, 100) + '...');
 
             // Ajouter la réponse à l'historique
             this.conversationHistory.push({
@@ -282,26 +306,16 @@ class GeminiChatbotEnhanced {
             return {
                 success: true,
                 message: botResponse,
-                userProfile: this.userProfile
+                userProfile: this.userProfile,
+                source: 'groq-ai'
             };
 
         } catch (error) {
-            console.error('Groq API Error:', error);
+            console.error('❌ [Groq] Erreur complète:', error);
+            console.error('❌ [Groq] Stack:', error.stack);
 
-            // Fallback en cas d'erreur
-            const fallbackResponses = [
-                "Désolé, je rencontre un petit souci technique 😅\n\nMais pas de panique ! Tu peux :\n\n📧 M'écrire directement : vfranck364@gmail.com\n📱 WhatsApp : +237 6 83 12 16 54\n\nOu repose ta question, je vais réessayer !",
-                "Oops ! Petit problème de connexion avec mon cerveau IA 😅\n\nEn attendant, tu peux me contacter directement :\n\n📧 vfranck364@gmail.com\n📱 +237 6 83 12 16 54\n\nJe serai ravi de t'aider personnellement !",
-                "Je suis momentanément indisponible pour cause de maintenance IA 😊\n\nTu peux me joindre directement :\n\n📧 vfranck364@gmail.com\n📱 +237 6 83 12 16 54\n\nJe répondrai à ta question avec plaisir !"
-            ];
-
-            const randomFallback = fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
-
-            return {
-                success: false,
-                message: randomFallback,
-                error: error.message
-            };
+            // Retourner l'erreur pour permettre le fallback
+            throw error;
         }
     }
 

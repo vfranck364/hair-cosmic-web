@@ -1,5 +1,61 @@
-// Modèle de configuration API pour HAIR Chatbot
-// Renommez ce fichier en 'config-api.js' et insérez votre clé
+// ============================================
+// CONFIGURATION API - HAIR Chatbot (EXEMPLE)
+// ============================================
+// ⚠️ IMPORTANT : Ceci est un fichier d'exemple
+// 1. Copiez ce fichier vers 'config-api.js'
+// 2. Remplissez vos vraies clés API
+// 3. NE JAMAIS committer config-api.js dans Git
+// ============================================
+
 window.CONFIG_API = {
-    GROQ_API_KEY: 'VOTRE_CLE_ICI'
+    // ============================================
+    // API PRINCIPALE : GROQ (Llama 3) - RECOMMANDÉ
+    // ============================================
+    // 🚀 100% Gratuit : 100 000 requêtes/jour
+    // ⚡ Plus rapide que Gemini (~100ms)
+    // ✅ Pas de quota bloquant
+    //
+    // 📖 Créez votre clé sur : https://console.groq.com/keys
+    // ============================================
+    GROQ_API_KEY: '',  // ⚠️ REMPLACEZ PAR VOTRE CLÉ 'gsk_...'
+
+    // ============================================
+    // API BACKUP : GOOGLE GEMINI
+    // ============================================
+    // ⚠️ Gratuit mais limité (60 req/min, 1500/jour)
+    // 🔄 Utilisé seulement si GROQ_API_KEY est vide
+    // ============================================
+    GEMINI_API_KEY: ''  // ⚠️ Optionnel - Remplissez si besoin
 };
+
+// ============================================
+// MODE DE FONCTIONNEMENT
+// ============================================
+// 'groq' : Utilise Groq API (PRINCIPAL - recommandé)
+// 'gemini' : Utilise Gemini API (BACKUP)
+// 'proxy' : Utilise Cloudflare Worker (production)
+// ============================================
+window.CONFIG_API.API_MODE = 'groq';
+
+// URL du Cloudflare Worker (à remplir si API_MODE = 'proxy')
+window.CONFIG_API.GEMINI_PROXY_URL = '';
+
+// Google Analytics (optionnel)
+window.CONFIG_API.GOOGLE_ANALYTICS_ID = '';
+
+// ============================================
+// 📖 GUIDE RAPIDE - CRÉER CLÉ GROQ EN 5 MIN
+// ============================================
+// 1. Allez sur : https://console.groq.com/keys
+// 2. Créez un compte gratuit (Google/GitHub)
+// 3. Cliquez sur "Create API Key"
+// 4. Copiez la clé (commence par "gsk_...")
+// 5. Collez-la ci-dessus : GROQ_API_KEY: 'gsk_...'
+// 6. Rechargez la page → Chatbot fonctionne !
+//
+// 🎯 Avantages Groq vs Gemini :
+// - 100x plus de requêtes gratuites (100k vs 1.5k/jour)
+// - 5x plus rapide (~100ms vs ~500ms)
+// - Pas de quota bloquant
+// - Modèle Llama 3 70B (très puissant)
+// ============================================

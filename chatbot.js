@@ -8,13 +8,15 @@ class AstroBot {
     this.isOpen = false;
     this.chatbot = new HybridChatbot(); // Use hybrid chatbot instead of just Gemini
     this.autoActivated = false;
-    
+    this.apiStatus = 'unknown'; // 'unknown', 'connected', 'error'
+
     // Supabase - Lead Management
     this.currentLeadId = null;
     this.sessionId = null;
     this.leadSavedNotification = false;
-    
+
     this.init();
+    this.testAPIConnection(); // Test API connection on init
   }
 
   init() {
@@ -24,14 +26,66 @@ class AstroBot {
   }
 
   /**
+   * Teste la connexion API au démarrage
+   */
+  async testAPIConnection() {
+    console.log('🔍 [AstroBot] Test de connexion API...');
+    try {
+      const response = await this.chatbot.sendMessage('Bonjour');
+      if (response.success) {
+        this.apiStatus = 'connected';
+        this.updateStatusIndicator('connected');
+        console.log('✅ [AstroBot] API connectée et fonctionnelle');
+      } else {
+        this.apiStatus = 'error';
+        this.updateStatusIndicator('error');
+        console.warn('⚠️ [AstroBot] API erreur:', response.error);
+      }
+    } catch (error) {
+      this.apiStatus = 'error';
+      this.updateStatusIndicator('error');
+      console.warn('⚠️ [AstroBot] API non connectée:', error.message);
+    }
+  }
+
+  /**
+   * Met à jour l'indicateur de statut API dans l'UI
+   */
+  updateStatusIndicator(status) {
+    const statusEl = document.getElementById('astro-status-indicator');
+    if (!statusEl) return;
+
+    if (status === 'connected') {
+      statusEl.textContent = '🟢 En ligne';
+      statusEl.style.color = 'var(--color-energy-lime)';
+    } else if (status === 'error') {
+      statusEl.textContent = '🟡 Mode dégradé';
+      statusEl.style.color = '#FFD700'; // Gold color
+    } else {
+      statusEl.textContent = '🔵 Initialisation...';
+      statusEl.style.color = '#4A90E2'; // Blue color
+    }
+  }
+
+  /**
    * Active automatiquement le chatbot après 12 secondes
    */
   scheduleAutoActivation() {
+    console.log('🤖 [AstroBot] Auto-activation programmée dans 12s...');
     setTimeout(() => {
+      console.log('⏰ [AstroBot] Auto-activation déclenchée !');
+      console.log('📱 Window width:', window.innerWidth);
+      console.log('🔓 autoActivated:', this.autoActivated);
+      console.log('🔓 isOpen:', this.isOpen);
+
       // Ne pas auto-ouvrir sur mobile (≤768px)
-      if (window.innerWidth <= 768) return;
+      if (window.innerWidth <= 768) {
+        console.log('📱 Mobile détecté (≤768px) - Auto-ouverture désactivée');
+        return;
+      }
 
       if (!this.autoActivated && !this.isOpen) {
+        console.log('✅ Ouverture automatique du chatbot...');
         this.autoActivated = true;
         this.toggleChat();
 
@@ -45,6 +99,8 @@ class AstroBot {
             "🎓 Me former à l'IA"
           ]
         );
+      } else {
+        console.log('⚠️ Auto-activation ignorée : autoActivated=', this.autoActivated, 'isOpen=', this.isOpen);
       }
     }, 12000); // 12 secondes
   }
@@ -78,7 +134,7 @@ class AstroBot {
             </div>
             <div>
               <div class="astro-name">Astro</div>
-              <div class="astro-status">🟢 En ligne</div>
+              <div class="astro-status" id="astro-status-indicator">🟢 En ligne</div>
             </div>
           </div>
           <button class="astro-close" id="astro-close-btn">
@@ -140,12 +196,16 @@ class AstroBot {
     const widget = document.getElementById('astro-chat-widget');
     const button = document.getElementById('astro-chat-button');
 
+    console.log('🚪 [AstroBot] toggleChat() appelé - isOpen:', this.isOpen);
+
     if (this.isOpen) {
       widget.classList.add('open');
       button.classList.add('hidden');
+      console.log('✅ Chatbot ouvert');
 
-      // Message de bienvenue manuel si pas auto-activé
+      // Message de bienvenue manuel si pas auto-activé ET première ouverture
       if (this.chatbot.conversationHistory.length === 0 && !this.autoActivated) {
+        console.log('💬 Ajout message de bienvenue manuel');
         this.addBotMessage(
           "👋 Salut ! Je suis Astro, ton assistant HAIR.\n\nComment puis-je t'aider aujourd'hui ?",
           [
@@ -155,10 +215,13 @@ class AstroBot {
             "  💰 Tarifs et devis"
           ]
         );
+      } else {
+        console.log('ℹ️ Pas de message de bienvenue (conversation existante ou auto-activé)');
       }
     } else {
       widget.classList.remove('open');
       button.classList.remove('hidden');
+      console.log('❌ Chatbot fermé');
     }
   }
 

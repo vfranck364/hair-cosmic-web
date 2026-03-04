@@ -458,6 +458,7 @@ class LocalRulesEngine {
 class HybridChatbot {
   constructor() {
     this.localEngine = new LocalRulesEngine(LOCAL_KNOWLEDGE_BASE);
+    console.log('🧠 [HybridChatbot] Moteur de règles locales initialisé avec', LOCAL_KNOWLEDGE_BASE.faq.length, 'FAQs,', LOCAL_KNOWLEDGE_BASE.products.length, 'produits,', LOCAL_KNOWLEDGE_BASE.pages.length, 'pages');
 
     // Use GeminiChatbotEnhanced for better responses with full site context
     // Falls back to GeminiChatbot if not available
@@ -475,25 +476,44 @@ class HybridChatbot {
   }
 
   /**
-   * Handles user message - ALWAYS use AI API for intelligent responses
-   * No more static responses - every message is analyzed by the AI
+   * Handles user message - Try AI API first, fallback to local rules
    */
   async sendMessage(userMessage) {
-    // ALWAYS use AI API - every message is analyzed intelligently
-    console.log('🤖 Sending to AI for analysis:', userMessage.substring(0, 50) + '...');
+    // FIRST: Try AI API for intelligent response
+    console.log('🤖 [HybridChatbot] Envoi à l\'IA pour analyse:', userMessage.substring(0, 50) + '...');
+    
     try {
       const geminiResponse = await this.geminiChatbot.sendMessage(userMessage);
+      console.log('✅ [HybridChatbot] Réponse IA reçue avec succès');
       return {
         ...geminiResponse,
         source: geminiResponse.success ? 'ai' : 'ai-error'
       };
     } catch (error) {
-      console.error('HybridChatbot Error:', error);
+      console.warn('⚠️ [HybridChatbot] IA échoué, fallback vers règles locales:', error.message);
+      
+      // FALLBACK: Try local rules engine
+      try {
+        const localResponse = this.localEngine.processMessage(userMessage);
+        
+        if (localResponse) {
+          console.log('✅ [HybridChatbot] Réponse locale trouvée');
+          return {
+            success: true,
+            message: localResponse,
+            source: 'local-rules'
+          };
+        } else {
+          console.log('⚠️ [HybridChatbot] Aucune réponse locale trouvée');
+        }
+      } catch (localError) {
+        console.error('❌ [HybridChatbot] Erreur moteur local:', localError);
+      }
 
-      // Fallback with helpful contact info
+      // ULTIMATE FALLBACK: Generic error message with contact info
       const fallbackResponses = [
         "Désolé, je rencontre un petit souci technique 😅\n\nMais pas de panique ! Je peux quand même vous aider :\n\n📧 Contacter directement Franck : vfranck364@gmail.com\n📱 WhatsApp : +237 6 83 12 16 54\n\nOu posez-moi une autre question, je ferai de mon mieux !",
-        "Oops ! Problème de connexion avec mon cerveau IA 😅\n\nEn attendant, voici comment me contacter directement :\n\n📧 vfranck364@gmail.com\n📱 +237 6 83 12 16 54\n\nJe serai ravi de vous aider personnellement !",
+        "Oops ! Problème de connexion avec mon cerveau IA 😅\n\nEn attendant, voici comment me contacter directement :\n\n📧 vfranck364@gmail.com\n📱 +237 6 83 12 16 54\n\nJe répondrai à votre question avec plaisir !",
         "Je suis momentanément indisponible pour cause de maintenance IA 😊\n\nEn attendant, vous pouvez me joindre directement :\n\n📧 vfranck364@gmail.com\n📱 +237 6 83 12 16 54\n\nJe répondrai à votre question avec plaisir !"
       ];
 
@@ -502,7 +522,8 @@ class HybridChatbot {
       return {
         success: false,
         message: randomFallback,
-        error: error.message
+        error: error.message,
+        source: 'fallback'
       };
     }
   }
