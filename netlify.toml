@@ -1,0 +1,28 @@
+# Netlify Configuration
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  # Dossier de publication (ton site buildé)
+  publish = "."
+  
+  # Commande de build (si tu as un build, sinon laisse vide)
+  command = ""
+
+# Activer Netlify Functions
+[functions]
+  directory = "netlify/functions"
+
+# Headers de sécurité (optionnel mais recommandé)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+
+# Redirections (optionnel)
+[[redirects]]
+  from = "/api/groq"
+  to = "/.netlify/functions/groq-proxy"
+  status = 200
+  force = true

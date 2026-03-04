@@ -4,9 +4,19 @@ config-api.js
 # Environment files
 .env
 .env.local
+.env.production
+
+# Netlify
+.netlify/
+netlify-functions.log
 
 # Local server logs
 *.log
 
 # OS files
 .DS_Store
+Thumbs.db
+
+# Node modules (si tu ajoutes npm plus tard)
+node_modules/
+package-lock.json

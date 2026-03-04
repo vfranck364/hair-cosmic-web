@@ -1,12 +1,19 @@
 // ============================================
-// HAIR CHATBOT - Groq API (Open Source Llama 3) via Gemini Adapter
-// API Groq Integration avec injection de contenu du site
+// HAIR CHATBOT - Groq API via Netlify Functions Proxy
+// API Groq Integration avec proxy côté serveur
 // ============================================
 
-// Clé API Groq pour HAIR Chatbot (Récupérée dynamiquement de config-api.js)
+// URL du proxy Netlify Functions (côté serveur - clé API cachée)
+const GROQ_PROXY_URL = '/.netlify/functions/groq-proxy';
+
+// Mode : 'proxy' (sécurisé) ou 'direct' (clé exposée)
+const GROQ_MODE = 'proxy'; // Change à 'direct' si tu veux utiliser la clé directe
+
+// Clé API Groq (seulement si mode 'direct')
 const GROQ_API_KEY = (typeof window !== 'undefined' && window.CONFIG_API)
     ? window.CONFIG_API.GROQ_API_KEY
     : '';
+
 const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
 
 // System Prompt pour le Chatbot HAIR - Version COMPLÈTE avec toutes les informations
@@ -219,12 +226,6 @@ class GeminiChatbotEnhanced {
      */
     async sendMessage(userMessage) {
         try {
-            // Vérifier que la clé API est présente
-            if (!GROQ_API_KEY || GROQ_API_KEY === '') {
-                console.error('❌ [Groq] Clé API manquante!');
-                throw new Error('Clé API Groq manquante - Vérifiez config-api.js');
-            }
-
             // Construire le prompt système complet
             const completeSystemPrompt = await this.buildCompleteSystemPrompt();
 
@@ -245,36 +246,67 @@ class GeminiChatbotEnhanced {
 
             console.log('🤖 [Groq] Envoi de la requête API...', userMessage.substring(0, 50));
 
-            // Appel API Groq
-            const response = await fetch(GROQ_API_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${GROQ_API_KEY}`
-                },
-                body: JSON.stringify({
-                    model: "llama-3.3-70b-versatile", // Modèle Llama 3.3 70B (actuel - le plus puissant)
-                    messages: messages,
-                    temperature: 0.7,
-                    max_tokens: 800, // Augmenté pour des réponses plus complètes
-                    top_p: 1,
-                    stream: false
-                })
-            });
+            let response;
+
+            // Utiliser le proxy Netlify (sécurisé) ou appel direct (clé exposée)
+            if (GROQ_MODE === 'proxy') {
+                console.log('🔒 [Groq] Mode PROXY activé - Clé API cachée côté serveur');
+                
+                // Appel via Netlify Functions Proxy
+                response = await fetch(GROQ_PROXY_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        messages: messages,
+                        model: "llama-3.3-70b-versatile",
+                        temperature: 0.7,
+                        max_tokens: 800,
+                        top_p: 1,
+                        stream: false
+                    })
+                });
+            } else {
+                console.log('⚠️ [Groq] Mode DIRECT activé - Clé API exposée (développement uniquement)');
+                
+                // Vérifier que la clé API est présente (mode direct seulement)
+                if (!GROQ_API_KEY || GROQ_API_KEY === '') {
+                    console.error('❌ [Groq] Clé API manquante!');
+                    throw new Error('Clé API Groq manquante - Vérifiez config-api.js');
+                }
+
+                // Appel API Groq direct
+                response = await fetch(GROQ_API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${GROQ_API_KEY}`
+                    },
+                    body: JSON.stringify({
+                        model: "llama-3.3-70b-versatile",
+                        messages: messages,
+                        temperature: 0.7,
+                        max_tokens: 800,
+                        top_p: 1,
+                        stream: false
+                    })
+                });
+            }
 
             console.log('📡 [Groq] Réponse HTTP:', response.status);
 
             if (!response.ok) {
                 const errorText = await response.text();
                 console.error('❌ [Groq] Erreur API:', response.status, errorText);
-                
+
                 // Messages d'erreur détaillés
                 if (response.status === 401) {
-                    throw new Error('Clé API invalide (401) - Vérifiez votre clé Groq dans config-api.js');
+                    throw new Error('Clé API invalide (401) - Vérifiez votre clé Groq');
                 } else if (response.status === 403) {
                     throw new Error('Accès refusé (403) - Clé API expirée ou permissions insuffisantes');
                 } else if (response.status === 429) {
-                    throw new Error('Limite de débit dépassée (429) - Trop de requêtes, attendez quelques secondes');
+                    throw new Error('Limite de débit dépassée (429) - Trop de requêtes');
                 } else if (response.status === 500) {
                     throw new Error('Erreur serveur Groq (500) - Service temporairement indisponible');
                 } else {
